@@ -1,0 +1,9 @@
+
+
+
+migrations/
+.gitattributes/
+README.md
+media/
+check.py
+db.sqlite3

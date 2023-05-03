@@ -1,0 +1,30 @@
+
+
+<br><br><br>
+Login 
+
+<div style="padding: 20px;">
+
+    {% if loggedin %}
+    
+    <h4> successfully logged in </h4>
+    {% endif %}
+
+    <form action="" method="POST" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            {{form.email}}
+            <!-- <input type="text" class="form-control" placeholder="email" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            {{form.password}}
+            <!-- <input type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+
+
+        <button type="submit"  class="btn btn-dark" >Login</button>
+    </form>
+
+</div>
