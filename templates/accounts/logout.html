@@ -12,19 +12,27 @@ Login
 
     <form action="" method="POST" class="form" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="input-group mb-3">
-            {{form.email}}
+        <div class="input-group mb-3"> 
+            <input type="text" name="email" autocomplete="email" class="form-control" id="user-name" placeholder="Your Email">
+
+            <!-- {{form.email}} -->
             <!-- <input type="text" class="form-control" placeholder="email" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
         </div>
         <br><br>
         <div class="input-group mb-3">
-            {{form.password}}
+            <input type="password" required  name="password" class="form-control" id="id_password" placeholder="Password">
+            
+            
+                <!-- <i class="fa fa-eye" id="id_eye" title="Show Password" onclick="make_visible()">v</i> -->
+           
+
+            <!-- {{form.password}} -->
             <!-- <input type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
         </div>
         <br><br>
 
 
-        <button type="submit"  class="btn btn-dark" >Login</button>
+        <button type="submit"  class="btn btn-dark" >Log</button>
     </form>
 
 </div>

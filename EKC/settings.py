@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'front',
 ]
 
 AUTH_USER_MODEL = 'accounts.MyUser' # change django user model to the new user model
