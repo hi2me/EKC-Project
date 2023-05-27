@@ -1,3 +1,58 @@
 
 {% extends 'base.html' %}
 {% load static %}
+
+{% block link_name %} Events {% endblock %}
+
+{% block page_name %} Events {% endblock %}
+
+{% block content %}
+
+
+
+
+			<!-- BLOG PAGE CONTENT
+			============================================= -->
+			<div id="blog-page" class="wide-100 blog-page-section division">
+				<div class="container">
+                    <!-- TEXT WIDGET -->						
+                    <div id="txt-widget" class="sidebar-div mb-50">
+                                
+                        <!-- Title -->
+                        <h5 class="h5-lg steelblue-color mb-3">New Seminar on How to Improve Woman Health!</h5>
+                            <!-- Avatar -->
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="blog-post-img mr-5">
+                                        <img src="{% static 'images/head-of-clinic.jpg' %}" alt="testimonial-avatar">
+                                    </div>
+                                </div>
+
+                                <div class="col-8">
+                                    <!-- Data -->
+                                    <div class="">
+                                        <p class=" h5-sm steelblue-color"> <span >Place:-</span> AAU Meeting Hall, </p>
+                                        <h5 class="h5-sm steelblue-color"> <span>Time:-</span> 10:00 PM - 12:00 PM </h5>
+                                        <h5 class="h5-sm steelblue-color"> <span>Host:-</span>  EKC <span> in association with </span> AAU CHS </h5>
+                                        <h5 class="h5-sm steelblue-color"> <span> Guest Speaker:-</span> Dr. Adamu Adissie <span> IRB, Chair Person</span> </h5>	
+                                            
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>	<!-- End Head of Clinic -->	
+                        
+                        <!-- Text -->
+                        <p class="p-sm">An enim nullam tempor sapien at gravida donec pretium ipsum porta justo
+                            integer at odiovelna vitae auctor integer congue magna purus
+                        </p>
+
+                        <!-- Button -->
+                        <a href="about.html" class="btn btn-blue blue-hover">Learn More</a>
+                                                                
+                    </div>	<!-- END TEXT WIDGET -->
+                </div>
+            </div>
+
+
+{% endblock %}      

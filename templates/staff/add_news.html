@@ -1,0 +1,44 @@
+
+
+<br><br><br>
+please add your news here
+
+
+<div style="padding: 20px;">
+
+    {% if submitted %}
+    
+    <h4> successfully submitted </h4>
+    {% endif %}
+
+    <form action="" method="POST" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            {{form.title}}
+            <!-- <input type="text" class="form-control" placeholder="email" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            {{form.desc}}
+            <!-- <input type="text" class="form-control" placeholder="name" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            {{form.category}}
+            <!-- <input type="text" class="form-control" placeholder="phone" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                {{form.image}}
+            <!-- <input type="file" class="custom-file-input" id="inputGroupFile02"> -->
+            </div>
+        </div>
+        <br><br>
+
+
+        <button type="submit"  class="btn btn-dark" onclick="return confirm('confirm?')" >Save</button>
+    </form>
+
+</div>

@@ -499,6 +499,13 @@ ul.content-list li:last-child {
   border-color: #89be19;
 }
 
+.btn-tra-blue {
+  color: #00a3c8; 
+  font-size: 1.2rem;
+  background-color: transparent;
+  border-color: transparent;
+}
+
 /*------------------------------------------*/
 /*  Button Hover
 /*------------------------------------------*/
@@ -539,6 +546,13 @@ ul.content-list li:last-child {
 .white-color .blue-hover:hover {
   color: #fff!important;
   background-color: #0e8eab;
+  border-color: #0e8eab;
+}
+
+
+.blue-tra-hover:hover {
+  color: #0e8eab!important;
+  background-color: transparent;
   border-color: #0e8eab;
 }
 

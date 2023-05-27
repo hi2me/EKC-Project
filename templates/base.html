@@ -22,11 +22,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 				
   		<!-- SITE TITLE -->
-		<title>MedService - Medical & Medical Health Landing Page Template</title>
+		<title>EKC Addis Ababa</title>
 							
 		<!-- FAVICON AND TOUCH ICONS  -->
-		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-		<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+		<link rel="shortcut icon" href="{% static 'images/logo/logo-big.png' %}" type="image/x-icon">
+		<link rel="icon" href="{% static 'images/logo/logo-big.png' %}" type="image/x-icon">
 		<link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/apple-touch-icon-152x152.png' %}">
 		<link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/apple-touch-icon-120x120.png' %}">
 		<link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/apple-touch-icon-76x76.png' %}">
@@ -125,7 +125,7 @@
 				<!-- MOBILE HEADER -->
 			    <div class="wsmobileheader clearfix">
 			    	<a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-			    	<span class="smllogo"><img src="{% static 'images/logo-grey.png' %}" width="180" height="40" alt="mobile-logo"/></span>
+			    	<span class="smllogo"><img src="{% static 'images/logo/logo-big.png' %}" width="180" height="40" alt="mobile-logo"/></span>
 			    	<a href="tel:123456789" class="callusbtn"><i class="fas fa-phone"></i></a>
 			 	</div>
 
@@ -136,8 +136,8 @@
 
 			    		<!-- Address -->
 			     		<div class="headertopleft">			     			
-			        		<div class="address clearfix"><span><i class="fas fa-map-marker-alt"></i>121 King St,
-			            		Melbourne, VIC 3000 </span> <a href="tel:123456789" class="callusbtn"><i class="fas fa-phone"></i>(800)-569-7890</a>
+			        		<div class="address clearfix"><span><i class="fas fa-map-marker-alt"></i> Zambia St, Addis Ababa
+			            		 </span> <a href="tel:123456789" class="callusbtn"><i class="fas fa-phone"></i>(+251) 956 97 8908</a>
 			            	</div>
 			     		</div>
 
@@ -159,7 +159,7 @@
 
     					<!-- LOGO IMAGE -->
     					<!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 360 x 80 pixels) -->
-    					<div class="desktoplogo"><a href="#hero-1"><img src="{% static 'images/logo-grey.png' %}"  width="180" height="40" alt="header-logo"></a></div>
+    					<div class="desktoplogo"><a href="#hero-1"><img src="{% static 'images/logo/logo-big.png'' %}"  width="160" height="70" alt="header-logo"></a></div>
 
     					<!-- MAIN MENU -->
       					<nav class="wsmenu clearfix">
@@ -171,17 +171,21 @@
                                     <a href="{% url 'home' %}">Home </a>
 					          	</li>
 
-					        	<li aria-haspopup="true">
-                                    <a href="{% url 'about_us' %}">About Us </a>
+					        	<li aria-haspopup="true"> <a href="">About Us  <span class="wsarrow"></span> </a>
+									<ul class="sub-menu">
+										<li aria-haspopup="true"><a href="{% url 'about_us' %}"> About Us </a></li>
+										<li aria-haspopup="true"><a href="{% url 'service' %}"> Service </a></li>
+										<li aria-haspopup="true"><a href="{% url 'team'  %}"> Team </a></li>
+									</ul>
 					          	</li>
 
 					        	<li aria-haspopup="true">
                                     <a href="{% url 'publication' %}">Publications </a>
 					          	</li>
 
-								<li aria-haspopup="true">
+								<!-- <li aria-haspopup="true">
 									<a href="{% url 'team' %}">Team </a>
-								</li>
+								</li> -->
 
                                 <li aria-haspopup="true"><a href="">News & Gallery <span class="wsarrow"></span></a>
                                     <ul class="sub-menu">
@@ -214,9 +218,38 @@
 
 			</header>	<!-- END HEADER -->
 
+			{% if not index %}
+						<!-- BREADCRUMB
+			============================================= -->
+			<div id="breadcrumb" class="division">
+				<div class="container">
+					<div class="row">						
+						<div class="col">
+							<div class=" breadcrumb-holder">
+
+								<!-- Breadcrumb Nav -->
+								<nav aria-label="breadcrumb">
+								  	<ol class="breadcrumb">
+								    	<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+								    	<li class="breadcrumb-item active" aria-current="page">{% block link_name %} {% endblock %}</li>
+								  	</ol>
+								</nav>
+
+								<!-- Title -->
+								<h4 class="h4-sm steelblue-color">{% block page_name %} {% endblock %}</h4>
+
+							</div>
+						</div>
+					</div>  <!-- End row -->	
+				</div>	<!-- End container -->		
+			</div>	<!-- END BREADCRUMB -->	
+
+			{% endif %}
+
 
 
             {% block content %}
+
             {% endblock %}
 
 
@@ -236,7 +269,7 @@
 
 								<!-- Footer Logo -->
 								<!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 360 x 80  pixels) -->
-								<img src="{% static 'images/footer-logo-white.png' %}" width="180" height="40" alt="footer-logo">
+								<img src="{% static 'images/logo/loggo.jpg' %}" width="160" height="70" alt="footer-logo">
 
 								<!-- Text -->	
 								<p class="p-sm mt-20">Aliquam orci nullam tempor sapien gravida donec an enim ipsum porta
