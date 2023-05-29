@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django_email_verification',
     'accounts',
     'front',
     'staff',
@@ -134,3 +135,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email Verification
+
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER='compacct01@gmail.com'
+EMAIL_FROM ='compacct01@gmail.com'
+EMAIL_HOST_PASSWORD='amu1505y'
+EMAIL_USE_TLS=True
+# EMAIL_ACTIVE_FIELD = 'is_active'
+# EMAIL_MAIL_SUBJECT = 'Confirm your email'
+# EMAIL_MAIL_HTML = 'mail.html'
+# EMAIL_PAGE_TEMPLATE = 'confirm.html'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

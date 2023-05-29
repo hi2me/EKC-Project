@@ -3,6 +3,14 @@
 <br><br><br>
 Registration
 
+{% autoescape off %}
+hi {{user.full_name}},click z link below:
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+<!-- <a href="https://{{domain}}{% url 'activate' uidb64=uid token=token %}"> here </a> -->
+{% endautoescape %}
+
+
+
 <div style="padding: 20px;">
 
     {% if submitted %}

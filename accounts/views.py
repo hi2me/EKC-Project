@@ -1,11 +1,42 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate,  login, logout, get_user
+from django.contrib.auth import authenticate,  login, logout, get_user_model
+from django.contrib import messages
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils.http import urlsafe_base64_encode
+from django.core.mail import EmailMultiAlternatives, EmailMessage
+# from django_email_verification import  send_email
+import six 
 
 # Create your views here.
-from.models import MyUser 
+from .models import MyUser 
 from.forms import StaffUserCreationForm, MyUserRegistrationForm
+
+
+def activate(request, uidb64, token):
+    return redirect ('home')
+
+def activateEmail(request, user, to_email):
+    mail_subject = 'activate ur acct.'
+    message = render_to_string('mail.html', {
+        'user': user.full_name,
+        'domain': get_current_site(request).domain,
+        'uid':urlsafe_base64_encode(force_bytes(user.id)),#encode self.user id
+        'token':account_activation_token.make_token(user),
+        'protocol':'https' if request.is_secure() else 'http'
+        
+    })
+    to_email = user.email
+    email = EmailMessage(mail_subject, message, 'compacct01@gmail.com', to=[to_email],)
+    if email.send():
+        messages.success(request, f'dear {user}, go to ur mail {to_email} and click z link')
+    else:
+        messages.error(request, f'dear {user}, we cant send mail to {to_email} ')
+
 
 
 class Register(View):
@@ -19,8 +50,9 @@ class Register(View):
         
         form = StaffUserCreationForm(request.POST, request.FILES )
         if form.is_valid():
-            register = form.save(commit=False)
-            register.save()
+            user = form.save(commit=False)
+            user.save()
+            activateEmail(request, user, form.cleaned_data.get('email'))
             return render ( request, 'accounts/reg.html', {'form':form, 'submitted': True})
 
 class Login(View):
@@ -53,6 +85,28 @@ class Logout(View):
     def get(self, request):
         logout(self.request)
         return render ( request, 'accounts/login.html', {'loggedout': True})
+    
+
+
+#  Email Activation 
+
+class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
+    def _make_hash_value(self, user, timestamp):
+        return six.text_type(user.id) + six.text_type(timestamp) + six.text_type(user.is_active)
+
+account_activation_token = AccountActivationTokenGenerator()
+
+
+
+
+# def sendEmail(request):
+#     password = request.POST.get('password')
+#     email = request.POST.get('email')
+#     user = MyUser.objects.create( email = email, password = password)
+#     send_email(user)
+#     return render(request, 'confirm.html')
+
+
 
 # def login_redirects(request):
 #     user = request.user
@@ -108,4 +162,4 @@ class Logout(View):
 #                 return render(request, 'front/registration/login.html', {'form':form})
 
 
-#         return render(request, 'front/registration/login.html', {'form':AuthenticationForm})
+#         return render(request, 'front/registration/login.html', {'form':AuthenticationForm})      
