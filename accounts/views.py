@@ -9,6 +9,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.http import urlsafe_base64_encode
 from django.core.mail import EmailMultiAlternatives, EmailMessage
+
 # from django_email_verification import  send_email
 import six 
 
@@ -17,8 +18,22 @@ from .models import MyUser
 from.forms import StaffUserCreationForm, MyUserRegistrationForm
 
 
+
+#  Email Activation 
+
+class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
+    def _make_hash_value(self, user, timestamp):
+        return six.text_type(user.id) + six.text_type(timestamp) + six.text_type(user.is_active)
+
+account_activation_token = AccountActivationTokenGenerator()
+
+
+
 def activate(request, uidb64, token):
-    return redirect ('home')
+        messages.success(request, 'ur email is verified')
+        return redirect ('home')
+
+
 
 def activateEmail(request, user, to_email):
     mail_subject = 'activate ur acct.'
@@ -33,11 +48,21 @@ def activateEmail(request, user, to_email):
     to_email = user.email
     email = EmailMessage(mail_subject, message, 'compacct01@gmail.com', to=[to_email],)
     if email.send():
-        messages.success(request, f'dear {user}, go to ur mail {to_email} and click z link')
+        messages.success(request, f'dear {user}, go to ur mail {to_email} and click z link to confirm your account')
     else:
         messages.error(request, f'dear {user}, we cant send mail to {to_email} ')
 
 
+
+# class ConfirmEmail(View):
+#     def get(self, request, uidb64, token):
+#         form = MyUserRegistrationForm(request.POST, request.FILES )
+#         email = form.email
+#         user = MyUser.objects.get(email = email)
+#         user.is_active = True
+#         user.save
+#         messages.success(request, 'ur email is verified')
+#         return redirect ('home')
 
 class Register(View):
     def get (self, request):
@@ -68,15 +93,15 @@ class Login(View):
         user = authenticate(request, username = email, password = password)
         
         if user is not None:
-            login(request, user)
-            # printer("login_log.txt", f"{user} Logged in @ {timezone.now()}")
+            login(request, user)        
+            messages.success(request, f'welcome to AAU EKC')
+            return render ( request, 'accounts/login.html', {'form':form, 'loggedin': True})
     
-        # else:
-        #     # messages.warning(request, 'Email or password is wrong!',)
-        #     # return render(request, 'front/registration/login.html', {'form':form})
+        else:
+            messages.warning(request, 'Email or password is wrong!',)
+            return render(request, 'accounts/login.html', {'form':form})
 
 
-        return render ( request, 'accounts/login.html', {'form':AuthenticationForm, 'loggedin': True})
         # return render(request, 'front/registration/login.html', {'form':AuthenticationForm})
 
     
@@ -84,17 +109,12 @@ class Login(View):
 class Logout(View):
     def get(self, request):
         logout(self.request)
+        messages.success(request, 'you have successfully loggedout.')
         return render ( request, 'accounts/login.html', {'loggedout': True})
     
 
 
-#  Email Activation 
 
-class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
-    def _make_hash_value(self, user, timestamp):
-        return six.text_type(user.id) + six.text_type(timestamp) + six.text_type(user.is_active)
-
-account_activation_token = AccountActivationTokenGenerator()
 
 
 

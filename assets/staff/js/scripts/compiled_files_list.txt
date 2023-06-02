@@ -1,0 +1,1 @@
+staff/js/scripts/forms/custom_file_input.min.js

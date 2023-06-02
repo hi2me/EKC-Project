@@ -48,6 +48,15 @@ class News_Gallery(View):
             return render (request, 'front/gallery.html', context)
             
 
+
+class NewsDetail(View):
+    def get( self, request, id):
+        news = News.objects.get(id = id)
+        news_list = News.objects.all()
+
+        context = {'news':news, 'news_list':news_list}
+        return render (request, 'front/news_detail.html', context)
+
 class Event(View):
     def get( self, request, type):
         if type == 'up_coming':

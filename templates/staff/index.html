@@ -1,0 +1,201 @@
+{% extends 'staff/base.html' %} 
+{% load static %} 
+{% block style %} 
+<link rel="stylesheet" type="text/css" href="{% static 'staff/css/pages/card-statistics.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'staff/css/pages/users.min.css' %}">
+{% endblock %}
+{% block dashboard %} open hover {% endblock %}
+{% block content %} 
+
+<div class="content-body"><!-- Grouped multiple cards for statistics starts here -->
+  <div class="row grouped-multiple-statistics-card">
+    <div class="col-12">
+      <div class="card round">
+        <div class="card-body ">
+          <div class="row">
+
+            <div class="col-xl-4 col-sm-6 col-12 border-right-blue-grey border-right-lighten-5">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h3 class="font-large-1">{{props|length}}</h3>
+                        <span class="font-medium-2">
+                          <a href="">Initial Submission</a></span>
+                      </div>
+                      <div class="align-self-center">
+                        <i class="fa fa-rocket success font-large-2 float-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-4 col-sm-6 col-12 border-right-blue-grey border-right-lighten-5">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h3 class="font-large-1">{{amends}}</h3>
+                        <span class="font-medium-2"> <a href="">Amendment Request</a></span>
+                      </div>
+                      <div class="align-self-center">
+                        <i class="fa fa-edit info font-large-2 float-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-4 col-sm-6 col-12 ">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h3 class="font-large-1">{{renewals}}</h3>
+                        <span class="font-medium-2"><a href="">Renewal</a></span>
+                      </div>
+                      <div class="align-self-center">
+                        <i class="fa fa-reply-all  font-large-2 float-right" style="color:rgb(255, 143, 158)"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Grouped multiple cards for statistics ends here -->
+
+  <!-- Minimal modern charts for power consumption, region statistics and sales etc. starts here -->
+  <div class="row minimal-modern-charts match-height ">
+    <!-- tracking stats chart -->
+    <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 ">
+      <div class="card profile-card-with-cover round">
+        <div class="card-content round">
+            <!--<img class="card-img-top img-fluid" src="{% static 'staff/images/carousel/18.jpg" alt="Card cover image">-->
+            {% if user.is_superuser  %}
+              <div class="card-img-top img-fluid bg-cover round" style="background-color:#2f3443;  height:200px;"></div>
+            {% else %} 
+              <div class="card-img-top img-fluid bg-cover round" style="background-color:#95a9ff;  height:200px;"></div>
+            {% endif %}
+            <div class="card-profile-image">
+                <img src="{{user.profile_image.url}}" style="width: 140px; height: 140px;"  
+                class="rounded-circle img-border text-center box-shadow-1" alt="Profile Image">
+            </div>
+            <div class="profile-card-with-cover-content text-center">
+                <div class="profile-details mt-2">
+                    <p>Welcome Back</p>
+                    <h5 class="card-title">{{user}}</h5>                    
+                    
+                </div>
+                <div class="card-body">
+                    <a href="" class="btn btn-social btn-min-width mr-1 mb-1 white"
+                    {% if user.is_superuser  %}
+                    style="background-color: #2f3443 ;"
+                    {% else %} 
+                    style="background-color: #768efa ;"
+                    {% endif %}  
+                      >
+                      <i class="fa fa-user"></i> <span class="px-1">My Profile</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-12 ">
+      <div class="card ">
+        <div class="card-header border-0">
+          <h4 class="card-title">Your Initial Submission Requests</h4>
+        </div>
+        <div class="card-content">
+          <div  class="table-responsive position-relative table-bordered">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Protocol Num</th>
+                  <th>Title</th>
+                  <th>Latest Version</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if props|length > 0 %}
+                  {% for p in props %}
+                    <tr>
+                      <td >{{p.protocol_number}}</td>
+                      <td ><a href="{% url 'proposal:proposal_detail' pk=p.id %}">{{p.title|truncatechars_html:50}}</a></td>
+                      <td class="align-middle">Version {{p.latest_version_num}} </td>
+                      <td class="align-middle">
+                        {% if p.status == "Pending" or p.status == "On Comment" %} 
+                            <span class="badge badge-warning">{{p.status}}</span>
+                        {% elif p.status == 'Approved' %} 
+                            <span class="badge badge-success">Approved</span>
+                        {% elif p.status == 'Rejected' %}
+                            <span class="badge badge-danger">Rejected</span>
+                        {% else %} 
+                            <span class="badge badge-info">{{p.status}}</span>
+                        {% endif %}
+                      </td>             
+                    </tr>
+                  {% endfor %}
+                {% else %} 
+                  <tr class="text-center">
+                    <td class="text-center"><h4 class="text-center">No Initial Submission</h4></td>
+                  </tr>
+                {% endif %}
+              </tbody>
+             
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+
+  </div>
+  <!-- Minimal modern charts for power consumption, region statistics and sales etc. starts here -->
+
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+{% block js %}
+<script src="{% static 'staff/vendors/js/charts/chart.min.js' %}"></script>
+<script src="{% static 'staff/vendors/js/charts/apexcharts/unminify.js' %}"></script>
+
+ <!-- BEGIN: Page JS-->
+ <script src="{% static 'staff/js/scripts/cards/card-statistics.min.js' %}"></script>
+ <!-- BEGIN: Page JS-->
+
+<script src="{% static 'staff/vendors/js/pickers/dateTime/moment-with-locales.min.js' %}"></script>
+<script src="{% static 'staff/vendors/js/pickers/daterange/daterangepicker.js' %}"></script>
+<script src="{% static 'staff/vendors/js/pickers/pickadate/picker.js' %}"></script>
+<script src="{% static 'staff/vendors/js/pickers/pickadate/picker.date.js' %}"></script>
+
+
+    
+<script src="{% static 'staff/vendors/js/extensions/dropzone.min.js' %}"></script>
+<script src="{% static 'staff/vendors/js/ui/prism.min.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/line/line-area.min.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/bar/column.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/pie-doughnut/pie-simple.min.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/pie-doughnut/doughnut-simple.min.js' %}"></script> 
+{% endblock %}

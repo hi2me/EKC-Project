@@ -1,0 +1,53 @@
+
+window.alert("opeing")
+    $(document).ready(function() {
+        $("#search_prot_num").focus();
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
+    function isNumeric(num){
+        for(var i=0;i<num.length;i++){
+            if(isNaN(num[i]))
+                return false
+        }
+        return true
+    }
+    
+    function validate_prot_num(){
+        var prot_num =String ($("#id_prot_num").val())
+        var s = ""
+        var parts = prot_num.split("/");
+        var index = parts[0], year = parts[1], dn = parts[2];
+
+        if (parts.length != 3 ||  index.length !=3 || year.length !=2 ){
+            alert("Invalid protocol format detected. Please Enter a valid protocol number!  ");
+            return false
+        }
+        // check if number of index and if it is lesser than 1
+        if ( isNumeric(index) == false || parseInt(index) < 1)
+            s+=("Invalid Index , ")
+
+        var current_year = new Date().getFullYear()
+        if (isNumeric(year) == false || parseInt(year) > current_year - 2000 )
+            s+="Invalid Year value , "
+        
+        var department_names = '{{dept_names|safe}}'
+        console.log({{dept_names|safe}}) 
+        if (department_names.includes(dn) == false)
+            s+=" \n Invalid Department Name"
+        
+            // check if there is any error
+        if (s=="")
+            $('form').submit()
+        else
+          {alert(s)}
+        $("#search_prot_num").focus();
+       
+    }
+
+  

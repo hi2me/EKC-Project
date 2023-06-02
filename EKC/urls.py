@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from accounts.views import Register, Login, Logout
-from front.views import Home,About_us,Service,Publication,Team,News_Gallery,Event,Contact_us
+from front.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +28,7 @@ urlpatterns = [
     path('publications', Publication.as_view(), name='publication'),
     path('team', Team.as_view(), name='team'),
     path('blog/<str:type>/', News_Gallery.as_view(), name='blog'),
+    path('news_detail/<int:id>/', NewsDetail.as_view(), name='news_detail'),
     path('events/<str:type>/', Event.as_view(), name='event'),
     path('contact_us/', Contact_us.as_view(), name='contact_us'),
 
@@ -34,3 +37,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'),),
     path('staff/', include('staff.urls'),)
 ]
+
+
+
+urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)

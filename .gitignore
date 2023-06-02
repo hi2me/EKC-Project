@@ -7,5 +7,6 @@ README.md
 media/
 check.py
 db.sqlite3
-assets/images/
+assets/front/images/
+assets/staff/images/
 demo-2.html

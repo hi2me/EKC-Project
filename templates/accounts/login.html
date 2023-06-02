@@ -1,5 +1,58 @@
 
 
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+	<!-- CONTACTS-2
+			============================================= -->
+			<section id="contacts-2" class="wide-60 contacts-section division">				
+				<div class="container ">
+					<div class="row " style="max-width: 50%; margin-left:250px;">	
+
+
+                        						<!-- CONTACT FORM -->	
+				 		<div class=" col-lg-12 text-center ">
+                            <div class="form-holder mb-40 " >
+                                <form action="" method="POST" class=" row form " enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                                           
+                                    
+                                        <div  class="col-md-12 contact-form">
+                                                <input type="text" name="email" autocomplete="email" class="form-control email" placeholder="Enter Your Email*" required> 
+                                                
+                                                <input type="password"  name="password" class="form-control name" placeholder="password*" required> 
+
+                                                
+                                         <!-- Contact Form Button -->
+                                                <div class="col-lg-12 mt-15 form-btn pt-3">  
+                                                    <button type="submit" class="btn btn-blue blue-hover submit">login </button> 
+                                                </div>
+
+                                            </div>
+
+                                    
+                                           
+
+                                    
+                                
+                                                             
+                               </form> 
+                            </div>	
+                        </div> 	<!-- END CONTACT FORM -->
+
+
+				 	</div>	<!-- End row -->			  
+				</div>	   <!-- End container -->		
+			</section>	<!-- END CONTACTS-2 -->
+
+{% endblock %}
+
+
+
 <br><br><br>
 Login 
 
@@ -18,14 +71,14 @@ Login
     <form action="" method="POST" class="form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="input-group mb-3"> 
-            <input type="text" name="email" autocomplete="email" class="form-control" id="user-name" placeholder="Your Email">
+            <input type="text" name="email" autocomplete="email" class="form-control"  placeholder="Your Email">
 
             <!-- {{form.email}} -->
             <!-- <input type="text" class="form-control" placeholder="email" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
         </div>
         <br><br>
         <div class="input-group mb-3">
-            <input type="password" required  name="password" class="form-control" id="id_password" placeholder="Password">
+            <input type="password" required  name="password" class="form-control"  placeholder="Password">
             
             
                 <!-- <i class="fa fa-eye" id="id_eye" title="Show Password" onclick="make_visible()">v</i> -->
@@ -47,3 +100,11 @@ Login
    <a href="{% url 'accounts:logout' %}"> <button  class="btn btn-dark" >Logout</button> </a>
    {% endif %}
 </div>
+
+
+
+
+
+
+
+

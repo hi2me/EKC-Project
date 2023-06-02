@@ -2,4 +2,8 @@
 
 HELLO WORLD!
 
-<h3> click <a href="{{link}}"> here </a> to confirm </h3>
+
+{% autoescape off %}
+hi {{user.full_name}},click z link below:
+http://{{domain}}{% url 'accounts:activate' uidb64=uid token=token %}
+{% endautoescape %}

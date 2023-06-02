@@ -6,7 +6,7 @@ from .models import MyUser
 class MyUserAdmin(BaseUserAdmin):
 
     search_fields = ['email'] # search by 
-    list_display = ['email', 'full_name', 'is_staff'] # shown fields on users list
+    list_display = ['email', 'full_name', 'is_staff', 'is_active'] # shown fields on users list
     list_filter = ['is_staff'] # filter by
     ordering = ['created_date']
 

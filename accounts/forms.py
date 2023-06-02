@@ -13,9 +13,9 @@ class MyUserRegistrationForm(forms.ModelForm):
         fields = ['email','phone', 'full_name','profile', 'password', 'password2',  ]
         widgets = {
             'email':forms.EmailInput(attrs={'class':'form-control','placeholder':'Email',}),
-            'full_name':forms.TextInput(attrs={'class':'form-control','placeholder':'First Name',}),
+            'full_name':forms.TextInput(attrs={'class':'form-control','placeholder':'Full Name',}),
             'phone':forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Phone Number', 'type':'number'}),
-            'profile':forms.FileInput(attrs ={'class':'custom-file-input', 'placeholder':'Profile Image','accept':'image/*'}),
+            'profile':forms.FileInput(attrs ={'class':'form-control', 'placeholder':'Profile Image','accept':'image/*'}),
         }
     def clean_password2(self):
         password = self.cleaned_data.get('password')
@@ -51,16 +51,16 @@ class StaffUserCreationForm(forms.ModelForm):
     password = forms.CharField(label='Password',
             widget = forms.PasswordInput(attrs={'class': "form-control",'autocomplete': "new-password",'placeholder': 'Password','minlength': 8,}))
     password2 = forms.CharField(label='Password confirmation',
-            widget = forms.PasswordInput(attrs={'class':"form-control",'autocomplete':"new-password", 'placeholder':'Re-enter password', 'minlength': 8,}))
+            widget = forms.PasswordInput(attrs={'class':"form-control",'autocomplete':"new-password", 'placeholder':'Confirm password', 'minlength': 8,}))
      
     class Meta:
         model = MyUser
         fields  = ('email','profile','phone', 'full_name')
         widgets = {
             'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email', }),
-            'full_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name', 'autocapitalize':'word'}),
+            'full_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Full Name', 'autocapitalize':'word'}),
             'phone':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone Number','autocorrect':"off", 'value':''}),
-            'profile':forms.FileInput(attrs ={'class':'custom-file-input', 'placeholder':'Profile Image','accept':'image/*'}),
+            'profile':forms.FileInput(attrs ={'class':'form-control', 'placeholder':'Profile Image','accept':'image/*'}),
         }
     
     def clean_password2(self):
