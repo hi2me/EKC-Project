@@ -107,12 +107,69 @@ class Feedback(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     subject = models.CharField(max_length=100)
-    content = models.TextField()
+    message = models.TextField()
+    show = models.BooleanField(default=False)
     sent_date = models.DateTimeField(auto_now_add=True)
 
         
     def __str__(self):
         return self.subject
+    
+    class Meta:
+        ordering = ('-id',)
+
+
+class PublicationAndResearch(models.Model):
+    title = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='Publication', blank=True, null=True)
+    email = models.EmailField()
+    document = models.FileField(upload_to='document/publication')
+    desc = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+        
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        ordering = ('-id',)
+
+
+class CallOfApplication(models.Model):
+    title = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='Publication', blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    phone = models.CharField(max_length=50, blank=True, null=True)
+    document = models.FileField(upload_to='document/call/application')
+    desc = models.TextField()
+    status = models.CharField(max_length=50, choices=(('Active','Active'), ('Closed','Closed')))
+    end_date = models.DateTimeField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+        
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        ordering = ('-id',)
+
+
+class CallOfSubmission(models.Model):
+    title = models.ForeignKey(CallOfApplication, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='Publication', blank=True, null=True)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True, null=True)
+    phone = models.CharField(max_length=50, blank=True, null=True)
+    concept_note = models.FileField(upload_to='document/call/submission')
+    cv = models.FileField(upload_to='document/call/submission')
+    supplementary_docs = models.FileField(upload_to='document/call/submission')
+    desc = models.TextField()
+    submitted_date = models.DateTimeField(auto_now_add=True)
+
+        
+    def __str__(self):
+        return self.title
     
     class Meta:
         ordering = ('-id',)

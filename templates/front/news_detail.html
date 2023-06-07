@@ -4,6 +4,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block news %} active-menu {% endblock %}
 
 {% block link_name %} 
 <li ><a href="{% url 'blog' type='news' %}">News</a></li> {% endblock %}
@@ -15,7 +16,7 @@
 
 			<!-- BLOG PAGE CONTENT
 			============================================= -->
-			<div id="blog-page" class="wide-100 blog-page-section division">
+			<div id="blog-page" class=" bg-lightgrey wide-100 blog-page-section division">
 				<div class="container">
 				 	<div class="row">
 

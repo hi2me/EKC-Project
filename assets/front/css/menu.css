@@ -153,6 +153,12 @@ video {
   float: left;
 }
 
+.active-menu {
+  color: #294e6f;
+  border-bottom: 2px solid #e69fc0;
+
+}
+
 .wsmenu>.wsmenu-list {
   text-align: left;
   margin: 0 auto 0 auto;

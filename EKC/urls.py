@@ -29,7 +29,7 @@ urlpatterns = [
     path('team', Team.as_view(), name='team'),
     path('blog/<str:type>/', News_Gallery.as_view(), name='blog'),
     path('news_detail/<int:id>/', NewsDetail.as_view(), name='news_detail'),
-    path('events/<str:type>/', Event.as_view(), name='event'),
+    path('events/<str:type>/', Events.as_view(), name='event'),
     path('contact_us/', Contact_us.as_view(), name='contact_us'),
 
     #from other apps

@@ -2,6 +2,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block contact %} active-menu {% endblock %}
+
 {% block link_name %} Contact Us {% endblock %}
 
 {% block page_name %} Contact Us {% endblock %}
@@ -9,33 +12,50 @@
 {% block content %}
 
 
-			<!-- CONTACTS-2
+	
+
+
+			<!-- CONTACTS-1
 			============================================= -->
-			<section id="contacts-2" class="wide-60 contacts-section division">				
+			<section id="contacts-1" class="wide-60 contacts-section division">				
 				<div class="container">
+						
 					<div class="row">	
 
 
-                        						<!-- CONTACT FORM -->	
-				 		<div class="col-lg-8">
+						<!-- CONTACT FORM -->	
+                        <div class="col-md-7 col-lg-8">
+                            <!-- Title 	-->		
+						<div class="offset-lg-1 section-title">	
+
+							<!-- Title 	-->	
+							<h5 class="h5-sm steelblue-color">Don't Hesitate to Get In Touch</h5>	
+                            <p> Your feedback helps us build better institution. </p>
+								
+						</div>
+                            
                             <div class="form-holder mb-40">
-                               <form name="contactForm" class="row contact-form">
+                                <form  action="" method="POST" class="row ">
+
+									{% csrf_token %}
                                                            
                                    <!-- Contact Form Input -->
-                                   <div id="input-email" class="col-md-12">
-                                        <input type="text" name="email" class="form-control email" placeholder="Enter Your Email*" required> 
-                                    </div>
+								   <!-- <div class=" contact-form "> -->
+										<div  class=" col-lg-6 contact-form">
+											<input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required> 
+										</div>
+												
+										<div  class=" col-lg-6 contact-form">
+											<input type="text" name="email" class="form-control email" placeholder="Enter Your Email*" required> 
+										</div>
+									<!-- </div> -->
 
-                                   <div id="input-name" class="col-md-12">
-                                       <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required> 
-                                   </div>
-                                           
 
-                                   <div id="input-subject" class="col-md-12">
+                                   <div  class="col-lg-12 contact-form">
                                        <input type="text" name="subject" class="form-control subject" placeholder="Subject*" required> 
                                    </div>					                          
                                            
-                                   <div id="input-message" class="col-md-12 input-message">
+                                   <div  class="col-lg-12 input-message contact-form">
                                        <textarea class="form-control message" name="message" rows="6" placeholder="Your Message ..." required></textarea>
                                    </div> 
                                                                
@@ -45,18 +65,80 @@
                                    </div>
                                                                                  
                                    <!-- Contact Form Message -->
-                                   <div class="col-md-12 contact-form-msg text-center">
+                                   <div class="col-lg-12 contact-form-msg text-center">
                                        <div class="sending-msg"><span class="loading"></span></div>
                                    </div>  
                                                              
                                </form> 
-                            </div>	
-                        </div> 	<!-- END CONTACT FORM -->
 
+                            </div>	
+                        </div> 	<!-- END CONTACT FORM -->	
+
+                        <div class="col-lg-4">
+							<div class="abox-4 abox-4-table blue-table mb-40 wow fadeInUp" data-wow-delay="0.6s">
+
+								<!-- Title -->
+                                <h5 class="h5-sm steelblue-color">Our Address</h5>
+
+
+                                	<!-- Table -->
+								<table class="table">
+									<tbody>
+									    <tr>
+									      	<td>Office</td>
+									      	<td>-</td>
+									      	<td class="text-right">Zambia St, AA</td>
+									    </tr>
+									    <tr>
+									      	<td>Phone</td>
+									      	<td> - </td>
+									      	<td class="text-right">+251 987 65 432 </td>
+									    </tr>
+									     <tr>
+									      	<td>Email</td>
+									      	<td>-</td>
+									      	<td class="text-right" ><a href="mailto:yourdomain@mail.com" style="color: grey;">hello@EKC.aau.edu.et</a></td>
+									    </tr>
+									  </tbody>
+								</table>
+                                
+                                <h5 class="h5-sm steelblue-color pt-2">Working Hours</h5>
+
+
+								<!-- Table -->
+								<table class="table">
+									<tbody>
+									    <tr>
+									      	<td>Mon – Fri</td>
+									      	<td> - </td>
+									      	<td class="text-right">8:00 AM - 4:00 PM</td>
+									    </tr>
+									     <tr>
+									      	<td>Sarurday</td>
+									      	<td>-</td>
+									      	<td class="text-right">9:00 AM - 1:00 PM</td>
+									    </tr>
+									  </tbody>
+								</table>
+
+							</div>
+						</div>
 
 				 	</div>	<!-- End row -->			  
+ 
 				</div>	   <!-- End container -->		
-			</section>	<!-- END CONTACTS-2 -->
+			</section>	<!-- END CONTACTS-1 -->
+
+            
+
+						<!-- LOCATION-1
+			============================================= -->
+			<section id="reviews-2" class="bg-lightgrey  reviews-section division">
+				
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39718.07047618998!2d38.71604757427893!3d9.015176903295451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f64a25e359%3A0xb8105df64d5a701b!2sBlack%20Lion%20Hospital%2C%20AAU%2C%20School%20of%20Medicine!5e0!3m2!1sen!2sde!4v1685680963716!5m2!1sen!2sde" width="1400" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
+            
+        </section>	 <!-- END LOCATION-1 -->
 
 
 {% endblock %}

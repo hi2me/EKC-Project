@@ -5,6 +5,7 @@
 {% block css %}
 
 {% endblock %}
+{% block home %} active-menu {% endblock %}
 		{% block content %}
 
 			<!-- INTRO-1
@@ -21,6 +22,7 @@
 				      	<li id="slide-1">
 
 					        <!-- Background Image -->
+				        	<!-- <img src="{% static  'front/images/mri_1000x500.jpg' %}" alt="slide-background"> -->
 				        	<img src="{% static  'front/images/slider/slide-5.jpg' %}" alt="slide-background">
 
 							<!-- Image Caption -->
@@ -749,7 +751,7 @@
 
 										<!-- Author Avatar -->
 										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/review-author-1.jpg' %}" alt="testimonial-avatar">
+											<img src="{% static  'front/images/ekc/muluken.png' %}" alt="testimonial-avatar">
 										</div>
 																
 										<!-- Testimonial Text -->
@@ -758,10 +760,10 @@
 										</p>	
 
 										<!-- Testimonial Author -->
-										<div class="review-author">
+										<!-- <div class="review-author">
 											<h5 class="h5-sm">Scott Boxer</h5>	
 											<span>Programmer</span>	
-										</div>							
+										</div>							 -->
 																
 									</div>						
 								</div>	<!--END  TESTIMONIAL #1 -->
@@ -776,7 +778,7 @@
 
 										<!-- Author Avatar -->
 										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/review-author-2.jpg' %}" alt="testimonial-avatar">
+											<img src="{% static  'front/images/review-author-4.jpg' %}" alt="testimonial-avatar">
 										</div>
 																
 										<!-- Testimonial Text -->
@@ -784,12 +786,7 @@
 										   vitae purus diam integer congue magna ligula egestas
 										</p>										
 
-										<!-- Testimonial Author -->
-										<div class="review-author">
-											<h5 class="h5-sm">Penelopa Peterson</h5>	
-											<span>Project Manager</span>	
-										</div>
-
+										
 									</div>						
 								</div>	<!-- END TESTIMONIAL #2 -->
 						
@@ -803,7 +800,7 @@
 
 										<!-- Author Avatar -->
 										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/review-author-3.jpg' %}" alt="testimonial-avatar">
+											<img src="{% static  'front/images/ekc/muluken.png' %}" alt="testimonial-avatar">
 										</div>
 																
 										<!-- Testimonial Text -->
@@ -812,15 +809,13 @@
 										</p>
 
 										<!-- Testimonial Author -->
-										<div class="review-author">
-											<h5 class="h5-sm">M.Scanlon</h5>	
-											<span>Photographer</span>	
-										</div>
+										
 
 									</div>						
 								</div>	<!-- END TESTIMONIAL #3 -->
 
-
+								
+								{% for f in feedback %}
 								<!-- TESTIMONIAL #4 -->
 								<div class="review-2">
 									<div class="review-txt text-center">
@@ -834,46 +829,20 @@
 										</div>	
 																
 										<!-- Testimonial Text -->
-										<p>Mauris donec ociis magnis sapien etiam sapien congue augue pretium ligula 
-										   a lectus aenean magna mauris
+										<p>{{f.message}}
 										</p>
 
-										<!-- Testimonial Author -->
 										<div class="review-author">
-											<h5 class="h5-sm">Jeremy Kruse</h5>	
-											<span>Graphic Designer</span>	
-										</div>
+											<h5 class="h5-sm">{{f.name}}</h5>	
+										</div>	
+									
 					
 									</div>						
 								</div>	<!-- END TESTIMONIAL #4 -->
-								
-								
-								<!-- TESTIMONIAL #5 -->
-								<div class="review-2">
-									<div class="review-txt text-center">
 
-										<!-- Quote -->
-										<div class="quote"><img src="{% static  'front/images/quote.png' %}" alt="quote-img" /></div>	
-
-										<!-- Author Avatar -->
-										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/review-author-5.jpg' %}" alt="testimonial-avatar">
-										</div>
-																
-										<!-- Testimonial Text -->
-										<p>An augue in cubilia laoreet magna suscipit egestas magna ipsum at purus ipsum
-										   primis in augue ulta ligula egestas
-										</p>
-
-										<!-- Testimonial Author -->
-										<div class="review-author">
-											<h5 class="h5-sm">Evelyn Martinez</h5>	
-											<span>Senior UX/UI Designer</span>	
-										</div>						
-																
-									</div>						
-								</div>	<!-- END TESTIMONIAL #5 -->
+								{% endfor %}
 								
+					
 
 							
 							</div>
@@ -966,5 +935,5 @@
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39718.07047618998!2d38.71604757427893!3d9.015176903295451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f64a25e359%3A0xb8105df64d5a701b!2sBlack%20Lion%20Hospital%2C%20AAU%2C%20School%20of%20Medicine!5e0!3m2!1sen!2sde!4v1685680963716!5m2!1sen!2sde" width="1400" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						
 				
-			</section>	 <!-- END STATISTIC-1 -->
-		{% endblock %}
+			</section>	 <!-- END LOCATION-1 -->
+		{% endblock %}	

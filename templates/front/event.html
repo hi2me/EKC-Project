@@ -2,6 +2,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block event %} active-menu {% endblock %}
+
 {% block link_name %} Events {% endblock %}
 
 {% block page_name %} Events {% endblock %}
@@ -13,45 +16,137 @@
 
 			<!-- BLOG PAGE CONTENT
 			============================================= -->
-			<div id="blog-page" class="wide-100 blog-page-section division">
+			<div id="blog-page" class=" pt-5 blog-page-section division">
 				<div class="container">
                     <!-- TEXT WIDGET -->						
-                    <div id="txt-widget" class="sidebar-div mb-50">
+                    <div id="txt-widget" class="sidebar-div mb-30">
                                 
                         <!-- Title -->
-                        <h5 class="h5-lg steelblue-color mb-3">New Seminar on How to Improve Woman Health!</h5>
+                        <h5 class="h5-lg steelblue-color mb-3">1. New Seminar on How to Improve Woman Health!</h5>
                             <!-- Avatar -->
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="blog-post-img mr-5">
-                                        <img src="{% static 'front/images/head-of-clinic.jpg' %}" alt="testimonial-avatar">
-                                    </div>
-                                </div>
-
-                                <div class="col-8">
-                                    <!-- Data -->
-                                    <div class="">
-                                        <p class=" h5-sm steelblue-color"> <span >Place:-</span> AAU Meeting Hall, </p>
-                                        <h5 class="h5-sm steelblue-color"> <span>Time:-</span> 10:00 PM - 12:00 PM </h5>
-                                        <h5 class="h5-sm steelblue-color"> <span>Host:-</span>  EKC <span> in association with </span> AAU CHS </h5>
-                                        <h5 class="h5-sm steelblue-color"> <span> Guest Speaker:-</span> Dr. Adamu Adissie <span> IRB, Chair Person</span> </h5>	
-                                            
-                                    </div>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-12">
+                                <div class="blog-post-img mr-5">
+                                    <img src="{% static 'front/images/ekc/event.jpg' %}" style="max-height: 110px; " alt="testimonial-avatar">
                                 </div>
                             </div>
 
-                        </div>	<!-- End Head of Clinic -->	
+                            <div class="col-lg-10 col-md-12 pl-5">
+                                <!-- Data -->
+                                <div class="">
+                                    <p class=" h5-sm steelblue-color"> <span >Place:-</span> AAU Meeting Hall, </p>
+                                    <p class="h5-sm steelblue-color"> <span>Time:-</span> 10:00 PM - 12:00 PM </p>
+                                    <p class="h5-sm steelblue-color"> <span>Host:-</span>  EKC <span> in association with </span> AAU CHS </p>
+                                    <p class="h5-sm steelblue-color"> <span> Guest Speaker:-</span> Dr. Adamu Adissie <span> IRB, Chair Person</span> </p>
+                                    <a href="" class="btn-tra-blue blue-tra-hover  mb-5  " style="font-size: 16px; font-weight: 500;">Learn More <i class="fas fa-angle-double-right"></i></a> 	
+                                        
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>	<!-- End Head of Clinic -->	
                         
-                        <!-- Text -->
-                        <p class="p-sm">An enim nullam tempor sapien at gravida donec pretium ipsum porta justo
-                            integer at odiovelna vitae auctor integer congue magna purus
-                        </p>
 
                         <!-- Button -->
-                        <a href="about.html" class="btn btn-blue blue-hover">Learn More</a>
+
+                        				
+                    <div id="txt-widget" class="sidebar-div ">
+                                
+                        <!-- Title -->
+                        <h5 class="h5-lg steelblue-color mb-3"> 2. New Healthcare Programm Announcemnt</h5>
+                            <!-- Avatar -->
+                        <div class="row">
+                            <div class="col-lg-2 col-md-12">
+                                <div class="blog-post-img mr-5">
+                                    <img src="{% static 'front/images/ekc/img_6.jpg' %}" style="max-height: 100px; " alt="testimonial-avatar">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10 col-md-12 pl-5">
+                                <!-- Data -->
+                                <div class="">
+                                    <p class=" h5-sm steelblue-color"> <span >Place:-</span> AAU Meeting Hall, </p>
+                                    <p class="h5-sm steelblue-color"> <span>Time:-</span> 10:00 PM - 12:00 PM </p>
+                                    <p class="h5-sm steelblue-color"> <span>Host:-</span>  EKC <span> in association with  AAU CHS  and EKFC headoffice </span></p>
+                                    <a href="" class="btn-tra-blue blue-tra-hover  mb-5  " style="font-size: 16px; font-weight: 500;">Learn More <i class="fas fa-angle-double-right"></i></a> 	
+                                        
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>	<!-- End Head of Clinic -->	
+
+                    {% for event in event %}
+                    						
+                    <div id="txt-widget" class="sidebar-div mb-30">
+                                
+                        <!-- Title -->
+                        <h5 class="h5-lg steelblue-color mb-3">{{forloop.counter}}. {{event.title}}</h5>
+                            <!-- Avatar -->
+                        <div class="row">
+                            <div class="col-lg-2 col-md-12">
+                                <div class="blog-post-img mr-5">
+                                    <img src="{{event.image.url}}" style="max-height: 110px; " alt="testimonial-avatar">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10 col-md-12 pl-5">
+                                <!-- Data -->
+                                <div class="">
+                                    <p class=" h5-sm steelblue-color"> <span >Place:-</span> {{event.place}} </p>
+                                    <p class="h5-sm steelblue-color"> <span>Time:-</span> {{event.date}} </p>
+                                    <p class="h5-sm steelblue-color"> <span>Host:-</span>  {{event.created_by}} </p>
+                                    <p class="h5-sm steelblue-color">  {{event.desc}} </p>
+                                    <a href="" class="btn-tra-blue blue-tra-hover  mb-5  " style="font-size: 16px; font-weight: 500;">Learn More <i class="fas fa-angle-double-right"></i></a> 	
+                                        
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+                    
+                        <!-- Button -->
                                                                 
-                    </div>	<!-- END TEXT WIDGET -->
+                </div>	<!-- END TEXT WIDGET -->
+
+                <!-- BLOG PAGE PAGINATION -->
+                <div class="blog-page-pagination b-top mb-5">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center primary-theme">
+                            {% if event.has_previous %}
+                                <li class="page-item previous-page">
+                                    <a class="page-link" href="?page={{event.previous_page_number}}"><i class="fas fa-long-arrow-alt-left"></i></a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="" tabindex="-1"><i class="fas fa-long-arrow-alt-left"></i></a>
+                                </li>
+                            {% endif %}
+
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{event.number}} <span class="sr-only">(current)</span></a>
+                            </li>
+                            
+                            <li class="page-item disabled"><a class="page-link" href="">of</a> </li>
+
+                            
+                                <li class="page-item"><a class="page-link" href="?page={{event.paginator.num_pages}}">{{event.paginator.num_pages}}</a> </li>
+
+                            {% if event.has_next %}
+                                <li class="page-item next-page">
+                                    <a class="page-link" href="?page={{event.next_page_number}}"><i class="fas fa-long-arrow-alt-right"></i></a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="" tabindex="11"><i class="fas fa-long-arrow-alt-right"></i></a>
+                                </li>
+                            {% endif %}
+                        </ul>	
+                    </nav>					
                 </div>
+
             </div>
 
 

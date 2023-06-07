@@ -184,11 +184,11 @@
 
 
         						<!-- DROPDOWN MENU -->
-					        	<li aria-haspopup="true">
-                                    <a href="{% url 'home' %}">Home </a>
+					        	<li aria-haspopup="true" >
+                                    <a href="{% url 'home' %}" class="{% block home %} {% endblock %}" >Home </a>
 					          	</li>
 
-					        	<li aria-haspopup="true"> <a href="">About Us  <span class="wsarrow"></span> </a>
+					        	<li aria-haspopup="true"> <a href="" class="{% block about %} {% endblock %}">About Us  <span class="wsarrow"></span> </a>
 									<ul class="sub-menu">
 										<li aria-haspopup="true"><a href="{% url 'about_us' %}"> About EKC </a></li>
 										<li aria-haspopup="true"><a href="{% url 'service' %}"> Service </a></li>
@@ -196,10 +196,10 @@
 									</ul>
 					          	</li>
 
-					        	<li aria-haspopup="true"> <a href="{% url 'publication' %}">Publications <span class="wsarrow"></span> </a>
+					        	<li aria-haspopup="true"> <a href="{% url 'publication' %}" class="{% block publication %} {% endblock %}" >Publications <span class="wsarrow"></span> </a>
                                     <ul class="sub-menu">
-                                       <li aria-haspopup="true"><a href=""> Research Outputs </a> </li>
-                                       <li aria-haspopup="true"><a href=""> Report Contents </a></li>
+                                       <li aria-haspopup="true"><a href="{% url 'publication' %}"> Research Outputs </a> </li>
+                                       <li aria-haspopup="true"><a href="{% url 'publication' %}"> Report Contents </a></li>
                                     </ul>
 					          	</li>
 
@@ -207,14 +207,14 @@
 									<a href="{% url 'team' %}">Team </a>
 								</li> -->
 
-                                <li aria-haspopup="true"><a href="">News & Gallery <span class="wsarrow"></span></a>
+                                <li aria-haspopup="true"><a href="" class="{% block news %} {% endblock %}">News & Gallery <span class="wsarrow"></span></a>
                                     <ul class="sub-menu">
                                        <li aria-haspopup="true"><a href="{% url 'blog' type='news' %}"> News </a> </li>
                                        <li aria-haspopup="true"><a href="{% url 'blog' type='gallery' %}"> Gallery </a></li>
                                     </ul>
                                 </li>	
                                
-                                <li aria-haspopup="true"><a href=""> Events <span class="wsarrow"></span> </a>
+                                <li aria-haspopup="true"><a href="" class="{% block event %} {% endblock %}"> Events <span class="wsarrow"></span> </a>
                                     <ul class="sub-menu">
                                         <li aria-haspopup="true"><a href="{% url 'event' type='up_coming' %}"> Up Coming Events </a></li>
                                         <li aria-haspopup="true"><a href="{% url 'event' type='past' %}"> Past Events </a></li>
@@ -222,7 +222,7 @@
                                 </li>
                                 
 					        	<li aria-haspopup="true">
-                                    <a href="{% url 'contact_us' %}"> Contact Us  </a>
+                                    <a href="{% url 'contact_us' %}" class="{% block contact %} {% endblock %}"> Contact Us  </a>
 					          	</li>
 <!-- 
 								{% if user.is_staff == True %}
@@ -270,7 +270,7 @@
 			{% if not index %}
 						<!-- BREADCRUMB
 			============================================= -->
-			<div id="breadcrumb" class="division">
+			<div class=" {% block bg %} {% endblock %} division " style="box-shadow: 1px 1px 2px #888; max-height: 70px;">
 				<div class="container">
 					<div class="row">						
 						<div class="col">
@@ -280,12 +280,13 @@
 								<nav aria-label="breadcrumb">
 								  	<ol class="breadcrumb">
 								    	<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-								    	<li class="breadcrumb-item active" aria-current="page">{% block link_name %} {% endblock %}</li>
+								    	<li class="breadcrumb-item active" aria-current="page">{% block page_name %} {% endblock %}</li>
+								    	<!-- <li class="breadcrumb-item active" aria-current="page">{% block link_name %} {% endblock %}</li> -->
 								  	</ol>
 								</nav>
 
 								<!-- Title -->
-								<h4 class="h4-sm steelblue-color">{% block page_name %} {% endblock %}</h4>
+								<!-- <h4 class="h4-sm steelblue-color text-center"></h4> -->
 
 							</div>
 						</div>
