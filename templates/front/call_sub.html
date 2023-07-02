@@ -1,0 +1,128 @@
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" id="mce-u0" href="{% static 'tinymce/skins/ui/oxide/skin.min.css' %}">
+{% endblock %}
+
+{% block publication %} active-menu {% endblock %}
+
+{% block link_name %} Call {% endblock %}
+
+{% block page_name %} Call Submission   {% endblock %}
+
+{% block content %}
+
+
+			<!-- APPOINTMENT PAGE
+			============================================= -->
+			<div id="appointment-page" class="wide-60 appointment-page-section division">
+				<div class="container">
+
+
+				 		<!-- SERVICE DETAILS -->
+
+				 			<div class="txt-block pr-30">
+
+				 				<!-- Title -->
+								<h4 class="h4-md ">Applying for : <span class="steelblue-color h4-md ">{{call.title}}</span></h4>
+
+								<!-- APPOINTMENT FORM -->
+								<div id="appointment-form-holder" class="">
+									<form action="" method="POST"  enctype="multipart/form-data" class="row">
+
+                                        {% csrf_token %}
+                                    
+                                        <div class="col-lg-6 ">
+                                            <div  class="col-lg-12  appointment-form">
+                                                <label class="">1. Enter Your Full Name* </label>
+                                                {{form.name}}
+                                            </div>
+                                            <div  class="col-lg-12 appointment-form">
+                                                <label class="">3. Enter Your Email* </label>
+                                                {{form.email}}
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="col-lg-6 ">
+                                            <div  class="col-lg-12 appointment-form">
+                                                <label class="">2. Enter Your Phone Number</label>
+                                                {{form.phone}}
+                                            </div>
+                                            <div  class="col-lg-12 appointment-form">
+                                                <label class="">4. Set Your Photo <span style="font-size: smaller;">(optional)</span></label>
+                                                {{form.image}}
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-4 ">
+                                            <div  class="col-lg-12 appointment-form">
+                                                <label class="">5. Attach Your CV *</label>
+                                                {{form.cv}}
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-4 ">
+                                            <div  class="col-lg-12 appointment-form">
+                                                <label class="">6. Attach Your Concept Note Doc *</label>
+                                                {{form.concept_note}}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 ">
+                                            <div  class="col-lg-12 appointment-form">
+                                                <label class="">7. Attach Supplementary Docs  <span style="font-size: smaller;">(optional)</span></label>
+                                                {{form.supplementary_docs}}
+                                            </div>
+                                        </div>
+
+										<!-- Form Select -->
+						                <div  class="col-md-12 appointment-form">
+                                            <label class="">8. Some Thing about Your Application  <span style="font-size: smaller;">(optional)</span></label>
+						                    {{form.desc}}
+						                </div>
+
+						                                            
+						                <!-- Contact Form Button -->
+						                <div class=" form-btn appointment-form">  
+						                	<button type="submit" onclick="return confirm('confirm?')" class="btn  btn-blue blue-hover submit">Submit</button> 
+                                            
+						                </div>
+						                      
+					                                              
+					                </form> 
+
+								</div>	<!-- END APPOINTMENT FORM -->
+
+							
+								
+				 				
+				 			</div>
+
+				 		
+                        <!-- END SERVICE DETAILS -->
+
+
+
+					
+                    	<!-- End row -->	
+				</div>	 <!-- End container -->
+			</div>	<!-- END APPOINTMENT PAGE -->
+
+
+
+
+
+{% endblock %}
+
+{% block js %} 
+<script>
+    document.getElementById('id_desc').removeAttribute('required');
+</script>
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'tiny_mce/tiny_mce.js' %}"></script>
+<script src="{% static 'django_tinymce/init_tinymce.js' %}"></script>
+{% endblock %}

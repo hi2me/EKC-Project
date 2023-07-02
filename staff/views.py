@@ -161,3 +161,46 @@ class EditEvent(View):
             return render (request, 'staff/add_event.html', context )
 
 
+class ListResearch(View):
+    def get(self, request):
+        research=PublicationAndResearch.objects.all()
+        return render (request, 'staff/list_research.html', {'research':research}) 
+    
+class AddResearch(View):
+    def get(self, request):
+        event=Event.objects.all()
+        return render (request, 'staff/list_event.html', {'event':event}) 
+
+
+class EditResearch(View):
+    def get(self, request):
+        event=Event.objects.all()
+        return render (request, 'staff/list_event.html', {'event':event}) 
+
+
+
+
+
+
+class ListCallAppln(View):
+    def get(self, request):
+        call=CallOfApplication.objects.all()
+        return render (request, 'staff/list_application.html', {'call':call}) 
+    
+
+
+
+
+
+class ListReport(View):
+    def get(self, request):
+        report=Report.objects.all()
+        return render (request, 'staff/list_report.html', {'report':report}) 
+    
+
+
+    
+class ListFeedback(View):
+    def get(self, request):
+        feedback=Feedback.objects.all()
+        return render (request, 'staff/list_feedback.html', {'feedback':feedback}) 

@@ -42,11 +42,10 @@
 								<h5 class="h5-sm steelblue-color">Categories</h5>
 
 								<ul class="blog-category-list clearfix">
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Research</a> <span>(5)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Information</a> <span>(13)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Anouncement </a> <span>(6)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Health </a> <span>(8)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Technology</a> <span>(12)</span></li>
+									{% for cat in category %}
+									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> {{cat.name}}</a> <span>({{c}})</span></li>
+									
+									{% endfor %}
 								</ul>
 
 							</div>
@@ -58,65 +57,6 @@
 
 
                                 <div class="row"> 
-                                    <!-- BLOG POST #1 -->
-                                    <div class="col-6"> 
-                                        <div class="blog-post">
-                                
-                                            <!-- BLOG POST IMAGE -->
-                                            <div class="blog-post-img">
-                                                <img class="img-fluid" src="{% static 'front/images/blog/post-4-img.jpg' %}" alt="blog-post-image" />	
-                                            </div>
-
-                                            <!-- BLOG POST TITLE -->
-                                            <div class="blog-post-txt">
-
-                                                <!-- Post Title -->
-                                                <h5 class="h5-xl steelblue-color"><a href="single-post.html">5 Benefits Of Integrative Medicine</a></h5>
-
-                                                <!-- Post Data -->
-                                                <span>May 03, 2019 by <span>Dr.Jeremy Smith</span></span>
-
-                                                <!-- Post Text -->
-                                                <p>Donec sodales, nibh vel tristique aliquet, nisi libero suscipit diam, sed tempus ante
-                                                nulla ut purus. Donec dolor magna, suscipit in magna dignissim, porttitor hendrerit. 
-                                                gravida ultrices felis ...
-                                                </p>
-
-                                            </div>
-
-                                        </div>	
-                                    </div><!-- END BLOG POST #1 --> 
-
-
-                                    <!-- BLOG POST #3 --> 
-                                    <div class="col-6">
-                                        <div class="blog-post">
-                                    
-                                            <!-- BLOG POST IMAGE -->
-                                            <div class="blog-post-img">
-                                                <img class="img-fluid" src="{% static 'front/images/blog/post-6-img.jpg' %}" alt="blog-post-image" />	
-                                            </div>
-
-                                            <!-- BLOG POST TEXT -->
-                                            <div class="blog-post-txt">
-
-                                                <!-- Post Title -->
-                                                <h5 class="h5-xl steelblue-color"><a href="single-post.html">Your Health Is In Your Hands</a></h5>
-
-                                                <!-- Post Data -->
-                                                <span>Apr 28, 2019 by <span>Dr.Jonathan Barnes</span></span>
-
-                                                <!-- Post Text -->
-                                                <p>Suscipit in magna dignissim, porttitor hendrerit diam. Nunc gravida ultrices felis
-                                                eget faucibus. Praesent aliquet lorem purus, quis mollis nisi laoreet vitae. Mauris 
-                                                nec consequat tortor. Duis and massa in convallis quisque eu  interdum augue
-                                                faucibus orci luctus et ultrices posuere ...
-                                                </p>
-
-                                            </div>
-
-                                        </div>	
-                                    </div><!-- END BLOG POST #3 -->
 
 									<!-- BLOG POST #3 --> 
 									{% for news in news %}
@@ -125,7 +65,7 @@
 									
 											<!-- BLOG POST IMAGE -->
 											<div class="blog-post-img">
-												<img class="img-fluid " style="max-height: 225px;" src="{{news.image.url}}" alt="blog-post-image" />	
+												<img class="img-fluid " style="height: 225px; width: 100%;" src="{{news.image.url}}" alt="blog-post-image" />	
 											</div>
 
 											<!-- BLOG POST TEXT -->
@@ -137,8 +77,8 @@
 												<!-- Post Data -->
 												<span>{{news.created_date}} by <span>{{news.created_by}}</span></span>
 
-												<!-- Post Text -->
-												<p>{{news.desc|truncatechars:150}}
+												<!-- Post Text |truncatechars:150-->
+												<p>{{news.desc|safe}}
 												</p>
 
 												<!-- Button -->

@@ -26,56 +26,62 @@
 
           <br>
           
-          <li class=" nav-item {% block proposal_tab %} {% endblock %}">
-            <a href="#">
-              <span class="menu-title" >Publications</span>
-            </a>
-            <ul class="menu-content">
-                <li class=" nav-item"><a href=" " class="menu-item">
-                  <span class="menu-title" >Add a Publications</span></a>
-                </li>
-
-                <li class=" nav-item"><a href="" class="menu-item">
-                  <span class="menu-title" >List all Pulication </span></a>
-                </li>
-
-                <li class=" nav-item"><a href="" target="blank"  class="menu-item">
-                  <span class="menu-title"  > Publication on Site </span></a>
-                </li>
-            </ul>
-            
-          </li>
-  
+          
           <li class=" nav-item {% block amendment_tab %} {% endblock %}">
             <a href="#">
               <span class="menu-title" >Research Outputs</span>
             </a>
             <ul class="menu-content">
-              <li class=" nav-item"><a href=" " class="menu-item"><span class="menu-title" >Add a News Research</span></a></li>
+              <li class=" nav-item"><a href=" " class="menu-item"><span class="menu-title" >Add a New Research</span></a></li>
           
-              <li class=" nav-item"><a href=" " class="menu-item"><span class="menu-title" >List Research Outputs</span></a></li> 
+              <li class=" nav-item"><a href=" {% url 'staff:list_research' %} " class="menu-item"><span class="menu-title" >List Research Outputs</span></a></li> 
          
 
               <li class=" nav-item"><a href="{% url 'publication' %}" target="blank"  class="menu-item">
-                <span class="menu-title"  > Researchs on Site </span></a>
+                <span class="menu-title"  > Researches on Site </span></a>
               </li>
             </ul>
   
           </li>
 
-          <li class=" nav-item {% block renewal_tab %} {% endblock %}">
+          <li class=" nav-item {% block proposal_tab %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Contents</span>
+              <span class="menu-title" >Call Applications </span>
             </a>
             <ul class="menu-content">
-              <li class=" nav-item"><a href=" " class="menu-item"><span class="menu-title" >Add Contents</span></a>
-              </li>
-              
-                <li class=" nav-item"><a href="" class="menu-item"><span class="menu-title" >List Contents</span></a>
+                <li class=" nav-item"><a href=" " class="menu-item">
+                  <span class="menu-title" >Add a Call Application </span></a>
                 </li>
 
-                <li class=" nav-item"><a href="" target="blank"  class="menu-item">
-                  <span class="menu-title"  > Contents on Site </span></a>
+                <li class=" nav-item"><a href="{% url 'staff:list_call_app' %}" class="menu-item">
+                  <span class="menu-title" >List all Calls </span></a>
+                </li>
+                
+                <li class=" nav-item"><a href="" class="menu-item">
+                  <span class="menu-title" >List all Submissions </span></a>
+                </li>
+
+                <li class=" nav-item"><a href="{% url 'call_application' %}" target="blank"  class="menu-item">
+                  <span class="menu-title"  > Call Applications on Site </span></a>
+                </li>
+            </ul>
+            
+          </li>
+  
+
+          <li class=" nav-item {% block renewal_tab %} {% endblock %}">
+            <a href="#">
+              <span class="menu-title" >Reports</span>
+            </a>
+            <ul class="menu-content">
+              <li class=" nav-item"><a href=" " class="menu-item"><span class="menu-title" >Add Report</span></a>
+              </li>
+              
+                <li class=" nav-item"><a href="{% url 'staff:list_report' %}" class="menu-item"><span class="menu-title" >List Reports</span></a>
+                </li>
+
+                <li class=" nav-item"><a href="{% url 'report' %}" target="blank"  class="menu-item">
+                  <span class="menu-title"  > Reports on Site </span></a>
                 </li>
             </ul>
           </li>
@@ -129,6 +135,13 @@
                   <span class="menu-title"  > Event on Site </span></a>
                 </li>
             </ul>
+          </li>
+          
+          <li class=" nav-item {% block feedback %} {% endblock %}">
+            <a href="{% url 'staff:list_feedback' %}">
+              <span class="menu-title" >Feedbacks </span>
+            </a>
+  
           </li>
           
           <li class=" nav-item {% block renew %} {% endblock %}">
@@ -213,7 +226,7 @@
           </div>
         </div>
 
-        <div class="content-body">
+        <div class="content-body" style="box-shadow: 4px 4px 10px #888888; padding: 20px;">
          {% block content %} 
 
          {% endblock %}
@@ -245,170 +258,7 @@
    {% block js %} 
    {% endblock %}
   <script src="{% static 'staff/js/scripts/compiled.min.js' %}"></script>
-  <script>
-     $(document).ready(function(){
-      if ("{{user.is_authenticated}}"=="True"){
-        fetch_notis()
 
-        // check_last_fetch_time();
-        // setInterval( fetch_notis, 5000 );
-    }
-      
-    });
-    
-    
-    function check_last_fetch_time(){
-      var currentdate = new Date(); 
-      if (localStorage.getItem('last_fetch')){
-          var last = localStorage.getItem('last_fetch')
-          var dif = currentdate.getTime() - new Date(last).getTime()
-          dif = dif/(1000*60)//changing from millisecond to minute
-          console.log("last fetch was on "+last+ "\n new is = "+currentdate.toString()
-          +" \n difference: "+dif 
-          )
-          if (dif >=30)
-            check_inbox()
-        }
-      else
-        {
-          localStorage.setItem('last_fetch', currentdate.toDateString())
-          fetch_notis()
-        }
-
-    }
-
-    function check_inbox(){
-      fetch(" ").then(e=>e.json()).then(data =>
-      {
-        if(data['id']!=null && localStorage.getItem('last_noti_id') != data['id'])
-        {
-            console.log("There is a new noti ")
-            fetch_notis()
-          }
-          else{
-            window.alert("There is no new Notification")
-          }
-      });
-
-    }
-
-    function fetch_notis(){
-      fetch( "").then(e=>e.json()).then(data =>
-        {   num_unread_messages = data['num']
-            if (num_unread_messages > 0){ 
-                document.getElementById("noti_count_span").innerHTML = num_unread_messages;
-                document.getElementById("noti_count_span2").innerHTML = num_unread_messages+ "  New";
-
-                var list = document.getElementById('unread_notis_list');
-                list.innerHTML = "";
-                for (n of data['notis'])
-
-                  list.innerHTML += append_unread_messages(n);
-                  
-                // localStorage.setItem('last_noti_id', data['notis'][-1]['id'])
-              }
-            else {document.getElementById("noti_count_span").innerHTML = ''; document.getElementById("noti_count_span2").innerHTML = ''}    
-        });
-      
-    }
-    
-    function truncateString(string, limit= 70) {
-      if (string.length > limit) 
-        return string.substring(0, limit) + "...";
-      return string
-    }
-
-    function append_unread_messages(n){
-      var anchor = ""
-      var detail = "/noti/notification_detail/"+n.id+"/"
-      var icon_class = '', t_color  = '';
-
-      
-      if (n.noti.tag == 'success')
-        { 
-          icon_class = 'fa fa-check icon-bg-circle bg-teal'; t_color = '#009688 '}
-      else if(n.noti.tag == 'warning')
-        {  icon_class  ='fa fa-exclamation-triangle icon-bg-circle bg-yellow bg-darken-3'; t_color = '#c8960a ';}
-      else if(n.noti.tag == 'error')
-        { icon_class  ='fa fa-times icon-bg-circle bg-red bg-darken-1'; t_color = 'red ';}
-      else
-        { icon_class = 'fa fa-info-circle icon-bg-circle bg-cyan'; t_color = 'blue darken-3'}
-    
-        var full = "<div id= 'noti_"+n.id+"' class='media'>\
-                      <div class='media-left align-self-center'><i class='" + icon_class + "'></i></div>\
-                      <div class='media-body'>\
-                        <h6 class='media-heading ' style =' color: "+t_color+"'>"+truncateString(n.noti.noti)  +"</h6>\
-                        <p class=' font-small-3 text-muted' style='float:right'>\
-                          <a class='btn-info mr-1' href = '"+detail+"' >View Detail</a>\
-                          <i class='fa fa-eye' onclick=markasread('"+n.id+"')></i>"
-                               
-                if (n['noti']['link'] != '' ){
-                  full += "<a href = "+n.noti.link + "> Redirect </a>\
-                        </p>\
-                        <small><time class='media-meta text-muted' datetime=''>"+n['noti']['created_date']+"</time></small>\
-                      </div>\
-                    </div> "
-                            }
-                          else{
-                            full += "</p>\
-                                        <small><time class='media-meta text-muted' datetime=''>"+n['noti']['created_date']+"</time></small>\
-                                    </div>\
-                                  </div>"
-                          }
-                        
-                        
-    return full
-        }
-
-    function markasread(id){
-      try {
-        fetch( '/noti/mark_user_notification_as_read/'+id+'/' ).then(e=>e.json()).then(data =>
-            {   if (data['error'] == false){
-                    var list = document.getElementById('noti_'+id);
-                    list.remove();
-                    var num_area = document.getElementById("noti_count_span")
-                    num_area.innerHTML = parseInt( num_area.innerHTML) - 1
-                  }
-                else{window.alert(data['msg'])}
-            });
-      } 
-      catch (error) {}
-
-    }
-
-    function markallread(){
-      if (confirm('You are updating all unread messages As Read! Do you want Continue? '))
-          fetch( " ").then(e=>e.json()).then(data =>
-              {   update_num = data['update_num']
-                  if (update_num >= 0){ 
-                      document.getElementById("noti_count_span").innerHTML = '';
-                      document.getElementById("noti_count_span2").innerHTML = "";
-
-                      var list = document.getElementById('unread_notis_list');
-                      list.innerHTML = "";
-                      // localStorage.setItem('last_noti_id', data['notis'][-1]['id'])
-                    }
-                  else {
-                    alert("Sorry! an exception occured, please try again later")
-                  }    
-              });
-    }
-     
-    function hide_sidebar(){
-      var d = document.getElementById('id_bar');
-      if (localStorage.getItem('side_bar_hidden')) // if clicked previously
-      {
-        d.className = "vertical-layout vertical-menu-modern 2-columns   fixed-navbar expanded"
-        localStorage.removeItem('side_bar_hidden')
-      }
-      else{
-        localStorage.setItem('side_bar_hidden', true) 
-        d.className = "vertical-layout vertical-menu-modern 2-columns   fixed-navbar menu-collapsed"
-       
-      }
-        
-    }  
-</script>
 
 
 

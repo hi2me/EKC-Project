@@ -1,0 +1,68 @@
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block publication %} active-menu {% endblock %}
+
+{% block link_name %} Reports {% endblock %}
+
+{% block page_name %} Reports   {% endblock %}
+
+{% block content %}
+
+
+	
+			<!-- BLOG PAGE CONTENT
+			============================================= -->
+			<div id="single-blog-page" class="blog-page-section division">
+				<div class="container">
+				 	<div class="row">
+
+
+                        {% for rep in report %}
+                        	<!-- SINGLE POST -->
+				 		<div class="col-lg-6 mb-0">
+                            <div class="single-blog-post pr-30">
+
+
+                               <!-- ABOUT POST AUTHOR -->
+                               <div class="author-senoff">
+                                   
+                                   <!-- Avatar -->	
+                                   <!-- <img src="{% static 'front/images/review-author-4.jpg' %}" alt="author-avatar"> -->
+
+                                   <!-- Text -->
+                                   <div class="author-senoff-txt">
+
+                                       <!-- Title -->
+                                       <h5 class="h5-sm steelblue-color">{{rep.title}}</h5>
+                                       <h6 class="h6-sm steelblue-color">{{rep.sub_title}}</h6>
+                                       <p class="h6-sm steelblue-color">Prepared by : {{rep.prep_by}} </p>
+                                       <p class="h6-sm steelblue-color">Prepared on :  {{rep.prep_date}}</p>
+                                       <p class="pt-3"><a href="{{rep.rep_document.url}}" download name=" Report Document " class="btn btn-sm btn-blue blue-hover "> <i class="fas fa-angle-double-down"></i> Full Report </a> 
+                                       </p>
+
+                                   </div>
+
+                               </div>	<!-- END ABOUT POST AUTHOR -->
+
+
+                            </div>
+                        </div>	 <!-- END SINGLE POST -->			
+                       
+                        {% endfor %}
+
+
+
+				 	</div>	<!-- End row -->	
+				 </div>	 <!-- End container -->
+			</div>	<!-- END BLOG PAGE CONTENT -->
+
+
+
+
+
+{% endblock %}

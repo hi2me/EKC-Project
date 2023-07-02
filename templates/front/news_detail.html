@@ -43,7 +43,7 @@
                                    Posted {{news.created_date}} by <span class="blue-color">{{news.created_by}}</span>
 
                                    <!-- Post Text -->
-                                   <p class="mt-30"> {{news.desc}}
+                                   <p class="mt-30"> {{news.desc|safe}}
                                    </p>
 
                                </div>	<!-- END BLOG POST TEXT -->
@@ -106,7 +106,7 @@
 
                                     <!-- BLOG POST IMAGE -->
                                     <div class="blog-post-img">
-                                        <img class="img-fluid" style="max-height: 145px;" src="{{n.image.url}}" alt="blog-post-image" />	
+                                        <img class="img-fluid" style="max-height: 145px; width: 100%;" src="{{n.image.url}}" alt="blog-post-image" />	
                                     </div>
 
                                     <!-- BLOG POST TEXT -->

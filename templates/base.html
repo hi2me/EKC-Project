@@ -17,8 +17,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="author" content="Jthemes"/>	
-		<meta name="description" content="MedService - Medical & Medical Health Landing Page Template"/>
-		<meta name="keywords" content="Responsive, HTML5 Template, Jthemes, One Page, Landing, Medical, Health, Healthcare, Doctor, Clinic, Care, Hospital">	
+		<meta name="description" content="Else Kröner Center, The Medical Faculty at the Martin-Luther-University of Halle-Wittenberg, involved in Ethiopia Addis Ababa University, College of Health Science"/>
+		<meta name="keywords" content="EKC, AAU EKC, ">	
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 				
   		<!-- SITE TITLE -->
@@ -60,7 +60,7 @@
 		<link href="{% static 'front/css/responsive.css' %}" rel="stylesheet"> 
 
         {% block css %}
-        {% endblock %}
+       {% endblock %}
 	
 	</head>
 
@@ -199,7 +199,8 @@
 					        	<li aria-haspopup="true"> <a href="{% url 'publication' %}" class="{% block publication %} {% endblock %}" >Publications <span class="wsarrow"></span> </a>
                                     <ul class="sub-menu">
                                        <li aria-haspopup="true"><a href="{% url 'publication' %}"> Research Outputs </a> </li>
-                                       <li aria-haspopup="true"><a href="{% url 'publication' %}"> Report Contents </a></li>
+                                       <li aria-haspopup="true"><a href="{% url 'report' %}"> Reports </a></li>
+                                       <li aria-haspopup="true"><a href="{% url 'call_application' %}"> Call Applications </a></li>
                                     </ul>
 					          	</li>
 
@@ -469,6 +470,7 @@
 
 		<script src="{% static 'front/js/changer.js' %}"></script>
 		<script defer src="{% static 'front/js/styleswitch.js' %}"></script>	
+
         {%  block js %}
         {% endblock %}
 		

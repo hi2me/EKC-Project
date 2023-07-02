@@ -20,9 +20,15 @@ urlpatterns = [
     path('list_event/', ListEvent.as_view(), name= 'list_event'),
     path('edit_event/<int:id>', EditEvent.as_view(), name= 'edit_event'),
 
-    path('add_research/', AddEvent.as_view(), name= 'add_research'),
-    path('list_research/', ListNews.as_view(), name= 'list_research'),
-    path('edit_research/<int:id>', EditNews.as_view(), name= 'edit_research'),
+    path('add_research/', AddResearch.as_view(), name= 'add_research'),
+    path('list_research/', ListResearch.as_view(), name= 'list_research'),
+    path('edit_research/<int:id>', EditResearch.as_view(), name= 'edit_research'),
+
+    path('list_call_app/', ListCallAppln.as_view(), name= 'list_call_app'),
+    
+    path('list_report/', ListReport.as_view(), name= 'list_report'),
+    
+    path('list_feedback/', ListFeedback.as_view(), name= 'list_feedback'),
 
 
 ]

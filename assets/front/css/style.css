@@ -506,6 +506,14 @@ ul.content-list li:last-child {
   border-color: transparent;
 }
 
+
+
+.btn-blue-border {
+  color: #294e6f; 
+  background-color: transparent;
+  border-color: #294e6f;
+}
+
 /*------------------------------------------*/
 /*  Button Hover
 /*------------------------------------------*/
@@ -2569,7 +2577,9 @@ td.text-right {
   =========================================================================== */
 
 #info-5 {
-   background-image: url(../images/info-5.jpg);
+   background-image: url(../images/ekc/img_9.JPG );
+   background-repeat: no-repeat;
+   background-size: cover;
 }
 
 #info-6,
@@ -4629,7 +4639,7 @@ p.contact-notice {
 }
 
 .footer.bg-image {
-  background-image: url(../images/footer-bg.jpg);
+  background-image: url(../images/ekc/bg_footer.jpg);
   width: 100%;
   background-repeat: no-repeat;
   background-position: center center;   
@@ -5308,7 +5318,7 @@ ul.blog-category-list li:hover {
 .appointment-form .form-control,
 .appointment-form .custom-select {
   background-color: #fff;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   color: #333;
   height: 54px;
   font-size: 16px;

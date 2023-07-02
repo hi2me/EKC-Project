@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 
 from staff.models import *
-from staff.forms import FeedbackForm
+from staff.forms import *
 
 class Home(View):
     def get( self, request):
@@ -34,12 +34,65 @@ class Publication(View):
     def get( self, request):
         publication = PublicationAndResearch.objects.filter(approved = True)
 
-        p = Paginator(publication, 2)
+        p = Paginator(publication, 5)
         page = self.request.GET.get('page')
         publication_list = p.get_page(page)
 
         context = {'pub':publication_list}
         return render (request, 'front/publication.html', context)
+    
+
+class Reports(View):
+    def get( self, request):
+        report = Report.objects.filter(approved = True)
+
+        p = Paginator(report, 6)
+        page = self.request.GET.get('page')
+        report_list = p.get_page(page)
+
+        context = {'report':report_list}
+        return render (request, 'front/report.html', context)
+    
+
+class CallApplication(View):
+    def get( self, request):
+        call = CallOfApplication.objects.filter(status = 'Active')
+
+        p = Paginator(call, 5)
+        page = self.request.GET.get('page')
+        call_list = p.get_page(page)
+
+        context = {'call':call_list}
+        return render (request, 'front/call.html', context)
+    
+
+class CallSubmission(View):
+    def get( self, request, id):
+        call = CallOfApplication.objects.get(id=id)
+        form = CallSubmissionForm
+
+        context = {'form': form, 'call':call}
+        print("get is working")
+        return render (request, 'front/call_sub.html', context )
+    
+    def post ( self, request, id):
+        print("post is  working")
+        call = CallOfApplication.objects.get(id=id)
+        form = CallSubmissionForm(request.POST, request.FILES )
+        if form.is_valid():
+            sub = form.save(commit=False)
+            sub.title= call
+            sub.save()
+
+            context = {'form': form, 'submitted':True}
+            messages.success(self.request, "You have successfully submitted your credentials to the the application. ")
+            return redirect( 'call_submission', id=id)
+        else:
+            context = {'form': form, 'submitted':False}
+            messages.error(self.request, "Please check your inputs again.")
+            return render (request, 'front/call_sub.html', context )
+    
+
 
 class Team(View):
     def get( self, request):
@@ -52,16 +105,23 @@ class News_Gallery(View):
         if type == 'news':
             news = News.objects.all()
 
-            p = Paginator(news, 2)
+            category = NewsCategory.objects.all()
+
+            c= News.objects.filter(category = 2 ).count()
+            
+            
+            
+
+            p = Paginator(news, 6)
             page = self.request.GET.get('page')
             news_list = p.get_page(page)
 
-            context = {'news':news_list}
+            context = {'news':news_list, 'category':category, 'c':c}
             return render (request, 'front/news.html', context)
         else:
             gallery = Gallery.objects.all()
             
-            p = Paginator(gallery, 5)
+            p = Paginator(gallery, 10)
             page = self.request.GET.get('page')
             gallery_list = p.get_page(page)
 
@@ -83,7 +143,7 @@ class Events(View):
         if type == 'up_coming':
             event = Event.objects.all()
 
-            p = Paginator(event, 2)
+            p = Paginator(event, 6)
             page = self.request.GET.get('page')
             event_list = p.get_page(page)
 
@@ -106,8 +166,8 @@ class Contact_us(View):
         if form.is_valid():
             data = form.save()
 
-            send_mail( f"You have received an email from  {data.name}", data.message, data.email, ['compacct01@gmail.com']
-            )
+            # send_mail( f"You have received an email from  {data.name}", data.message, data.email, ['compacct01@gmail.com']
+            # )
             messages.success(self.request, "You have successfully sent our comment to the EKC.")
             context= { 'form':form }
             return redirect('contact_us')

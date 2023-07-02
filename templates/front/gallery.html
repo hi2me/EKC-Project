@@ -22,9 +22,9 @@
 						<div class="col-md-12 text-center">
 							<div class="gallery-filter mb-60">
 			                    <button data-filter="*" class="is-checked">All</button>
-			                    <button data-filter=".dental">Research</button>
-			                    <button data-filter=".pediatric">Training</button>
-			                    <button data-filter=".cardiology">Report</button>
+			                    <button data-filter=".Seminar">Seminars</button>
+			                    <button data-filter=".Training">Trainings</button>
+			                    <button data-filter=".Report">Reports</button>
 			                </div>
 						</div>
 					</div>
@@ -35,111 +35,9 @@
 						<div class="col-md-12 gallery-items-list">
 							<div class="masonry-wrap grid-loaded">
 
-
-								<!-- IMAGE #1 -->
-							  	<div class="gallery-item dental">
-									<div class="hover-overlay"> 
-
-										<!-- Gallery Image -->
-										<img class="img-fluid" src="{% static 'front/images/gallery/image-9.jpg' %}" alt="galley-image" />			
-										<div class="item-overlay"></div>				
-												
-										<!-- Image Zoom -->		
-										<div class="image-zoom">
-											<a class="image-link" href="{% static 'front/images/gallery/image-9.jpg' %}" title=""><i class="fas fa-search-plus"></i></a>
-										</div> 
-
-									</div>	
-								</div>	<!-- END IMAGE #1 -->	
-
-
-								<!-- IMAGE #2 -->
-							  	<div class="gallery-item pediatric">
-									<div class="hover-overlay"> 
-
-										<!-- Gallery Image -->
-										<img class="img-fluid" src="{% static 'front/images/gallery/image-10.jpg' %}" alt="galley-image" />			
-										<div class="item-overlay"></div>				
-												
-										<!-- Image Zoom -->		
-										<div class="image-zoom">
-											<a class="image-link" href="{% static 'front/images/gallery/image-10.jpg' %}" title=""><i class="fas fa-search-plus"></i></a>
-										</div> 
-
-									</div>	
-								</div>	<!-- END IMAGE #2 -->	
-
-
-								<!-- IMAGE #3 -->
-							  	<div class="gallery-item cardiology">
-									<div class="hover-overlay"> 
-
-										<!-- Gallery Image -->
-										<img class="img-fluid" src="{% static 'front/images/gallery/image-11.jpg' %}" alt="galley-image" />			
-										<div class="item-overlay"></div>				
-												
-										<!-- Image Zoom -->		
-										<div class="image-zoom">
-											<a class="image-link" href="{% static 'front/images/gallery/image-11.jpg' %}" title=""><i class="fas fa-search-plus"></i></a>
-										</div> 
-
-									</div>
-								</div>	<!-- END IMAGE #3 -->	
-
-
-								<!-- IMAGE #4 -->
-							  	<div class="gallery-item pediatric">
-							  		<div class="hover-overlay"> 
-
-										<!-- Gallery Image -->
-										<img class="img-fluid" src="{% static 'front/images/gallery/image-12.jpg' %}" alt="galley-image" />			
-										<div class="item-overlay"></div>				
-												
-										<!-- Image Zoom -->		
-										<div class="image-zoom">
-											<a class="image-link" href="{% static 'front/images/gallery/image-12.jpg' %}" title=""><i class="fas fa-search-plus"></i></a>
-										</div> 
-
-									</div>
-								</div>	<!-- END IMAGE #4 -->
-
-
-								<!-- IMAGE #5 -->
-							  	<div class="gallery-item dental">
-							  		<div class="hover-overlay"> 
-
-										<!-- Gallery Image -->
-										<img class="img-fluid" src="{% static 'front/images/gallery/image-13.jpg' %}" alt="galley-image" />			
-										<div class="item-overlay"></div>				
-												
-										<!-- Image Zoom -->		
-										<div class="image-zoom">
-											<a class="image-link" href="{% static 'front/images/gallery/image-13.jpg' %}" title=""><i class="fas fa-search-plus"></i></a>
-										</div> 
-
-									</div>
-								</div>	<!-- END IMAGE #5 -->
-
-
-								<!-- IMAGE #6 -->
-							  	<div class="gallery-item cardiology">
-							  		<div class="hover-overlay"> 
-
-										<!-- Gallery Image -->
-										<img class="img-fluid" src="{% static 'front/images/gallery/image-14.jpg' %}" alt="galley-image" />			
-										<div class="item-overlay"></div>				
-												
-										<!-- Image Zoom -->		
-										<div class="image-zoom">
-											<a class="image-link" href="{% static 'front/images/gallery/image-14.jpg' %}" title=""><i class="fas fa-search-plus"></i></a>
-										</div> 
-
-									</div>
-								</div>	<!-- END IMAGE #6 -->
-
 								{% for gallery in gallery %}
 									<!-- IMAGE #6 -->
-									<div class="gallery-item cardiology">
+									<div class="gallery-item {{gallery.category}}">
 										<div class="hover-overlay"> 
 
 											<!-- Gallery Image -->
