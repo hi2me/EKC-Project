@@ -846,8 +846,20 @@
 
 
 			<!-- LOCATION-1 ============================================= -->
-			<section id="reviews-2" class="bg-lightgrey  reviews-section division">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39718.07047618998!2d38.71604757427893!3d9.015176903295451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f64a25e359%3A0xb8105df64d5a701b!2sBlack%20Lion%20Hospital%2C%20AAU%2C%20School%20of%20Medicine!5e0!3m2!1sen!2sde!4v1685680963716!5m2!1sen!2sde" width="1400" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			<section id="reviews-2" class="bg-lightgrey  reviews-section division" style="width: 100;">
+				<iframe id="id_map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39718.07047618998!2d38.71604757427893!3d9.015176903295451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f64a25e359%3A0xb8105df64d5a701b!2sBlack%20Lion%20Hospital%2C%20AAU%2C%20School%20of%20Medicine!5e0!3m2!1sen!2sde!4v1685680963716!5m2!1sen!2sde" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</section>	 
 			<!-- END LOCATION-1 -->
-		{% endblock %}														
+		{% endblock %}		
+		{% block js %} 
+		<script src="{% static 'front/js/imagesloaded.pkgd.min.js' %}"></script>
+		<script>
+			$(document).ready(function(){
+			if ("{{user.is_authenticated}}"=="True"){
+			alert("document is readdy")
+			}
+      
+    		});
+		</script>
+		
+		{% endblock %}												

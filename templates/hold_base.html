@@ -107,7 +107,7 @@
 								<a href="{% url 'accounts:logout' %}" class="callusbtn pr-3" > Signout </a>
 
 								<a href="{% url 'staff:index' %}" class="callusbtn"> 
-									<img src="{% static 'front/images/review-author-1.jpg' %}" style="max-width: 40px; border-radius: 50%;">
+									<img src="{% static 'front/images/user.png' %}" style="max-width: 40px; border-radius: 50%;">
 									<span class="ml-2">{{user.full_name}}</span> </a>
 								{% else %}
 								<a href="{% url 'accounts:login' %}" class="callusbtn pr-3"> Signin </a>
