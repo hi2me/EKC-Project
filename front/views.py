@@ -120,12 +120,13 @@ class News_Gallery(View):
             return render (request, 'front/news.html', context)
         else:
             gallery = Gallery.objects.all()
+            gallery2 = Gallery_Image.objects.all()
             
             p = Paginator(gallery, 10)
             page = self.request.GET.get('page')
             gallery_list = p.get_page(page)
 
-            context = {'gallery':gallery_list}
+            context = {'gallery':gallery_list, 'gallery2':gallery2}
             return render (request, 'front/gallery.html', context)
             
 

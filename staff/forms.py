@@ -35,10 +35,11 @@ class EventForm(forms.ModelForm):
 class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery 
-        fields = ('title', 'image')
+        fields = ('title', 'image', 'category')
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Title'}),
             'image':forms.FileInput(attrs={'class':'form-control'}),
+            'category': forms.Select(attrs={'type':'dropdown', 'class':'custom-select ', }),
         }
 
 class Galley_ImageForm(forms.ModelForm):
@@ -46,7 +47,7 @@ class Galley_ImageForm(forms.ModelForm):
     image = forms.FileField( required=False, widget=forms.ClearableFileInput(attrs={ 'multiple': True,  }))
     class Meta:
         model = Gallery_Image      
-        fields = ('image','title' )
+        fields = ('image', )
 
 
 class FeedbackForm(forms.ModelForm):
@@ -60,6 +61,23 @@ class FeedbackForm(forms.ModelForm):
             'subject':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Subject'}),
             'message': forms.Textarea(attrs={'class':'field-control', 'placeholder':' Write your content here ...', 'required':'false'}),
             }
+
+
+class CallApplicationForm(forms.ModelForm):
+    class Meta:
+        model = CallOfApplication       
+        fields = ('title', 'phone', 'email', 'desc', 'document', 'image', 'status', 'end_date'  )
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
+            'phone':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
+            'email':forms.EmailInput(attrs={'class':'form-control', 'placeholder':' Email'}),
+            'desc':  TinyMCE(attrs={'class':'field-control', 'placeholder':'Write something about the research ...', 'required':'false'}),
+            'image':forms.FileInput(attrs={'class':'form-control'}),            
+            'document':forms.FileInput(attrs={'class':'form-control'}),
+            'status': forms.Select(attrs={'type':'dropdown', 'class':'custom-select ', }),
+            'end_date':forms.DateInput(attrs={'class':'form-control  round','type':'datetime-local',})
+            }
+        
 
 
 class CallSubmissionForm(forms.ModelForm):
@@ -76,3 +94,35 @@ class CallSubmissionForm(forms.ModelForm):
             'concept_note':forms.FileInput(attrs={'class':'form-control'}),
             'supplementary_docs':forms.FileInput(attrs={'class':'form-control'}),
         }
+
+
+
+class ResearchForm(forms.ModelForm):
+           
+    class Meta:
+        model = PublicationAndResearch      
+        fields = ('title', 'name', 'email', 'desc', 'document', 'image', 'approved'  )
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
+            'name':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
+            'email':forms.EmailInput(attrs={'class':'form-control', 'placeholder':' Email'}),
+            'desc':  TinyMCE(attrs={'class':'field-control', 'placeholder':'Write something about the research ...', 'required':'false'}),
+            'image':forms.FileInput(attrs={'class':'form-control'}),            
+            'document':forms.FileInput(attrs={'class':'form-control'}),
+            'approved':forms.CheckboxInput(attrs={'class':'switchery','type':'checkbox', }),
+            }
+        
+
+class ReportForm(forms.ModelForm):
+           
+    class Meta:
+        model = Report      
+        fields = ('title', 'sub_title', 'prep_by',  'rep_document', 'approved'  )
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
+            'sub_title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
+            'prep_by':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),           
+            'rep_document':forms.FileInput(attrs={'class':'form-control'}),
+            'approved':forms.CheckboxInput(attrs={'class':'switchery','type':'checkbox', }),
+            }
+        

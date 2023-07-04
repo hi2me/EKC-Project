@@ -54,7 +54,7 @@
                                                 <span aria-labelledby="btnSearchDrop31" class="dropdown-menu mt-1 dropdown-menu-right">
                                                     
                                                     <a href="{% url 'staff:edit_research' id=research.id %}" class="dropdown-item "><i class="fa fa-edit"></i>Edit research</a>
-                                                    <a href="" class="dropdown-item "><i class="fa fa-trash"></i>Delete research</a>
+                                                    <a href="{% url 'staff:delete_research' id=research.id %}" class="dropdown-item "><i class="fa fa-trash danger"></i>Delete research</a>
                                                 </span>
                                             </span>
                                                     

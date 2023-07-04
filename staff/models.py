@@ -109,8 +109,6 @@ class Gallery(models.Model):
 class Gallery_Image(models.Model):
     title = models.ForeignKey(Gallery, on_delete=models.PROTECT)
     image = models.ImageField(upload_to='Gallery', blank=True, null=True)
-    created_by = models.ForeignKey(MyUser, on_delete=models.PROTECT)
-    created_date = models.DateTimeField(auto_now_add=True)
 
     
     def __str__(self):
@@ -138,8 +136,9 @@ class Feedback(models.Model):
 
 class PublicationAndResearch(models.Model):
     title = models.CharField(max_length=1500)
-    image = models.ImageField(upload_to='Publication', blank=True, null=True)
+    name = models.CharField(max_length=70, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    image = models.ImageField(upload_to='Publication', blank=True, null=True)
     document = models.FileField(upload_to='document/publication')
     desc = models.TextField()
     approved = models.BooleanField(default=False)

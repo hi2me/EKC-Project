@@ -51,7 +51,7 @@
                                               <span aria-labelledby="btnSearchDrop31" class="dropdown-menu mt-1 dropdown-menu-right">
                                                   
                                                 <a href="{% url 'staff:edit_event' id=event.id %}" class="dropdown-item "><i class="fa fa-edit"></i>Edit event</a>
-                                                <a href="" class="dropdown-item "><i class="fa fa-trash"></i>Delete event</a>
+                                                <a href="{% url 'staff:delete_event' id=event.id %}" class="dropdown-item "><i class=" dangerfa fa-trash"></i>Delete event</a>
                                               </span>
                                           </span>
                                                    
@@ -59,16 +59,6 @@
                                   </tr>
                               {% endfor %}
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>#</th>
-                                    <th>event Title</th>
-                                    <th>Category</th>
-                                    <th>Created By</th>
-                                    <th>Created Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
                         </table>				
                     </div>
                 </div>

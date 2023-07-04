@@ -25,13 +25,29 @@
                            <!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
                        </div>
 
+                       
                        <div  class=" contact-form col-md-12 col-lg-6 pb-2">
-                           <p style="font-weight: 700;">2. Choose an image</p>
+                        <p style="font-weight: 700;">2.Select Category </p>
+                        {{form.category}}
+                        {{form.error.category}}
+                        <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+                    </div>	
+
+                       <div  class=" contact-form col-md-12 col-lg-6 pb-2">
+                           <p style="font-weight: 700;">3. Choose an image</p>
                            {{form.image}}
                            {{form.error.image}}
                            <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
                        </div>			
                     
+                       
+                       <div  class=" contact-form col-md-12 col-lg-6 pb-2">
+                        <p style="font-weight: 700;">4. Choose Related images</p>
+                        {{form2.image}}
+                        {{form.error.image}}
+                        <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+                    </div>	
+
                        {% if edit %}
                        
                             <div  class="contact-form col-md-12 col-lg-6  pb-2 input-patient">

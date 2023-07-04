@@ -35,7 +35,13 @@
 						<div class="col-md-12 gallery-items-list">
 							<div class="masonry-wrap grid-loaded">
 
+
+
+								
 								{% for gallery in gallery %}
+
+
+								
 									<!-- IMAGE #6 -->
 									<div class="gallery-item {{gallery.category}}">
 										<div class="hover-overlay"> 
@@ -54,6 +60,39 @@
 										</div>
 									</div>	<!-- END IMAGE #6 -->
 								{% endfor %}
+
+
+
+
+
+								{% for gallery in gallery %}
+
+										{% for g in gallery2 %}
+										{% if g.title == gallery %}
+
+										
+											<!-- IMAGE #6 -->
+											<div class="gallery-item {{gallery.category}}">
+												<div class="hover-overlay"> 
+
+													<!-- Gallery Image -->
+													<img class="img-fluid" src="{{g.image.url}}"  alt="galley-image" />			
+													<div class="item-overlay"></div>				
+															
+													<!-- Image Zoom -->		
+													<div class="image-zoom">
+														<a class="image-link" href="{{g.image.url}}" title=""><i class="fas fa-search-plus"></i></a>
+													</div> 
+
+												</div>
+											</div>	<!-- END IMAGE #6 -->
+
+										{% endif %}
+									{% endfor %}
+								{% endfor %}
+
+
+
 
 
 							</div>

@@ -72,13 +72,13 @@
 											<div class="blog-post-txt">
 
 												<!-- Post Title -->
-												<h5 class="h5-xl steelblue-color"><a href="{% url 'news_detail' id=news.id %}">{{news.title}}</a></h5>
+												<h5 class="h5-xl steelblue-color"><a href="{% url 'news_detail' id=news.id %}">{{news.title|truncatechars:100}}</a></h5>
 
 												<!-- Post Data -->
 												<span>{{news.created_date}} by <span>{{news.created_by}}</span></span>
 
 												<!-- Post Text |truncatechars:150-->
-												<p>{{news.desc|safe}}
+												<p>{{news.desc|truncatechars:200|safe}}
 												</p>
 
 												<!-- Button -->

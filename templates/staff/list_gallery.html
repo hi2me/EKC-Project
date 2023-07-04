@@ -50,7 +50,7 @@
                                               <span aria-labelledby="btnSearchDrop31" class="dropdown-menu mt-1 dropdown-menu-right">
                                                   
                                                 <a href="{% url 'staff:edit_gallery' id=gallery.id %}" class="dropdown-item "><i class="fa fa-edit"></i>Edit Image</a>
-                                                <a href="" class="dropdown-item "><i class="fa fa-trash"></i>Delete Image</a>
+                                                <a href="{% url 'staff:delete_gallery' id=gallery.id %}" class="dropdown-item "><i class=" danferfa fa-trash"></i>Delete Image</a>
                                               </span>
                                           </span>
                                                    
@@ -58,16 +58,6 @@
                                   </tr>
                               {% endfor %}
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>#</th>
-                                    <th>News Title</th>
-                                    <th>Category</th>
-                                    <th>Created By</th>
-                                    <th>Created Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
                         </table>				
                     </div>
                 </div>

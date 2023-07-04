@@ -40,7 +40,7 @@
                                    <h4 class="h4-lg steelblue-color">{{news.title}}</h4>
 
                                    <!-- Post Data -->
-                                   Posted {{news.created_date}} by <span class="blue-color">{{news.created_by}}</span>
+                                   Posted on {{news.created_date}} by <span class="blue-color">{{news.created_by}}</span>
 
                                    <!-- Post Text -->
                                    <p class="mt-30"> {{news.desc|safe}}
@@ -113,13 +113,13 @@
                                     <div class="blog-post-txt">
 
                                         <!-- Post Title -->
-                                        <h5 class="h5-sm steelblue-color"><a href="{% url 'news_detail' id=n.id %}">{{n.title}}</a></h5>
+                                        <h5 class="h5-sm steelblue-color"><a href="{% url 'news_detail' id=n.id %}">{{n.title|truncatechars:30}}</a></h5>
 
                                         <!-- Post Data -->
-                                        <span>{{n.created_date}} <span class="blue-color">{{n.created_by}}</span></span>
+                                        <!-- <span>{{n.created_date}} <span class="blue-color">{{n.created_by}}</span></span> -->
 
                                         <!-- Post Text -->
-                                        <p>{{n.desc|truncatechars:80}}
+                                        <p>{{n.desc|truncatechars:100|safe}}
                                         </p>
 
                                     </div>
