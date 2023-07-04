@@ -82,7 +82,9 @@ class Register(View):
 
 class Login(View):
     def get (self, request):
-        print(self.request.user.is_authenticated)
+        user = self.request.user
+        if  user.is_authenticated:
+            return redirect("/")
         return render (request, 'accounts/login.html', {})
     
     def post (self, request):
@@ -94,8 +96,8 @@ class Login(View):
         
         if user is not None:
             login(request, user)        
-            messages.success(request, f'welcome to AAU EKC')
-            return render ( request, 'accounts/login.html', {'form':form, 'loggedin': True})
+            messages.success(request, f'welcome back to EKC')
+            return redirect("/")
     
         else:
             messages.warning(request, 'Email or password is wrong!',)
