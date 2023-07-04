@@ -5,19 +5,17 @@
 
 {% block event %} active-menu {% endblock %}
 
-{% block link_name %} Events {% endblock %}
+{% block link_name %}{{type}}  Events {% endblock %}
 
-{% block page_name %} Events {% endblock %}
-
+{% block page_name %} {{type}} Events {% endblock %}
+{% block page_title %} Our {{type}} Events {% endblock %}
 {% block content %}
-
-
 
 
 			<!-- BLOG PAGE CONTENT
 			============================================= -->
-							
-                    <section id="pricing-1" class="wide-60 pricing-section division ">
+					
+                    <section id="pricing-1 " style="margin-top:3.5rem;" class="pricing-section division ">
                         <div class="container">	
         
         
@@ -27,27 +25,35 @@
         
                                 <!-- PRICING TABLE #1 -->
                                 {% for event in event %}
-                                <div class="col-lg-6">
+                                <div class="col-lg-5 ml-3 mr-3" style="height: fit-content;
+                                border: 0.4px solid #294e6f;
+                                border-radius: 10px;"
+                                >
                                     <div class="pricing-table icon-xl">	
-        
-        
                                         <!-- Title -->
                                         <h5 class="h5-lg">{{forloop.counter}}. {{event.title}}</h5>	
                                         
                                         <!-- Icon -->
                                         {% if event.image %}
-                                        <img src="{{event.image.url}}" style="height: 100px; border: 1px solid #f5f5f5;   box-shadow: 5px 5px 12px #888888;" >
+                                        <img src="{{event.image.url}}"     >
                                         {% else %} 
                                         <span class="flaticon-072-hospital-5 blue-color"></span>
                                         {% endif %}
                     
                                                                                                     
                                         <!-- Pricing Plan Features  -->
-                                        <div class="features pt-5">
-                                            <p class="h5-sm steelblue-color"> <span>Date:-</span>{{event.date}}</p>
-                                            <p class=" h5-sm steelblue-color"> <span >Place:-</span> {{event.place}}</p>
-                                            <p class="h5-sm steelblue-color"> <span>Host:-</span>  {{event.created_by}}</p>
-                                            <p class="h5-sm steelblue-color">  {{event.desc}} </p>
+                                        <div class="features pt-5 " >
+                                            <div class="row">
+                                                <p class="pl-0 pr-0 col-md-7 col-sm-12 steelblue-color"><span ><i class="fa fa-calendar mr-1"></i>Date:-</span>{{event.date}}</p>
+                                                <p class="pl-0 pr-0  col-md-5 col-sm-12 steelblue-color"> <span><i class="fa fa-user mr-2"></i>Host:-</span>  {{event.created_by}}</p><br>
+                                            </div>
+                                            <div class="row">
+                                                <p class="pl-0 col-12 steelblue-color float-left"> <span ><i class="fa fa-map mr-1"></i>Location:-</span> {{event.place}}</p>
+                                            
+                                            </div>
+                                                
+                                                
+                                            <p class="steelblue-color float-left">  {{event.desc|truncatechars:150|safe}} </p>
                                                             
                                         </div>
         
