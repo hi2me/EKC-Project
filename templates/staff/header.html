@@ -58,7 +58,7 @@
                   {% if user.profile %} 
                     <img  style="width: 32px; height: 32px;" src="{{user.profile_image.url}}" alt="user profile image">
                   {% else %}
-                  <img style="width: 32px; height: 32px;" src="{% static 'front/images/review-author-1.jpg' %}" alt="avatar">
+                  <img style="width: 32px; height: 32px;" src="{% static 'front/images/ekc/user.png' %}" alt="avatar">
                   {% endif %}
                 </div>
                 <span class="user-name">{% if user %} {{user.full_name}} {% endif %}</span>
