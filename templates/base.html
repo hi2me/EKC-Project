@@ -139,12 +139,24 @@
 								  
 								{% if user.is_authenticated %}
 									<li aria-haspopup="true">
-										<a href="{% url 'staff:index' %}" class="callusbtn"> 
-											<img src="{% static 'front/images/ekc/user.png' %}" style="max-width: 40px; border-radius: 50%;">
-											<span class="ml-2">{{user.full_name}}</span> 
+										<a href="{% url 'staff:index' %}"  class=" callusbtn {% block acc %} {% endblock %}">
+											{% if user.profile %}
+											<img src="{{user.profile.url}}" style="max-width: 40px; border-radius: 50%;">
+											
+											{% else %}
+											<img src="{% static 'front/images/user.png' %}" style="max-width: 40px; border-radius: 50%;">
+											{% endif %}
+											<span class="ml-2">{{user.full_name}}</span>
 										</a>
-										<a href="{% url 'accounts:logout' %}" class="callusbtn pr-3" > Log Out </a>
+										<ul class="sub-menu">
+											{% if user.is_staff %}
+											<li aria-haspopup="true"><a href="{% url 'staff:index' %}" > Dashboard </a></li>
+											{% endif %}
+											<li aria-haspopup="true"><a href="{% url 'accounts:logout' %}"> Logout </a></li>
+										</ul>
 									</li>
+                                
+									
 								{% else %}
 									<li aria-haspopup="true">
 										<a href="{% url 'accounts:login' %}" class="{% block register %} {% endblock %}"> Sign In  </a>
@@ -322,7 +334,7 @@
 		<script src="{% static 'front/js/jquery.scrollto.js' %}"></script>
 		<script src="{% static 'front/js/jquery.magnific-popup.min.js' %}"></script>	
 		<script src="{% static 'front/js/owl.carousel.min.js' %}"></script>
-
+		
 		<script src="{% static 'front/js/modernizr.custom.js' %}"></script>	
 		<script src="{% static 'front/js/materialize.js' %}"></script>	
 		<script src="{% static 'front/js/menu.js' %}"></script>
