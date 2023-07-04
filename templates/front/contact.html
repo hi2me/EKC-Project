@@ -24,35 +24,38 @@
 
 
 						<!-- CONTACT FORM -->	
-                        <div class="col-md-7 col-lg-8">
+                        <div class="col-md-7 col-lg-8 col-sm-12">
                             <!-- Title 	-->		
-						<div class="offset-lg-1 section-title">	
+							<div class="offset-lg-1 section-title">	
 
-							<!-- Title 	-->	
-							<h5 class="h5-sm steelblue-color">Don't Hesitate to Get In Touch</h5>	
-                            <p> Your feedback helps us build better institution. </p>
-								
-						</div>
+								<!-- Title 	-->	
+								<h3 class="h5-sm steelblue-color mt-3">Don't Hesitate to Get In Touch</h3>	
+								<p> Your feedback helps us build better institution. </p>
+									
+							</div>
                             
                             <div class="form-holder mb-40">
-                                <form  action="" method="POST" class="row ">
+                                <form  action="" method="POST" >
 
 									{% csrf_token %}
                                                            
                                    <!-- Contact Form Input -->
 								   <!-- <div class=" contact-form "> -->
-										<div  class=" col-lg-6 contact-form">
-											<input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required> 
+									<div class="row contact-form">
+										<div  class=" col-lg-6 ">
+											<input type="text" name="name" class="form-control name" placeholder="Your Name*" required> 
 										</div>
 												
-										<div  class=" col-lg-6 contact-form">
-											<input type="text" name="email" class="form-control email" placeholder="Enter Your Email*" required> 
+										<div  class=" col-lg-6 ">
+											<input type="text" name="email" class="form-control email" placeholder="Your Email*" required> 
 										</div>
+									</div>
+										
 									<!-- </div> -->
 
 
                                    <div  class="col-lg-12 contact-form">
-                                       <input type="text" name="subject" class="form-control subject" placeholder="Subject*" required> 
+                                       <input type="text" name="subject" class="form-control subject" placeholder="Message Subject *" required> 
                                    </div>					                          
                                            
                                    <div  class="col-lg-12 input-message contact-form">
@@ -60,7 +63,7 @@
                                    </div> 
                                                                
                                    <!-- Contact Form Button -->
-                                   <div class="col-lg-12 mt-15 form-btn">  
+                                   <div class="mt-2 form-btn float-right">  
                                        <button type="submit" class="btn btn-blue blue-hover submit">Send Your Message</button> 
                                    </div>
                                                                                  
@@ -74,7 +77,7 @@
                             </div>	
                         </div> 	<!-- END CONTACT FORM -->	
 
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-sm-12">
 							<div class="abox-4 abox-4-table blue-table mb-40 wow fadeInUp" data-wow-delay="0.6s">
 
 								<!-- Title -->
@@ -85,7 +88,7 @@
 								<table class="table">
 									<tbody>
 									    <tr>
-									      	<td>Office</td>
+									      	<td>Office Address</td>
 									      	<td>-</td>
 									      	<td class="text-right">Zambia St, AA</td>
 									    </tr>
@@ -97,12 +100,12 @@
 									     <tr>
 									      	<td>Email</td>
 									      	<td>-</td>
-									      	<td class="text-right" ><a href="mailto:yourdomain@mail.com" style="color: grey;">hello@EKC.aau.edu.et</a></td>
+									      	<td class="text-right" ><a href="mailto:yourdomain@mail.com" style="color: white;">info@ekc.aau.edu.et</a></td>
 									    </tr>
 									  </tbody>
 								</table>
                                 
-                                <h5 class="h5-sm steelblue-color pt-2">Working Hours</h5>
+                                <h5 class="h5-sm steelblue-color  mt-5">Working Hours</h5>
 
 
 								<!-- Table -->
