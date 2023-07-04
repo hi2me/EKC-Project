@@ -18,7 +18,7 @@
       <div class="main-menu-content" style="margin-bottom: 40px; {% if user.is_superuser %} background-color:#2f3443; {% endif %}">
        
         <ul class="navigation navigation-main " id="main-menu-navigation" data-menu="menu-navigation"
-          style=" background-color:#294e6f; padding-bottom: 110px;">
+          style=" background-color:#1b5c97; padding-bottom: 110px;">
           
           <li class=" nav-item navigation-header {% block dashboard %} {% endblock %}">
             <a href="{% url 'home' %}"><i class="fa fa-home"></i><span class="menu-title" >View Site</span></a>
@@ -36,7 +36,7 @@
 
           <li class=" nav-item {% block amendment_tab %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Research Outputs</span>
+              <i class="fa fa-upload"></i><span class="menu-title" >Research Outputs</span>
             </a>
             <ul class="menu-content">
               <li class=" nav-item"><a href="{% url 'staff:add_research' %}" class="menu-item"><span class="menu-title" >Add a New Research</span></a></li>
@@ -78,7 +78,7 @@
 
           <li class=" nav-item {% block renewal_tab %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Reports</span>
+              <i class="fa fa-paper"></i><span class="menu-title" >Reports</span>
             </a>
             <ul class="menu-content">
               <li class=" nav-item"><a href="{% url 'staff:add_report' %}" class="menu-item"><span class="menu-title" >Add Report</span></a>
@@ -197,7 +197,6 @@
             
           {% if messages %}
               {% for m in messages %}
-              
                   {% if 'success' in m.tags  %}
                   <div class="alert alert-icon-right alert-success alert-dismissible col-md-12" role="alert">
                   {% elif 'warning' in m.tags %}
@@ -218,15 +217,15 @@
         </div>
         <!-- end message area -->
 
+
         <div class="content-header-left col-md-6 col-12 mb-2">
           <h3 class="content-header-title mb-0">{% block title %}{% endblock %}</h3>
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">{% block breadcrumb %} {% endblock %}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'staff:index' %}">Home</a></li>
 
-                <!-- list other page breadcrumbs in here -->
-                
+                {% block breadcrumb %} {% endblock %}
                 
               </ol>
             </div>

@@ -103,7 +103,7 @@ video {
 .wsmainfull {
   width: 100%;
   height: 70px;
-  background-color: #fff!important;
+  /* background-color: #fff!important; */
   z-index: 999;
   -webkit-box-shadow: 0 2px 3px rgba(96, 96, 96, .1);
   -moz-box-shadow: 0 2px 3px rgba(96, 96, 96, .1);
@@ -126,6 +126,10 @@ video {
   
   margin: 0;
   float: left;
+  position:relative;
+  left:-100px;
+  top: 6px;
+  background-color: white;
 }
 
 #header-2 .desktoplogo {
@@ -154,7 +158,7 @@ video {
 }
 
 .active-menu {
-  color: #294e6f;
+  color: #1b5c97;
   border-bottom: 2px solid #e69fc0;
 
 }
@@ -180,7 +184,7 @@ video {
 }
 
 .wsmenu >.wsmenu-list > li:hover > a {
-  color: #00a3c8;
+  color: white;
 }
 
 .wsmenu > .wsmenu-list > li > a {
@@ -189,6 +193,7 @@ video {
   line-height: 50px;
   text-decoration: none;
   position: relative;
+  color:white;
 }
 
 #header-2 .wsmenu > .wsmenu-list > li > a {
@@ -877,7 +882,7 @@ video {
     min-height: 100%;
     width: 240px;
     width: 300px;
-    background: #fff;
+    background: #1b5c97;
     padding-bottom: 0;
     margin-left: -240px;
     margin-left: -300px;
@@ -913,7 +918,7 @@ video {
     text-align: left;
     border-right: solid 0px;
     background-color: transparent;
-    color: #666666;
+    color: white;
     line-height: 25px;
     border-bottom: 1px solid;
     border-bottom-color: rgba(0, 0, 0, 0.13);
@@ -1412,6 +1417,7 @@ video {
   .wsmenu>.wsmenu-list>li .wsmenu-click.ws-activearrow>i {
     transform: rotate(-45deg);
     margin-top: 23px;
+    
   }
 
   .wsmenu>.wsmenu-list>li>.wsmenu-click>i {
@@ -1429,7 +1435,7 @@ video {
     height: 100%;
     border-width: 1.5px 1.5px 0 0;
     border-style: solid;
-    border-color: rgba(0, 0, 0, 0.40);
+    border-color: white;
     transition: 0.2s ease;
     display: block;
     transform-origin: 100% 0;
