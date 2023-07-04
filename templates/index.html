@@ -128,7 +128,7 @@
 
 						<!-- IMAGE BLOCK -->
 						<div class="col-lg-6">
-							<div class="about-img text-center wow fadeInUp" data-wow-delay="0.6s">
+							<div class="about-img text-center wow fadeInUp" data-wow-delay="0.2s">
 								<img class="img-fluid" src="{% static  'front/images/ekc/img.jpg' %}" style="height: 270px;" alt="about-image">
 							</div>
 						</div>
@@ -450,13 +450,13 @@
 									<div class="blog-post-txt">
 
 										<!-- Post Title -->
-										<h5 class="h5-sm steelblue-color"><a href="{% url 'news_detail' id=news.id %}">{{news.title}}</a></h5>
+										<h5 class="h5-sm steelblue-color"><a href="{% url 'news_detail' id=news.id %}">{{news.title|truncatechars:110}}</a></h5>
 
 										<!-- Post Data -->
 										<span>{{news.created_date}} by <span>{{news.created_by}}</span></span>
 
 										<!-- Post Text -->
-										<p>{{news.desc|safe}}</p>
+										<p>{{news.desc|truncatechars:170|safe}}</p>
 
 									</div>
 
@@ -654,78 +654,7 @@
 						<div class="col-md-12">					
 							<div class="owl-carousel owl-theme reviews-holder">
 
-						
-								<!-- TESTIMONIAL #1 -->
-								<div class="review-2">
-									<div class="review-txt text-center">
-
-										<!-- Quote -->
-										<div class="quote"><img src="{% static  'front/images/quote.png' %}" alt="quote-img" /></div>	
-
-										<!-- Author Avatar -->
-										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/ekc/muluken.png' %}" alt="testimonial-avatar">
-										</div>
-																
-										<!-- Testimonial Text -->
-										<p>Etiam sapien sem at sagittis congue an augue massa varius egestas a suscipit
-										   magna undo tempus aliquet porta vitae
-										</p>	
-
-										<!-- Testimonial Author -->
-										<!-- <div class="review-author">
-											<h5 class="h5-sm">Scott Boxer</h5>	
-											<span>Programmer</span>	
-										</div>							 -->
-																
-									</div>						
-								</div>	<!--END  TESTIMONIAL #1 -->
-						
-						
-								<!-- TESTIMONIAL #2 -->
-								<div class="review-2">
-									<div class="review-txt text-center">
-
-										<!-- Quote -->
-										<div class="quote"><img src="{% static  'front/images/quote.png' %}" alt="quote-img" /></div>	
-
-										<!-- Author Avatar -->
-										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/review-author-4.jpg' %}" alt="testimonial-avatar">
-										</div>
-																
-										<!-- Testimonial Text -->
-										<p>Mauris donec ociis magnisa a sapien etiam sapien congue augue egestas et ultrice
-										   vitae purus diam integer congue magna ligula egestas
-										</p>										
-
-										
-									</div>						
-								</div>	<!-- END TESTIMONIAL #2 -->
-						
-						
-								<!-- TESTIMONIAL #3 -->
-								<div class="review-2">
-									<div class="review-txt text-center">
-
-										<!-- Quote -->
-										<div class="quote"><img src="{% static  'front/images/quote.png' %}" alt="quote-img" /></div>	
-
-										<!-- Author Avatar -->
-										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/ekc/muluken.png' %}" alt="testimonial-avatar">
-										</div>
-																
-										<!-- Testimonial Text -->
-										<p>At sagittis congue augue an egestas magna ipsum vitae purus ipsum primis undo cubilia
-										   laoreet augue	   
-										</p>
-
-										<!-- Testimonial Author -->
-										
-
-									</div>						
-								</div>	<!-- END TESTIMONIAL #3 -->
+					
 
 								
 								{% for f in feedback %}
@@ -740,7 +669,7 @@
 
 										<!-- Author Avatar -->
 										<div class="testimonial-avatar">
-											<img src="{% static  'front/images/review-author-4.jpg' %}" alt="testimonial-avatar">
+											<img src="{% static  'front/images/ekc/user.png' %}" alt="testimonial-avatar">
 										</div>	
 																
 										<!-- Testimonial Text -->

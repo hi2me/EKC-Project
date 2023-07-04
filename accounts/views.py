@@ -11,7 +11,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 
 # from django_email_verification import  send_email
-import six 
+# import six 
 
 # Create your views here.
 from .models import MyUser 

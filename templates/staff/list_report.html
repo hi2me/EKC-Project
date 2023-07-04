@@ -56,8 +56,8 @@
                                                     Actions</a>
                                                 <span aria-labelledby="btnSearchDrop31" class="dropdown-menu mt-1 dropdown-menu-right">
                                                     
-                                                    <a href="" class="dropdown-item "><i class="fa fa-edit"></i>Edit Report</a>
-                                                    <a href="" class="dropdown-item "><i class="fa fa-trash"></i>Delete Report</a>
+                                                    <a href="{% url 'staff:edit_report' id=report.id %}" class="dropdown-item "><i class="fa fa-edit"></i>Edit Report</a>
+                                                    <a href="{% url 'staff:delete_report' id=report.id %}" class="dropdown-item "><i class="fa fa-trash danger"></i>Delete Report</a>
                                                 </span>
                                             </span>
                                                     

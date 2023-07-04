@@ -1,0 +1,87 @@
+
+
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" id="mce-u0" href="{% static 'tinymce/skins/ui/oxide/skin.min.css' %}">
+{% endblock %}
+
+{% block breadcrumb %} Feedback Detail  {% endblock %}
+
+{% block content %}
+
+
+			<!-- POST NEWS-1
+			============================================= -->
+			<section  class="wide-60 contacts-section division">				
+				<div class="container">
+						
+					<div class="row">	
+
+						<!-- News FORM -->	
+				 		<div class="col-md-12 col-lg-12">
+				 			<div class="form-holder mb-40">
+				 				<form action="" method="POST" class="row " enctype="multipart/form-data">
+                                    {% csrf_token %}
+					                <!-- News Form Input -->
+					                <div  class="contact-form col-md-12 pb-2">
+                                        <p style="font-weight: 700;">1. Subject </p>
+                                        {{feedback.subject}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+
+
+					                <!-- Form Select -->
+										<div  class="contact-form col-md-12 col-lg-4  pb-2 input-patient">
+											<p style="font-weight: 700;">2. Sender's Name</p>
+											{{feedback.name}}
+										</div>
+										
+										<div  class="contact-form col-md-12 col-lg-4 pb-2">
+											<p style="font-weight: 700;">3. Sender's Email</p>
+											{{feedback.email}}
+											<!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+										</div>	
+				                          
+					                        
+					                <div  class="contact-form col-lg-12  pb-2">
+                                        <p style="font-weight: 700;">4. Message </p>
+                                        {{feedback.message}}
+					                	<!-- <textarea class="form-control message" name="message" rows="6" placeholder="Your Message ..." required></textarea> -->
+					                </div> 
+					                                            
+					                <!-- News Form Button -->
+					                <div class="col-lg-12 mt-15 form-btn ">  
+										{% if feedback.show == False  %}
+					                	<button type="submit" class="btn ml-2 " onclick="return confirm('confirm?')" style="background-color: #294e6f; color: #fff;"> Show </button>
+										{% else %} 
+										<button type="submit" class="btn ml-2" style="border-color: #294e6f; color: #294e6f;">Hide </button>
+                                        {% endif %}
+					                </div>
+					                               
+				                                              
+				                </form> 
+
+				 			</div>	
+				 		</div> 	<!-- END News FORM -->	
+
+
+				 	</div>	<!-- End row -->			  
+ 
+
+				</div>	   <!-- End container -->		
+			</section>	<!-- END POST NEWS-1 -->
+
+
+{% endblock %}
+
+
+{% block js %} 
+<script>
+    document.getElementById('id_desc').removeAttribute('required');
+</script>
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'tiny_mce/tiny_mce.js' %}"></script>
+<script src="{% static 'django_tinymce/init_tinymce.js' %}"></script>
+{% endblock %}
