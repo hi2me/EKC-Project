@@ -20,7 +20,9 @@
                   <div class="card-body">
                     <div class="media d-flex">
                       <div class="media-body  ">
-                        <h3 class="font-large-1 text-center">{{research}}<br>
+                        <h3 class="font-large-1 text-center">
+                          {{research}}<br>
+                          <i class="fa fa-file teal font-medium-2 text-center"></i>
                         <span class="font-medium-2 ">
                           <a href="{% url 'staff:list_research' %}" class="text-center ">Conducted Researches</a></span></h3>
                       </div>
@@ -37,6 +39,7 @@
                     <div class="media d-flex">
                       <div class="media-body  ">
                         <h3 class="font-large-1 text-center">{{call.count}}<br>
+                          <i class="fa fa-list teal font-medium-2 text-center"></i>
                         <span class="font-medium-2"> 
                           <a href="{% url 'staff:list_call_app' %}">Call Applications</a></span></h3>
                       </div>
@@ -53,6 +56,7 @@
                     <div class="media d-flex">
                       <div class="media-body test-center">
                         <h3 class="font-large-1 text-center" >{{event}} <br>
+                          <i class="fa fa-star teal font-medium-2 text-center"></i>
                         <span class="font-medium-2">
                           <a href="{% url 'staff:list_event' %}">Hosted Events</a></span></h3>
                       </div>
@@ -106,6 +110,7 @@
                 <div class="media d-flex">
                   <div class="media-body test-center">
                     <h3 class="font-large-1 text-center" >{{submission}}<br>
+                      <i class="fa fa-check teal font-medium-2 text-center"></i>
                     <span class="font-medium-2">
                       <a href="{% url 'staff:list_event' %}">Call Submissions</a></span></h3>
                   </div>
@@ -127,6 +132,7 @@
                 <div class="media d-flex">
                   <div class="media-body test-center">
                     <h3 class="font-large-1 text-center" >{{users}}<br>
+                      <i class="fa fa-user teal font-medium-2 text-center"></i>
                     <span class="font-medium-2">
                       <a href="{% url 'staff:list_event' %}">Registered Users</a></span></h3>
                   </div>
