@@ -2,6 +2,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block css %}
+		<link href="{% static 'front/css/magnific-popup.css' %}" rel="stylesheet">	
+		<link href="{% static 'front/css/owl.carousel.min.css' %}" rel="stylesheet">
+		<link href="{% static 'front/css/owl.theme.default.min.css' %}" rel="stylesheet">
+		<link href="{% static 'front/css/animate.css' %}" rel="stylesheet">
+		<link href="{% static 'front/css/jquery.datetimepicker.min.css' %}" rel="stylesheet">
+				
+{% endblock %}
+
 {% block news %} active-menu {% endblock %}
 
 {% block link_name %} Gallery {% endblock %}
@@ -10,6 +20,7 @@
 {% block page_title %} Have A Look At Our Gallery {% endblock %}
 
 {% block content %}
+
 
 	
 			<!-- GALLERY-3
@@ -37,23 +48,29 @@
 							<div class="masonry-wrap grid-loaded">
 								
 								{% for gallery in gallery %}
-									<!-- IMAGE #6 -->
-									<div class="gallery-item {{gallery.category}}">
-										<div class="hover-overlay"> 
 
-											<!-- Gallery Image -->
-											{% if gallery.image %}
-											<img class="img-fluid" src="{{gallery.image.url}}"  alt="galley-image" />			
-											<div class="item-overlay"></div>				
-													
-											<!-- Image Zoom -->		
-											<div class="image-zoom">
-												<a class="image-link" href="{{gallery.image.url}}" title=""><i class="fas fa-search-plus"></i></a>
-											</div> 
-											{% endif %}
+										{% for g in gallery2 %}
+										{% if g.title == gallery %}
 
-										</div>
-									</div>	<!-- END IMAGE #6 -->
+										
+											<!-- IMAGE #6 -->
+											<div class="gallery-item {{gallery.category}}">
+												<div class="hover-overlay"> 
+
+													<!-- Gallery Image -->
+													<img class="img-fluid" src="{{g.image.url}}"  alt="galley-image" />			
+													<div class="item-overlay"></div>				
+															
+													<!-- Image Zoom -->		
+													<div class="image-zoom">
+														<a class="image-link" href="{{g.image.url}}" title=""><i class="fas fa-search-plus"></i></a>
+													</div> 
+
+												</div>
+											</div>	<!-- END IMAGE #6 -->
+
+										{% endif %}
+									{% endfor %}
 								{% endfor %}
 
 								{% for gallery in gallery %}
@@ -127,9 +144,34 @@
                     </nav>					
                 </div>
 
-
 					
 			 	</div>	   <!-- End container -->	
 			</div>	<!-- END GALLERY-3 -->
 
+
+{% endblock %}
+
+
+{% block js %}
+		<!-- EXTERNAL SCRIPTS
+		============================================= -->		
+		<script src="{% static 'front/js/sticky.js' %}"></script>
+		<script src="{% static 'front/js/imagesloaded.pkgd.min.js' %}"></script>
+		<script src="{% static 'front/js/isotope.pkgd.min.js' %}"></script>
+		<script src="{% static 'front/js/hero-form.js' %}"></script>
+		<script src="{% static 'front/js/jquery.datetimepicker.full.js' %}"></script>		
+		<script src="{% static 'front/js/jquery.validate.min.js' %}"></script>	
+		<script src="{% static 'front/js/jquery.ajaxchimp.min.js' %}"></script>
+		<script src="{% static 'front/js/wow.js' %}"></script>	
+	
+		<!-- Custom Script -->		
+
+		<script> 
+			new WOW().init();
+		</script>
+
+		
+		<script src="{% static 'front/js/changer.js' %}"></script>
+		<script defer src="{% static 'front/js/styleswitch.js' %}"></script>	
+		
 {% endblock %}
