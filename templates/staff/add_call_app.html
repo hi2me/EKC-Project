@@ -119,11 +119,53 @@
 				                                              
 				                </form> 
 
+
 				 			</div>	
 				 		</div> 	<!-- END News FORM -->	
 
 
-				 	</div>	<!-- End row -->			  
+				 	</div>	<!-- End row -->	
+                    
+                    {% if edit  %} 
+                    <div class="card-content mt-5">
+                        <div class="card-header">
+                            <h2 class="text-center">List of submissions</h2>
+                        </div>
+                        <div class="card-body card-dashboard">
+                            <table class="table table-striped table-bordered multi-ordering ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>CV</th>
+                                        <th>Submission Date</th>
+                                        
+                                    </tr>
+                                </thead>
+                               
+                                <tbody>
+                                  {% for p in call.callofsubmission_set.all %}
+                                      <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td><img style="width: 40px;" src="{% static 'front/images/user.png' %}"/></td>
+                                            <td>{{p.name}}</td>
+                                           <td><a href="mailto:{{p.email}}">{{p.email}}</a></td> 
+                                            <td>{{p.phone}}</td>
+                                            <td><a {% if p.cv %} href="{{p.cv.url}}" download {% else %} href="/" {% endif %}>Download CV</a></td>
+                                            <td>{{p.submitted_date}}</td>
+    
+                                            
+                                      </tr>
+                                  {% endfor %}
+                                </tbody>
+                            </table>				
+                        </div>
+                    </div>
+                    
+                    {% endif %}
  
 
 				</div>	   <!-- End container -->		
