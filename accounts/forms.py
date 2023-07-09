@@ -55,7 +55,7 @@ class StaffUserCreationForm(forms.ModelForm):
      
     class Meta:
         model = MyUser
-        fields  = ('email','profile','phone', 'full_name')
+        fields  = ('email','profile','phone', 'full_name','password', 'password2',)
         widgets = {
             'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email', }),
             'full_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Full Name', 'autocapitalize':'word'}),

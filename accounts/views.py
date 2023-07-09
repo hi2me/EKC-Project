@@ -11,7 +11,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 
 # from django_email_verification import  send_email
-# import six 
+import six 
 
 # Create your views here.
 from .models import MyUser 
@@ -54,15 +54,15 @@ def activateEmail(request, user, to_email):
 
 
 
-# class ConfirmEmail(View):
-#     def get(self, request, uidb64, token):
-#         form = MyUserRegistrationForm(request.POST, request.FILES )
-#         email = form.email
-#         user = MyUser.objects.get(email = email)
-#         user.is_active = True
-#         user.save
-#         messages.success(request, 'ur email is verified')
-#         return redirect ('home')
+class ConfirmEmail(View):
+    def get(self, request, uidb64, token):
+        form = StaffUserCreationForm(request.POST, request.FILES )
+        email = form.email
+        user = MyUser.objects.get(email = email)
+        user.is_active = True
+        user.save
+        messages.success(request, 'ur email is verified')
+        return redirect ('home')
 
 class Register(View):
     def get (self, request):
@@ -73,12 +73,21 @@ class Register(View):
     
     def post(self, request): 
         
-        form = StaffUserCreationForm(request.POST, request.FILES )
+        form = StaffUserCreationForm(self.request.POST, self.request.FILES )
+        print("@@@@@@@@@@@@@@@@@@,1")
         if form.is_valid():
+            print("@@@@@@@@@@@@@@@@@@,5")
             user = form.save(commit=False)
             user.save()
+            print("@@@@@@@@@@@@@@@@@@,2")
             activateEmail(request, user, form.cleaned_data.get('email'))
+            print("@@@@@@@@@@@@@@@@@@,3")
+            return redirect ('home')
+        else:
+            messages.error (request, "canto work ")
+            print("@@@@@@@@@@@@@@@@@@,4")
             return render ( request, 'accounts/reg.html', {'form':form, 'submitted': True})
+
 
 class Login(View):
     def get (self, request):

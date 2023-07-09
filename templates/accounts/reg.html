@@ -3,6 +3,12 @@
 {% load static %}
 
 
+{% block register %} active-menu {% endblock %}
+
+{% block link_name %} Register {% endblock %}
+
+{% block page_name %} Register {% endblock %}
+
 
 {% block content %}
 
@@ -11,10 +17,6 @@
 			============================================= -->
 			<section  class="wide-60 contacts-section division">				
 				<div class="container">
-
-                    {% if submitted %}
-                     successfully added a news
-                    {% endif %}
 						
 					<div class="row">	
 
@@ -25,35 +27,35 @@
                                     {% csrf_token %}
 					                <!-- News Form Input -->
 					                <div  class="contact-form col-md-6">
-                                        <p style="font-weight: 700;">Enter your email*</p>
+                                        <p style="font-weight: 700;">1. Enter your email*</p>
                                         {{form.email}}
 					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
 					                </div>
 					                <div  class="contact-form col-md-6">
-                                        <p style="font-weight: 700;">Enter your full name </p>
+                                        <p style="font-weight: 700;">2. Enter your full name </p>
                                         {{form.full_name}}
 					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
 					                </div>
 
 					                <!-- Form Select -->
 					                <div  class="contact-form col-md-12 col-lg-6 ">
-                                        <p style="font-weight: 700;">2. Enter your phone number</p>
+                                        <p style="font-weight: 700;">3. Enter your phone number</p>
                                         {{form.phone}}
 					                </div>
 
 					                <div  class="contact-form col-md-12 col-lg-6">
-                                        <p style="font-weight: 700;">3. Choose profile picture</p>
+                                        <p style="font-weight: 700;">4. Choose profile picture</p>
                                         {{form.profile}}
 					                	<!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
 					                </div>						                          
 					                      
 					                <div  class="contact-form col-md-6">
-                                        <p style="font-weight: 700;">Write a password*</p>
+                                        <p style="font-weight: 700;">5. Write a password*</p>
                                         {{form.password}}
 					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
 					                </div>
 					                <div  class="contact-form col-md-6">
-                                        <p style="font-weight: 700;">Confirm your password</p>
+                                        <p style="font-weight: 700;">6. Confirm your password</p>
                                         {{form.password2}}
 					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
 					                </div>
