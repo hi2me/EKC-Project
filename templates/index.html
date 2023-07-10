@@ -9,7 +9,7 @@
 {% block home %} active-menu {% endblock %}
 		{% block content %}
 
-			<section id="hero-6" class="hero-section division" style="position: relative; top:70px;">
+			<section id="hero-6" class="hero-section division" style="position: relative; top:50px;">
 				<!-- SLIDER -->
 				<div class="slider">
 			    	<ul class="slides">
@@ -18,8 +18,8 @@
 				      	<li id="slide-1">
 
 					        <!-- Background Image -->
-				        	<!-- <img src="{% static  'front/images/mri_1000x500.jpg' %}" alt="slide-background"> -->
-				        	<img src="{% static  'front/images/slider/slide-5.jpg' %}" alt="slide-background">
+				        	<!-- <img src="{% static  'front/images/slider/slide-5.jpg' %}" alt="slide-background"> -->
+							<img src="{% static  'front/bg2.png' %}" alt="slide-background">
 
 							<!-- Image Caption -->
 		       				<div class="caption d-flex align-items-center center-align">
@@ -29,13 +29,13 @@
 		       								<div class="caption-txt white-color">
 
 						       					<!-- Title -->
-					        					<h5>Welcome to Addis Ababa University </h5>
-								         	 	<h2>Else Kröner Center for Cancer </h2>
+					        					<h5 class="" style="color:#fff">Welcome to Addis Ababa University </h5>
+								         	 	<h2 class="" style="color:#fff">Else Kröner Center for Cancer </h2>
 									          	
 									          	<!-- Text -->
-												<p class="p-md">The Medical Faculty at the Martin-Luther-University of Halle-Wittenberg,
-													 involved in Ethiopia under the direction of PD Dr. Eva Kantelhardt!
-												</p>
+												<!-- <p class="p-md">The Medical Faculty at the Martin-Luther-University of Halle-Wittenberg,
+													 involved in Ethiopia under the direction of Pro. Eva Kantelhardt!
+												</p> -->
 
 												<!-- Button -->
 												<a href="{% url 'about_us' %}" class="btn btn-blue tra-white-hover">More About EKC</a>
@@ -50,24 +50,24 @@
 						<!-- END SLIDE #1 -->
 
 				      	<!-- SLIDE #2 -->
-				      	<li id="slide-2">
+				      	<li id="slide-2" >
 
 				        	<!-- Background Image -->
-				        	<img src="{% static  'front/images/slider/slide-4.jpg' %}" alt="slide-background">
+				        	<img src="{% static  's22.png' %}" alt="slide-background">
 
 							<!-- Image Caption -->
 	        				<div class="caption d-flex align-items-center center-align">
 	        					<div class="container">
 		       						<div class="row">
 		       							<div class="col-md-12">
-		       								<div class="caption-txt white-color">
+		       								<div class="caption-txt white-color" style="color: #fff;">
 
 					        					<!-- Title -->
-					        					<h5>Our Office Provides</h5>
-								         	 	<h2>Improved oncological healthcare for women</h2>
+					        					<h5 >Our Office Provides</h5>
+								         	 	<h2 >Improved oncological healthcare for women</h2>
 									          	
 									          	<!-- Text -->
-												<p class="p-md"> We helped women to be able to take part in screening 
+												<p class="p-md "> We helped women to be able to take part in screening 
 													for the early detection of cervical cancer in rural regions.
 												</p>
 
@@ -127,16 +127,16 @@
 
 
 						<!-- IMAGE BLOCK -->
-						<div class="col-lg-6">
+						<div class="col-lg-7">
 							<div class="about-img text-center wow fadeInUp" data-wow-delay="0.2s">
-								<img class="img-fluid" src="{% static  'front/images/report/team.jpg' %}" style="height: 270px; width: 500px;" alt="about-image">
+								<img class="img-fluid" src="{% static  'front/images/report/team.jpg' %}" style="height: 400px; width: 100%;" alt="about-image">
 							</div>
 						</div>
 
 
 						<!-- TEXT BLOCK -->	
-						<div class="col-lg-6">
-							<div class="txt-block pc-30 wow fadeInUp" data-wow-delay="0.4s">
+						<div class="col-lg-5">
+							<div class="txt-block wow fadeInUp" data-wow-delay="0.4s">
 
 								<!-- Title -->
 								<h3 class="h3-md steelblue-color">Established to improve women healthcare</h3>
@@ -365,7 +365,7 @@
 						<!-- SERVICE IMAGE -->
 						<div class="col-lg-4 s6-img">	
 							<div class="sbox-6-img mb-40 text-center wow fadeInUp" data-wow-delay="0.8s">
-								<img class="img-fluid pb-5" src="{% static  'front/images/ekc/cancer_2.png' %}" alt="services-image">
+								<img class="img-fluid pb-5" src="{% static  'ribbon-.png' %}" style="height: 480px; width: 500px;" alt="services-image">
 								<!-- Button -->
 								<a href="{% url 'service' %}" class="btn btn-tra-white black-hover mr-10  ">View More Services</a>
 							</div>
@@ -501,6 +501,30 @@
 
 
 					<div class="row">
+						<!-- DOCTOR #4 -->
+						<div class="col-md-6 col-lg-3">
+							<div class="doctor-1">	
+																					
+								<!-- Doctor Photo -->
+								<div class="hover-overlay text-center" style="border-radius: 50%;"> 
+
+									<!-- Photo -->
+									<img class="img-fluid" style=" height: 280px; width:100%;" src="{% static  'front/images/ekc/prof.jpg' %}" alt="doctor-foto">	
+									<!-- <div class="item-overlay"></div> -->
+
+								</div>		
+								
+								<!-- Doctor Meta -->		
+								<div class="doctor-meta text-center ">
+
+									<h5 class="h5-sm steelblue-color"> Prof. Eva J. Kantelhardt</h5>
+									<span class="blue-color">PI </span>
+
+								</div>	
+
+							</div>			
+						</div>	<!-- END DOCTOR #4 -->
+
 
 
 						<!-- DOCTOR #1 -->
@@ -525,7 +549,7 @@
 								<div class="doctor-meta text-center">
 
 									<h5 class="h5-sm steelblue-color"> Dr. Adamu Addisse </h5>
-									<span class="blue-color">Chair Person, IRB</span>
+									<span class="blue-color">Country PI </span>
 
 
 								</div>	
@@ -542,7 +566,9 @@
 								<div class="hover-overlay text-center" style="border-radius: 50%;"> 
 
 									<!-- Photo -->
-									<img class="img-fluid" style=" height: 280px; width:100%;" src="{% static  'front/images/ekc/muluken.png' %}" alt="doctor-foto">	
+									
+									<img class="img-fluid" style=" height: 280px; width:100%;" src="{% static  'front/images/ekc/mulu.jpg' %}" alt="doctor-foto">	
+									
 									<!-- <div class="item-overlay"></div>  -->
 
 								</div>	
@@ -551,7 +577,7 @@
 								<div class="doctor-meta text-center">
 
 									<h5 class="h5-sm steelblue-color"> Dr. Muluken Gizaw</h5>
-									<span class="blue-color">Assistant Professor </span>
+									<span class="blue-color">Co-PI </span>
 
 								</div>	
 
@@ -576,7 +602,7 @@
 								<div class="doctor-meta text-center">
 
 									<h5 class="h5-sm steelblue-color">Dr. Sefonias Getachew  </h5>
-									<span class="blue-color">Assistant Professor</span>
+									<span class="blue-color">Co-PI  </span>
 
 								</div>	
 
@@ -584,30 +610,7 @@
 						</div>	<!-- END DOCTOR #3 -->
 											
 						
-						<!-- DOCTOR #4 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">	
-																					
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center" style="border-radius: 50%;"> 
-
-									<!-- Photo -->
-									<img class="img-fluid" style=" height: 280px; width:100%;" src="{% static  'front/images/ekc/prof.jpg' %}" alt="doctor-foto">	
-									<!-- <div class="item-overlay"></div> -->
-
-								</div>		
-								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta text-center ">
-
-									<h5 class="h5-sm steelblue-color"> Prof. Eva J. Kantelhardt</h5>
-									<span class="blue-color"> Professor </span>
-
-								</div>	
-
-							</div>			
-						</div>	<!-- END DOCTOR #4 -->
-
+						
 
 					</div>	    <!-- End row -->
 
@@ -795,7 +798,7 @@
 								<!-- TESTIMONIAL #1 -->
 								<div class="review-2 " >
 									<div class="review-txt text-center">
-											<img src="{% static  'front/images/partner/partner1.png' %}" class="text-center pl-5" style="height: 60px; width: 60%;" alt="partner img">
+											<img src="{% static  'front/images/partner/partner1.png' %}" class="text-center " style="height: 60px; width: 30%;" alt="partner img">
 									</div>	
 								</div>	<!--END  TESTIMONIAL #1 -->
 						
@@ -803,7 +806,7 @@
 								<!-- TESTIMONIAL #2 -->
 								<div class="review-2">
 									<div class="review-txt text-center">
-											<img src="{% static  'front/images/partner/partner2.jpg' %}" class="text-center pl-5" style="height: 60px; width: 80%;" alt="partner img">
+											<img src="{% static  'front/images/partner/partner2.jpg' %}" class="text-center " style="height: 60px; width: 30%;" alt="partner img">
 									</div>	
 								</div>	<!-- END TESTIMONIAL #2 -->
 						
@@ -812,7 +815,7 @@
 								<div class="review-2">
 
 										<!-- Author Avatar -->
-											<img src="{% static  'front/images/partner/partner3.png' %}"  class="text-center pl-3"  style="height: 60px; width: 80%;" alt="partner img">
+											<img src="{% static  'front/images/partner/partner3.png' %}"  class="text-center "  style="height: 60px; width: 30%;" alt="partner img">
 										
 												
 										<!-- Testimonial Author -->
@@ -823,7 +826,7 @@
 								<!-- TESTIMONIAL #3 -->
 								<div class="review-2">
 									<div class="review-txt text-center">
-											<img src="{% static  'front/images/partner/partner4.png' %}" class="text-center pl-5 pl-5 pl-5 pl-5" style="height: 60px; width: 50%;"  alt="partner img">
+											<img src="{% static  'front/images/partner/partner4.png' %}" class="text-center    " style="height: 30px; width: 30%;"  alt="partner img">
 									</div>
 										<!-- Testimonial Author -->
 										
@@ -849,12 +852,14 @@
 				<h3 class=" section-title h3-md steelblue-color pt-5">Meet With Us At </h3>	
 				<div class="row">
 					<div class="col-lg-6">
+						<h5 class="h5-md steelblue-color section-title">Addis Ababa University College of Public Health </h5>
 						<iframe id="id_map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39718.07047618998!2d38.71604757427893!3d9.015176903295451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f64a25e359%3A0xb8105df64d5a701b!2sBlack%20Lion%20Hospital%2C%20AAU%2C%20School%20of%20Medicine!5e0!3m2!1sen!2sde!4v1685680963716!5m2!1sen!2sde" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-						<h5 class="h-md steelblue-color section-title">Addis Ababa University College of Public Health </h5>	
+							
 					</div>
 					<div class="col-lg-6">
+						<h5 class="h5-md steelblue-color section-title">Location of our Project Office @ Churchil Health Center</h5>	
 						<iframe id="id_map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39718.07047618998!2d38.71604757427893!3d9.015176903295451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f64a25e359%3A0xb8105df64d5a701b!2sBlack%20Lion%20Hospital%2C%20AAU%2C%20School%20of%20Medicine!5e0!3m2!1sen!2sde!4v1685680963716!5m2!1sen!2sde" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-						<h5 class="h5-md steelblue-color text-center">Our Project Office  Churchil Health Center</h5>	
+						
 					</div>
 				</div>
 			</section>	 

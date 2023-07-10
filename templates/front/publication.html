@@ -8,7 +8,7 @@
 {% block link_name %} Events {% endblock %}
 
 {% block page_name %} Research Outputs {% endblock %}
-
+{% block page_title %} List of Latest Research Outputs {% endblock %}
 {% block content %}
 
 
@@ -25,7 +25,7 @@
                                                                     <!-- Avatar -->
                             <div class="row mb-30" style=" padding:25px; background-color: #fff; border: 1px solid #f5f5f5;   box-shadow: 5px 5px 12px #888888;">
                                 <div class="col-lg-3 col-md-12">
-                                    <div class="blog-post-img mr-5 icon-xl">
+                                    <div class="blog-post-img mr-5 icon-xl" style="width: 100%;">
 
                                         {% if pub.image %}
                                         <img src="{{pub.image.url}}" style="max-height: 140px; width: 100%; box-shadow: 5px 5px 12px #888888; " alt="testimonial-avatar">
@@ -38,14 +38,14 @@
                                 <div class="col-lg-9 col-md-12 pl-5">
                                     <!-- Data -->
                                     <div class="">
-                                        <h5 class="h5-lg steelblue-color mb-3"> {{pub.title}}</h5>
+                                        <h5 class="h5-lg steelblue-color mb-3">{{forloop.counter}}. {{pub.title}}</h5>
 
-                                        <p> By Dr. Abebe Kebede, 2021 GC </p>
+                                        <p> <i class="fa fa-user mr-2 steelblue-color" ></i>By Admin User </p>
                                         
 												<ul class="content-list pb-3">
 															
 													<li>
-														<p>{{pub.desc|safe}}</p>
+														<p>{{pub.desc|truncatechars_html:300|safe}}</p>
 													</li>
                                                 </ul>
 

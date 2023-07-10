@@ -902,7 +902,7 @@ span.id-color {
 .steelblue-color li,
 .steelblue-color i, 
 .white-color .steelblue-color,
-.steelblue-color span { color: #1b5c97; }
+.steelblue-color span { color: #294e6f; }
 
 .lime-color,
 .lime-color h2, 
@@ -3526,7 +3526,6 @@ td.text-right {
 #pricing-1 .pricing-table {
   text-align: center;
   background-color: #fff;
-  border: 1px solid #d0d0d0;
   padding: 60px 50px;
   margin-top: 0;
   margin-bottom: 40px;
@@ -3536,8 +3535,7 @@ td.text-right {
 }
 
 .pricing-table {
-  padding: 20px 25px 5px;
-  border: 1px solid #d0d0d0;
+  padding: 2px 25px 5px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px; 
@@ -4253,12 +4251,16 @@ a.share-ico.ico-pinterest { background-color: #cb2027; color: #fff; }
 /*------------------------------------------*/
 /*  ABOUT POST AUTHOR
 /*------------------------------------------*/ 
-
+/* custom code */
+.text-white{
+  color:white;
+}
+/* end of custom code */
 .author-senoff {
   background-color: #f8f9fb;
-  padding: 45px;
-  margin-top: 80px;
-  margin-bottom: 80px;
+  padding: 35px 20px;
+  margin-top: 30px;
+  margin-bottom: 25px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -5186,6 +5188,7 @@ ul.blog-category-list li:hover {
   padding-top: 25px;
   padding-bottom: 25px;
   padding-left: 15px;
+  margin-bottom: 30px;
 }
 
 .breadcrumb {

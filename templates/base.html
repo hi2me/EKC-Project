@@ -29,6 +29,17 @@
 		<!-- FONT ICONS -->
 		<!-- <link href=" static 'front/css/all.css' " integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet" crossorigin="anonymous">		 -->
 		<link href="{% static 'front/css/flaticon.css' %}" rel="stylesheet">
+		<link href="{% static 'front/fonts/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+		<link href="{% static 'front/css/magnific-popup.css' %}" rel="stylesheet">	
+<link href="{% static 'front/css/owl.carousel.min.css' %}" rel="stylesheet">
+<link href="{% static 'front/css/owl.theme.default.min.css' %}" rel="stylesheet">
+<link href="{% static 'front/css/animate.css' %}" rel="stylesheet">
+<link href="{% static 'front/css/jquery.datetimepicker.min.css' %}" rel="stylesheet">
+		
+
+
+		
         <link href="{% static 'front/css/all.css' %}" rel="stylesheet" >
 		{% block css %} 
 		{% endblock %}
@@ -89,7 +100,8 @@
 
     					<!-- LOGO IMAGE -->
     					<!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 360 x 80 pixels) -->
-    					<div class="desktoplogo"><a href="#"><img src="{% static 'front/images/logo/logo-big.png' %}"  width="120" height="60" alt="header-logo"></a></div>
+    					<div class="desktoplogo">
+							<a href="#"><img src="{% static 'front/images/logo/logo-big.png' %}"  width="120" height="60" alt="header-logo"></a></div>
 
     					<!-- MAIN MENU -->
       					<nav class="wsmenu clearfix">
@@ -216,9 +228,14 @@
 			</div>	<!-- END BREADCRUMB -->	
 
 			{% endif %}
-
-
-
+			<div class="container pl-4" style="position: relative; top: 50px;">
+				<div class="row">						
+					<div class="col">
+						<h4 class="h3-md steelblue-color text-center mb-3">{% block page_title %}{% endblock %}</h4>
+					</div>
+				</div>
+			</div>
+			 
             {% block content %}
 
             {% endblock %}
