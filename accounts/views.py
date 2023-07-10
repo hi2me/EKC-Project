@@ -29,26 +29,33 @@ account_activation_token = AccountActivationTokenGenerator()
 
 
 
-def activate(request, uidb64, token):
-        messages.success(request, 'ur email is verified')
-        return redirect ('home')
+def activate(request, uidb64, token, id):
+        
+        user = MyUser.objects.get(id = id)
+        user.is_active = True
+        user.save()
+        
+        messages.success(request, 'Your email is successfully verified. You can login using your email and password. ')
+        return redirect ('accounts:login')
 
 
 
 def activateEmail(request, user, to_email):
-    mail_subject = 'activate ur acct.'
+    mail_subject = 'Activate Your EKC Account.'
     message = render_to_string('mail.html', {
         'user': user.full_name,
         'domain': get_current_site(request).domain,
         'uid':urlsafe_base64_encode(force_bytes(user.id)),#encode self.user id
         'token':account_activation_token.make_token(user),
+        'id':user.id,
         'protocol':'https' if request.is_secure() else 'http'
         
     })
     to_email = user.email
-    email = EmailMessage(mail_subject, message, 'compacct01@gmail.com', to=[to_email],)
+    email = EmailMultiAlternatives(mail_subject, message, 'compacct01@gmail.com', to=[to_email],)
+    email.attach_alternative(message, 'text/html')
     if email.send():
-        messages.success(request, f'dear {user}, go to ur mail {to_email} and click z link to confirm your account')
+        messages.success(request, f'dear {user}, please go to ur mail {to_email} and click z link to confirm your account')
     else:
         messages.error(request, f'dear {user}, we cant send mail to {to_email} ')
 
@@ -61,7 +68,7 @@ class ConfirmEmail(View):
         user = MyUser.objects.get(email = email)
         user.is_active = True
         user.save
-        messages.success(request, 'ur email is verified')
+        messages.success(request, 'Your email is successfully verified')
         return redirect ('home')
 
 class Register(View):
