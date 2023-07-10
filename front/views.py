@@ -143,16 +143,14 @@ class Events(View):
     def get( self, request, type):
         if type == 'up_coming':
             event = Event.objects.all()
-
             p = Paginator(event, 6)
             page = self.request.GET.get('page')
             event_list = p.get_page(page)
-
-            context = {'event':event_list}
+            context = {'event':event_list, 'type':'Up Coming'}
             return render (request, 'front/event.html', context)
         else:
 
-            context = {}
+            context = {'type':'Past'}
             return render (request, 'front/event.html', context)
     
 

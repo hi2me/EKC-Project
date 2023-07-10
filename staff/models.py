@@ -67,13 +67,12 @@ class Event(models.Model):
 
 class NewsCategory(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
-
-    
     def __str__(self):
         return self.name
     
     class Meta:
         ordering = ('-id',)
+
 
 class News(models.Model):
     title = models.CharField(max_length=1500, blank=True, null=True)
@@ -99,8 +98,6 @@ class Gallery(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
 
-    def __str__(self):
-        return self.title
     
     class Meta:
         ordering = ('-id',)

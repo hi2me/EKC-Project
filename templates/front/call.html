@@ -9,7 +9,8 @@
 
 {% block link_name %} Call {% endblock %}
 
-{% block page_name %} Call of Application   {% endblock %}
+{% block page_name %} List of Application Calls  {% endblock %}
+{% block page_title %} List of Latest Call Submissions {% endblock %}
 
 {% block content %}
 
@@ -26,7 +27,7 @@
             <div class="sidebar-timetable sidebar-div mb-50">
 
                 <!-- Title -->
-                <h5 class="h5-md mb-20">{{call.title}}</h5>
+                <h5 class="h5-md mb-20"># {{forloop.counter}}. {{call.title}}</h5>
 
                 <!-- Text -->
                 <p class="p-sm">End Date: {{call.end_date}}</p>
