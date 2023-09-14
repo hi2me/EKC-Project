@@ -39,7 +39,7 @@
                     <div class="media d-flex">
                       <div class="media-body  ">
                         <h3 class="font-large-1 text-center">{{call.count}}<br>
-                          <i class="fa fa-list teal font-medium-2 text-center"></i>
+                          <i class="fa fa-upload teal font-medium-2 text-center"></i>
                         <span class="font-medium-2"> 
                           <a href="{% url 'staff:list_call_app' %}">Call Applications</a></span></h3>
                       </div>
@@ -56,7 +56,7 @@
                     <div class="media d-flex">
                       <div class="media-body test-center">
                         <h3 class="font-large-1 text-center" >{{event}} <br>
-                          <i class="fa fa-star teal font-medium-2 text-center"></i>
+                          <i class="fa fa-calendar teal font-medium-2 text-center"></i>
                         <span class="font-medium-2">
                           <a href="{% url 'staff:list_event' %}">Hosted Events</a></span></h3>
                       </div>
@@ -89,10 +89,11 @@
             <div class="card-img-top img-fluid bg-cover round" style="  height:215px;"></div>
           {% endif %}
           <div class="card-profile-image">
-              <img src="{% static  'front/images/ekc/user.png' %}" style="width: 110px; height: 110px;"  
+            
+              <img {% if user.profile %} src="{{user.profile.url}}" {% else %} src="{% static  'front/images/ekc/user.png' %}"  {% endif %} style="width: 110px; height: 110px;"  
               class="rounded-circle img-border text-center box-shadow-1" alt="Profile Image"><br><br>
               
-          <a href="" class="btn btn-social btn-min-width mr-1 mb-1 white" >
+          <a href="{% url 'accounts:my_profile' id=user.id %}" class="btn btn-social btn-min-width mr-1 mb-1 white" >
             <i class="fa fa-user" style="color: black;"></i> <span class="px-1" style="color: black;">My Profile</span></a>
 
 
@@ -110,7 +111,7 @@
                 <div class="media d-flex">
                   <div class="media-body test-center">
                     <h3 class="font-large-1 text-center" >{{submission}}<br>
-                      <i class="fa fa-check teal font-medium-2 text-center"></i>
+                      <i class="fa fa-check-square teal font-medium-2 text-center"></i>
                     <span class="font-medium-2">
                       <a href="{% url 'staff:list_event' %}">Call Submissions</a></span></h3>
                   </div>

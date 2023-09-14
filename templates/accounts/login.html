@@ -3,6 +3,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} Login to EKCC {% endblock %}
+
+{% block register %} active-menu {% endblock %}
+
+{% block link_name %} Login {% endblock %}
+
+{% block page_name %} Login {% endblock %}
 
 
 {% block content %}
@@ -11,35 +18,33 @@
 			============================================= -->
 			<section id="contacts-2" class="wide-60 contacts-section division">				
 				<div class="container ">
-					<div class="row " style="max-width: 50%; margin-left:250px;">	
-
+					<div class="row login " >	
+                        
 
                         						<!-- CONTACT FORM -->	
 				 		<div class=" col-lg-12 text-center ">
+                            
                             <div class="form-holder mb-40 " >
                                 <form action="" method="POST" class=" row form " enctype="multipart/form-data">
                                     {% csrf_token %}
                                                            
+
                                     
                                         <div  class="col-md-12 contact-form">
-                                                <input type="text" name="email" autocomplete="email" class="form-control email" placeholder="Enter Your Email*" required> 
+                                            <img src="{% static 'front/images/logo/loggo.jpg' %}" width="120" height="60" class="mb-5" >
+                                            <input type="text" name="email" autocomplete="email" class="form-control email" placeholder="Enter Your Email*" required> 
                                                 
-                                                <input type="password"  name="password" class="form-control name" placeholder="password*" required> 
+                                            <input type="password"  name="password" class="form-control name" placeholder="password*" required> 
 
                                                 
                                          <!-- Contact Form Button -->
-                                                <div class="col-lg-12 mt-15 form-btn pt-3">  
-                                                    <button type="submit" class="btn btn-blue blue-hover submit">login </button> 
-                                                </div>
-
+                                            <div class="col-lg-12 mt-15 form-btn pt-3">  
+                                                <button type="submit" class="btn btn-blue blue-hover submit">login </button> 
                                             </div>
 
-                                    
-                                           
-
-                                    
-                                
-                                                             
+                                            <p class="pt-3"> Do Not Have an Account? </p> <a href="{% url 'accounts:register' %}" class="btn btn-blue-border blue-hover mt-10"> Register </a>  
+                                        </div>
+                                                          
                                </form> 
                             </div>	
                         </div> 	<!-- END CONTACT FORM -->

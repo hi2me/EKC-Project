@@ -1,0 +1,69 @@
+
+
+
+
+{% extends 'staff/base.html' %}
+{% load static %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="">   List of Submissions </a></li>{% endblock %}
+
+{% block content %}
+
+<section >
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"> Title: {{call.title}}
+                    <a class="heading-elements-toggle" href="{% url 'staff:add_call_app' %}"><i class="fa fa-plus"></i>
+                    </h4>
+                        <button type="button" class="btn ml-2 float-right" style="display: inline ; ;" >
+                            <i class="fa fa-plus"  ></i> Add New 
+                        </button>
+                        
+                    </a>
+                   
+                </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <table class="table table-striped table-bordered multi-ordering ">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Applicant Name</th>
+                                    <th>Applicant Email</th>
+                                    <th>CV</th>
+                                    <th>Submitted Date </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                           
+                            <tbody>
+                              {% for sub in sub %}
+                                  <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{sub.name}}</a></td>
+                                        <td>{{sub.email}}</td>
+                               
+                                        <td><a href="{{sub.cv.url}}" download  >Download Document</a></td>
+                                        <td>{{sub.submitted_date}}</td>
+                                        <td>
+                                            <a href="{% url 'staff:detail_call_sub' id=sub.id %}" class="dropdown-item "><i class="fa fa-eye"></i>View Detail</a>
+                                            
+                                                    
+                                        </td>
+                                  </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>				
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

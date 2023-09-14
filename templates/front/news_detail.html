@@ -4,10 +4,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC News {% endblock %}
+
 {% block news %} active-menu {% endblock %}
 
-{% block link_name %} 
-<li ><a href="{% url 'blog' type='news' %}">News</a></li> {% endblock %}
+{% block links_name %} 
+<li class="breadcrumb-item"><a href="{% url 'blog' type='news' %}">News</a></li> {% endblock %}
 
 {% block page_name %} News Detail {% endblock %}
 
@@ -29,7 +31,11 @@
                             
                                 <!-- BLOG POST IMAGE -->
                                 <div class="blog-post-img mb-40">
+                                    {% if news.image %}
                                    <img class="img-fluid"  src="{{ news.image.url }}" alt="blog-post-image" />		
+                                   {% else %}
+                                   <img class="img-fluid"  src="{% static 'front/images/logo/loggo.jpg' %}" alt="blog-post-image" />		
+                                   {% endif %}
                                </div>	
 
 
@@ -55,13 +61,15 @@
 
 
 							<!-- SEARCH FIELD --> 
-							<div id="search-field" class="sidebar-div mb-50">								
+							<div id="search-field" class="sidebar-div mb-50">	
+								<form method="get" action="{% url 'news_search' %}" >						
 								<div class="input-group mb-3">
-								  	<input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-field">
+								  	<input type="text" class="form-control" name="search" id="search" placeholder="{% if search %} {{term}} {% else %} Search {% endif %}" aria-label="Search" aria-describedby="search-field">
 								 	<div class="input-group-append">
 								    	<button class="btn" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
 								 	</div>
 								</div>
+							    </form>
 							</div>
 
 							<!-- BLOG CATEGORIES --> 
@@ -71,11 +79,10 @@
 								<h5 class="h5-sm steelblue-color">Categories</h5>
 
 								<ul class="blog-category-list clearfix">
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Research</a> <span>(5)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Information</a> <span>(13)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Anouncement </a> <span>(6)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Health </a> <span>(8)</span></li>
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> Technology</a> <span>(12)</span></li>
+									{% for cat in category %}
+									<li><a href="{% url 'news_by_category' id=cat.id %}"><i class="fas fa-angle-double-right blue-color"></i> {{cat.name}}</a> <span>({{cat.news_set.all.count}})</span></li>
+									
+									{% endfor %}
 								</ul>
 
 							</div>
@@ -101,12 +108,17 @@
                             
                             <!-- BLOG POST #1 -->
                             {% for n in news_list %}
+                            {% if n.id != news.id %}
                             <div class="col-md-3">
                                 <div class="blog-post">
 
                                     <!-- BLOG POST IMAGE -->
                                     <div class="blog-post-img">
+                                        {% if n.image %}
                                         <img class="img-fluid" style="max-height: 145px; width: 100%;" src="{{n.image.url}}" alt="blog-post-image" />	
+                                        {% else %}
+                                        <img class="img-fluid" style="max-height: 145px; width: 100%;" src="{% static 'front/images/logo/loggo.jpg' %}" alt="blog-post-image" />
+                                        {% endif %}
                                     </div>
 
                                     <!-- BLOG POST TEXT -->
@@ -126,6 +138,7 @@
 
                                 </div>
                             </div>	
+                            {% endif %}
                             {% endfor %}<!-- END  BLOG POST #1 -->
 
 

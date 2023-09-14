@@ -25,12 +25,14 @@ urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('about_us/', About_us.as_view(), name='about_us'),
     path('service/', Service.as_view(), name='service'),
-    path('team/', Team.as_view(), name='team'),
+    path('team/', Teams.as_view(), name='team'),
     path('publications/', Publication.as_view(), name='publication'),
     path('report/', Reports.as_view(), name='report'),
     path('call_application/', CallApplication.as_view(), name='call_application'),
     path('call_submission/<int:id>/', CallSubmission.as_view(), name='call_submission'),
     path('blog/<str:type>/', News_Gallery.as_view(), name='blog'),
+    path ('news_search/', NewsSearch.as_view(), name='news_search'),
+    path ('news_by_category/<int:id>', NewsByCategory.as_view(), name='news_by_category'),
     path('news_detail/<int:id>/', NewsDetail.as_view(), name='news_detail'),
     path('events/<str:type>/', Events.as_view(), name='event'),
     path('contact_us/', Contact_us.as_view(), name='contact_us'),
@@ -41,7 +43,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'),),
     path('staff/', include('staff.urls'),)
 ]
-
 
 
 urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

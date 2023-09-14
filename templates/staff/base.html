@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<title>{% block main_title %} EKC AAU {% endblock %}</title>
+<title>{% block main_title %} EKCC AAU {% endblock %}</title>
 
 <head>
   {% include 'staff/head.html' %}
@@ -36,7 +36,7 @@
 
           <li class=" nav-item {% block amendment_tab %} {% endblock %}">
             <a href="#">
-             <span class="menu-title" >Research Outputs</span>
+             <span class="menu-title" ><i class="fa fa-file"></i>Research Outputs</span>
             </a>
             <ul class="menu-content">
               <li class=" nav-item"><a href="{% url 'staff:add_research' %}" class="menu-item"><span class="menu-title" >Add a New Research</span></a></li>
@@ -53,7 +53,7 @@
 
           <li class=" nav-item {% block proposal_tab %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Call Applications </span>
+              <span class="menu-title" ><i class="fa fa-upload"></i>Call Applications </span>
             </a>
             <ul class="menu-content">
                 <li class=" nav-item"><a href="{% url 'staff:add_call_app' %}" class="menu-item">
@@ -64,9 +64,6 @@
                   <span class="menu-title" >List all Calls </span></a>
                 </li>
                 
-                <li class=" nav-item"><a href="" class="menu-item">
-                  <span class="menu-title" >List all Submissions </span></a>
-                </li>
 
                 <li class=" nav-item"><a href="{% url 'call_application' %}" target="blank"  class="menu-item">
                   <span class="menu-title"  > Call Applications on Site </span></a>
@@ -78,7 +75,7 @@
 
           <li class=" nav-item {% block renewal_tab %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Reports</span>
+              <span class="menu-title" ><i class="fa fa-paperclip"></i>Reports</span>
             </a>
             <ul class="menu-content">
               <li class=" nav-item"><a href="{% url 'staff:add_report' %}" class="menu-item"><span class="menu-title" >Add Report</span></a>
@@ -95,7 +92,7 @@
           
           <li class=" nav-item {% block news %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >News</span>
+              <span class="menu-title" ><i class="fa fa-list"></i>News</span>
             </a>
             <ul class="menu-content">
               <li class=" nav-item"><a href=" {% url 'staff:add_news' %}" class="menu-item"><span class="menu-title" >Add News</span></a>
@@ -112,7 +109,7 @@
           
           <li class=" nav-item {% block gallery %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Gallery</span>
+              <span class="menu-title" ><i class="fa fa-image"></i>Gallery</span>
             </a>
             <ul class="menu-content">
               <li class=" nav-item"><a href=" {% url 'staff:add_gallery' %}" class="menu-item"><span class="menu-title" >Add a Gallery</span></a>
@@ -129,7 +126,7 @@
           
           <li class=" nav-item {% block event %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Events</span>
+              <span class="menu-title" ><i class="fa fa-calendar"></i>Events</span>
             </a>
             <ul class="menu-content">
               <li class=" nav-item"><a href=" {% url 'staff:add_event' %}" class="menu-item"><span class="menu-title" >Add a New Event</span></a>
@@ -146,21 +143,25 @@
           
           <li class=" nav-item {% block feedback %} {% endblock %}">
             <a href="{% url 'staff:list_feedback' %}">
-              <span class="menu-title" >Feedbacks </span>
+              <span class="menu-title" ><i class="fa fa-edit"></i>Feedbacks </span>
             </a>
   
           </li>
           
           <li class=" nav-item {% block renew %} {% endblock %}">
             <a href="#">
-              <span class="menu-title" >Users</span>
+              <span class="menu-title" ><i class="fa fa-users"></i>Users</span>
             </a>
             <ul class="menu-content">
-              <li class=" nav-item"><a href=" " class="menu-item"><span class="menu-title" >Staff Members</span></a>
+              <li class=" nav-item"><a href=" {% url 'staff:list_team' %} " class="menu-item"><span class="menu-title" >Team Members</span></a>
               </li>
               
-                <li class=" nav-item"><a href="" class="menu-item"><span class="menu-title" >Visitors</span></a>
-                </li>
+              <li class=" nav-item"><a href=" {% url 'staff:list_staff' %}  " class="menu-item"><span class="menu-title" >Staff Members</span></a>
+              </li>
+              
+              <li class=" nav-item"><a href=" {% url 'staff:list_subscriber' %}  " class="menu-item"><span class="menu-title" >News Subscribers</span></a>
+              </li>
+              
             </ul>
           </li>
          

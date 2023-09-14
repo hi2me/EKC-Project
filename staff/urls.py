@@ -33,6 +33,9 @@ urlpatterns = [
     path('edit_call_app/<int:id>', EditCallAppln.as_view(), name= 'edit_call_app'),
     path('delete_call_app/<int:id>', DeleteCallAppln.as_view(), name= 'delete_call_app'),
     
+    path('list_call_sub/<int:id>', ListCallSubmn.as_view(), name= 'list_call_sub'),
+    path('detail_call_sub/<int:id>', DetailCallSubmn.as_view(), name= 'detail_call_sub'),
+    
     path('list_report/', ListReport.as_view(), name= 'list_report'),
     path('add_report/', AddReport.as_view(), name= 'add_report'),
     path('edit_report/<int:id>', EditReport.as_view(), name= 'edit_report'),
@@ -40,6 +43,19 @@ urlpatterns = [
     
     path('list_feedback/', ListFeedback.as_view(), name= 'list_feedback'),
     path('detail_feedback/<int:id>', DetailFeedback.as_view(), name= 'detail_feedback'),
+    
+    path('list_team/', ListTeam.as_view(), name= 'list_team'),
+    path('add_team/', AddTeam.as_view(), name= 'add_team'),
+    path('edit_team/<int:id>', EditTeam.as_view(), name= 'edit_team'),
+    path('activate_team/<int:id>', ActivateTeam.as_view(), name= 'activate_team'),
+    path('delete_team/<int:id>', DeleteTeam.as_view(), name= 'delete_team'),
+    
+    path('list_staff/', ListStaff.as_view(), name= 'list_staff'),
+    path('detail_staff/<int:id>', DetailStaff.as_view(), name= 'detail_staff'),
+    path('activate_staff/<int:id>', ActivateStaff.as_view(), name= 'activate_staff'),
+    path('delete_staff/<int:id>', DeleteStaff.as_view(), name= 'delete_staff'),
+    
+    path('list_subscriber/', ListSubscribers.as_view(), name= 'list_subscriber'),
 
 
 ]

@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User, AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 GENDER = (('Male','Male'), ('Female','Female'))
-STATUS = (('Pending','Pending'), ('Confirmation', 'Confirmation'), ('Active', 'Active'))
+STATUS = (('Pending','Pending'), ('Email_Confirmation', 'Email_Confirmation'), ('Email_Verified', 'Email_Verified'), ('Active', 'Active'))
 
 
 class MyUserManager(BaseUserManager):

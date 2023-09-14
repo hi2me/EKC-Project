@@ -7,7 +7,9 @@
 <link rel="stylesheet" type="text/css" id="mce-u0" href="{% static 'tinymce/skins/ui/oxide/skin.min.css' %}">
 {% endblock %}
 
-{% block breadcrumb %} <li class="breadcrumb-item"><a href="">Add Research</a> {% endblock %}
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:list_research' %}"> List Research</a></li> 
+ <li class="breadcrumb-item"><a href="">Add Research</a> {% endblock %}
 
 {% block content %}
 
@@ -52,6 +54,7 @@
 									{% if edit %}
 
                                     <div  class="contact-form col-md-12 col-lg-4 pb-2">
+
                                         <p style="font-weight: 700;">5. Update an image</p>
                                         {{form.image}}
                                         {{form.error.image}}
@@ -59,20 +62,28 @@
                                     </div>	
 
                                     <div  class="contact-form col-md-12 col-lg-4  pb-2 input-patient">
+										{% if research.image %}
                                         <a href="{{research.image.url}}" download name="research image"> <img style="height: 110px;" src="{{research.image.url}}" ></a>
                                         <p style="font-weight: 700;">( current image)</p>
+										{% endif %}
                                     </div>
                                 {% else %}
                                 
                                     <!-- Form Select -->
                                     <div  class="contact-form col-md-12 col-lg-6  pb-2 input-patient">
-                                        <p style="font-weight: 700;">4.Research Document</p>
+                                        <p style="font-weight: 700;">4.Research Document (Optional)</p>
                                         {{form.document}}
                                         {{form.error.document}}
                                     </div>
                                     
+									<div  class="contact-form col-md-12 col-lg-6  pb-2 input-patient">
+                                        <p style="font-weight: 700;">5.Related Link (Optional)</p>
+                                        {{form.link}}
+                                        {{form.error.link}}
+                                    </div>
+                                    
                                     <div  class="contact-form col-md-12 col-lg-6 pb-2">
-                                        <p style="font-weight: 700;">5. Choose Image </p>
+                                        <p style="font-weight: 700;">6. Choose Image </p>
                                         {{form.image}}
                                         {{form.error.image}}
                                         <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
@@ -82,7 +93,7 @@
 
 					                        
 					                <div  class="contact-form col-lg-12  pb-2">
-                                        <p style="font-weight: 700;">6. About the Research </p>
+                                        <p style="font-weight: 700;">7.  Abstract </p>
                                         {{form.desc}}
                                         {{form.error.desc}}
 					                	<!-- <textarea class="form-control message" name="message" rows="6" placeholder="Your Message ..." required></textarea> -->
@@ -90,7 +101,7 @@
 
                                      
 					                <div  class="contact-form col-lg-12  pb-2">
-                                        <p style="font-weight: 700;">7. Approve this Research</p>
+                                        <p style="font-weight: 700;">8. Approve this Research</p>
                                         {{form.approved}}
                                         {{form.error.approved}}
 					                	<!-- <textarea class="form-control message" name="message" rows="6" placeholder="Your Message ..." required></textarea> -->

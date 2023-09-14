@@ -13,3 +13,7 @@ ekc2.zip
 document
 *.zip
 media.zip
+dbs/
+EKC Docs/
+staticfiles/
+logs/

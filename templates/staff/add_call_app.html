@@ -9,7 +9,10 @@
 <link rel="stylesheet" type="text/css" id="mce-u0" href="{% static 'tinymce/skins/ui/oxide/skin.min.css' %}">
 {% endblock %}
 
-{% block breadcrumb %}<li class="breadcrumb-item"><a href=""> Add a Call of Application </a> {% endblock %}
+{% block breadcrumb %}
+
+<li class="breadcrumb-item"><a href="{% url 'staff:list_call_app' %}"> List Call Applications </a></li> 
+<li class="breadcrumb-item"><a href=""> Add a Call of Application </a> {% endblock %}
 
 {% block content %}
 
@@ -53,17 +56,30 @@
                                         
 									{% if edit %}
 
-                                    <div  class="contact-form col-md-12 col-lg-4 pb-2">
+                                    <div  class="contact-form col-md-12 col-lg-6 pb-2">
+                                        <p style="font-weight: 700;">5. Update a Call Document</p>
+                                        {{form.document}}
+                                        {{form.error.image}}
+                                        <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+                                    </div>	
+                                    
+
+
+                                    <div  class="contact-form col-md-12 col-lg-6 pb-2">
                                         <p style="font-weight: 700;">5. Update an image</p>
                                         {{form.image}}
                                         {{form.error.image}}
                                         <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
                                     </div>	
 
+                                    {% if call.image %}
                                     <div  class="contact-form col-md-12 col-lg-4  pb-2 input-patient">
                                         <a href="{{call.image.url}}" download name="call image"> <img style="height: 110px;" src="{{call.image.url}}" ></a>
                                         <p style="font-weight: 700;">( current image)</p>
                                     </div>
+
+                                    {% endif %}
+
                                 {% else %}
                                 
                                     <!-- Form Select -->

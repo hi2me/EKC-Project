@@ -2,10 +2,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC Publications and Researches {% endblock %}
 
 {% block publication %} active-menu {% endblock %}
 
-{% block link_name %} Events {% endblock %}
 
 {% block page_name %} Research Outputs {% endblock %}
 {% block page_title %} List of Latest Research Outputs {% endblock %}
@@ -28,7 +28,7 @@
                                     <div class="blog-post-img mr-5 icon-xl" style="width: 100%;">
 
                                         {% if pub.image %}
-                                        <img src="{{pub.image.url}}" style="max-height: 140px; width: 100%; box-shadow: 5px 5px 12px #888888; " alt="testimonial-avatar">
+                                        <img src="{{pub.image.url}}" style="max-height: 140px; width: 100%; box-shadow: 5px 5px 12px #888888; " alt="EKC Publication image">
                                         {% else %}
                                         <span class="flaticon-150-clipboard blue-color"></span>
                                         {% endif %}
@@ -39,18 +39,23 @@
                                     <!-- Data -->
                                     <div class="">
                                         <h5 class="h5-lg steelblue-color mb-3">{{forloop.counter}}. {{pub.title}}</h5>
-
-                                        <p> <i class="fa fa-user mr-2 steelblue-color" ></i>By Admin User </p>
                                         
-												<ul class="content-list pb-3">
-															
-													<li>
-														<p>{{pub.desc|truncatechars_html:300|safe}}</p>
-													</li>
-                                                </ul>
-
+                                        <p> <i class="fa fa-user mr-2 steelblue-color" ></i>By {% if pub.name %} {{pub.name}} {% else %} EKCC Staff {% endif %} </p>
+                                        {% if pub.link %} 
+                                        <a href="{{pub.link}} " class="mb-2" target="_blank"> <i class="fa fa-share mr-2 steelblue-color" ></i>Redirect to link </a>
+                                        {% endif %}
+                                        
+                                        <ul class="content-list pb-3 mt-2">
+                                                    
+                                            <li>
+                                                <p>{{pub.desc|truncatechars_html:300|safe}}</p>
+                                            </li>
+                                        </ul>
+                                        {% if pub.document %}
                                         <a href="{{pub.document.url}}" download name=" Research Document " class="btn btn-md btn-blue blue-hover " style="font-size: 18px; font-weight: 500;">Download <i class="fas fa-angle-double-down"></i></a> 	
-                                            
+                                        {% else %} 
+                                        <a class="btn btn-md" style="font-size: 18px; font-weight: 500;">No Document </a> 	
+                                        {% endif %}  
                                     </div>
                                 </div>
                             </div>

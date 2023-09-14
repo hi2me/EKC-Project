@@ -5,7 +5,8 @@ from tinymce.models import HTMLField
 from accounts.models import MyUser
 
 NEWS_CATEGORY = (('Health','Health'), ('Research','Research'), ('Information','Information'),('Anouncement','Anouncement'))
-GALLERY_CATEGORY = (('Seminar','Seminar'), ('Training','Training'), ('Report','Report'))
+GALLERY_CATEGORY = (('Event',"Event"),('Seminar','Seminar'), ('Training','Training'), ('Report','Report'), )
+PROJECT_WING = (('Martin-Luther-University Halle-Wittenberg, Halle', 'Martin-Luther-University Halle-Wittenberg, Halle'), ('AAU', 'AAU'), ('Health-Center', 'Health-Center'))
 
 
 class About_Us(models.Model):
@@ -38,12 +39,23 @@ class Service(models.Model):
         ordering = ('-id',)
 
 
-# class Team(models.Model):
-#     name = models.CharField(max_length=50, blank=True, null=True)
-#     image = models.ImageField(upload_to='Service', blank=True, null=True)
-#     desc = models.TextField( blank=True, null=True)
-#     created_by = models.ForeignKey(MyUser, on_delete=models.PROTECT)
-#     created_date = models.DateTimeField(auto_now_add=True)
+class Team(models.Model):
+    name = models.CharField(max_length=300, blank=True, null=True)
+    image = models.ImageField(upload_to='team', blank=True, null=True)
+    wing = models.CharField(max_length=500, choices=PROJECT_WING)
+    role = models.CharField(max_length=500, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True )
+    phone = models.CharField(max_length=500, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+
+    # desc = models.TextField( blank=True, null=True)
+    # created_by = models.ForeignKey(MyUser, on_delete=models.PROTECT)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.name
+    
 
 
 class Event(models.Model):
@@ -51,7 +63,8 @@ class Event(models.Model):
     image = models.ImageField(upload_to='Event', blank=True, null=True)
     category = models.CharField(max_length=30, choices=(('seminar','seminar'), ('expo','expo')))
     date = models.DateTimeField( blank=True, null=True)
-    place = models.CharField(max_length=50, blank=True, null=True)
+    end_date = models.DateTimeField( blank=True, null=True)
+    place = models.CharField(max_length=500, blank=True, null=True)
     desc = models.TextField( blank=True, null=True)
     status = models.CharField(max_length=30, choices=(('upcoming event', 'upcoming event'), ('past event', 'past event')), default='upcoming event')
     created_by = models.ForeignKey(MyUser, on_delete=models.PROTECT)
@@ -80,14 +93,14 @@ class News(models.Model):
     category = models.ForeignKey(NewsCategory, on_delete=models.CASCADE )
     desc = HTMLField( blank=True, null=True)
     created_by = models.ForeignKey(MyUser, on_delete=models.PROTECT)
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(blank=True,)
 
 
     def __str__(self):
         return self.title
     
     class Meta:
-        ordering = ('-id',)
+        ordering = ('-created_date',)
 
 
 class Gallery(models.Model):
@@ -116,9 +129,9 @@ class Gallery_Image(models.Model):
 
 
 class Feedback(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
     email = models.EmailField()
-    subject = models.CharField(max_length=100)
+    subject = models.CharField(max_length=1000)
     message = models.TextField()
     show = models.BooleanField(default=False)
     sent_date = models.DateTimeField(auto_now_add=True)
@@ -133,10 +146,11 @@ class Feedback(models.Model):
 
 class PublicationAndResearch(models.Model):
     title = models.CharField(max_length=1500)
-    name = models.CharField(max_length=70, blank=True, null=True)
+    name = models.CharField(max_length=700, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     image = models.ImageField(upload_to='Publication', blank=True, null=True)
-    document = models.FileField(upload_to='document/publication')
+    document = models.FileField(upload_to='document/publication', blank=True)
+    link = models.CharField(max_length=1000, blank=True)
     desc = models.TextField()
     approved = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -188,8 +202,8 @@ class CallOfSubmission(models.Model):
 
 
 class Report(models.Model):
-    title = models.CharField(max_length=500)
-    sub_title = models.CharField(max_length=500, blank=True, null= True)
+    title = models.CharField(max_length=1500)
+    sub_title = models.CharField(max_length=1500, blank=True, null= True)
     approved = models.BooleanField(default=False)
     prep_by = models.CharField(max_length=200)
     rep_document = models.FileField(upload_to='document/report')
@@ -198,6 +212,19 @@ class Report(models.Model):
         
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ('-id',)
+
+
+
+class Visitors (models.Model):
+    email = models.EmailField( unique=True )
+    created_date = models.DateTimeField(auto_now_add=True)
+
+        
+    def __str__(self):
+        return self.email
     
     class Meta:
         ordering = ('-id',)

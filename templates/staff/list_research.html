@@ -38,7 +38,10 @@
                                   <tr>
                                         <td>{{forloop.counter}}</td>
                                         <td>{{research.title|truncatechars:70}}</a></td>
-                                        <td><a href="{{research.document.url}}" download  >Download Document</a></td>
+                                        <td>{% if research.document %} <a href="{{research.document.url}}" download  >Download Document
+                                            {% else %} <a >No Document {%endif %}
+                                            </a>
+                                        </td>
                                         <td>{{research.email}}</td>
                                         {% if research.approved == True %}
                                             <td style="color: rgb(8, 148, 8);">Approved</td>

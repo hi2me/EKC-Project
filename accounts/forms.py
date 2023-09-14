@@ -55,12 +55,13 @@ class StaffUserCreationForm(forms.ModelForm):
      
     class Meta:
         model = MyUser
-        fields  = ('email','profile','phone', 'full_name')
+        fields  = ('email','profile','phone', 'full_name','password', 'password2', )
         widgets = {
             'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email', }),
             'full_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Full Name', 'autocapitalize':'word'}),
             'phone':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone Number','autocorrect':"off", 'value':''}),
             'profile':forms.FileInput(attrs ={'class':'form-control', 'placeholder':'Profile Image','accept':'image/*'}),
+            # 'status': forms.Select(attrs={'type':'dropdown', 'class':'custom-select ', }),
         }
     
     def clean_password2(self):

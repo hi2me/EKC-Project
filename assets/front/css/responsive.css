@@ -982,6 +982,9 @@
   /* Timetable Page */
   #timetable-page { padding-top: 80px; padding-bottom: 70px; }
 
+  
+  .login {width: 100%; margin: 0px;}
+
 
 
 }
@@ -1450,6 +1453,8 @@
   /* Scroll To Top */
   #scrollUp { width: 40px; height: 40px; bottom: 15px; right: 20px; }
 
+
+  .login {width: 100%; margin: 0px;}
 
 
 
@@ -1957,6 +1962,8 @@
   #scrollUp { width: 40px; height: 40px; bottom: 15px; right: 20px; }
 
 
+  .login {width: 100%; margin: 0px;}
+
 
 }
 
@@ -1980,8 +1987,15 @@
 /* ------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------ */
 
+
+
+.login {
+  width: 50%;
+  margin-left: 260px;
+}
 @media (max-width: 415px) { 
 
+  .login {width: 100%; margin: 0px;}
 
 
 }
