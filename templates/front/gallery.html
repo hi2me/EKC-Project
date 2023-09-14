@@ -2,6 +2,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC Gallery {% endblock %}
+
 
 {% block css %}
 		<link href="{% static 'front/css/magnific-popup.css' %}" rel="stylesheet">	
@@ -34,7 +36,7 @@
 						<div class="col-md-12 text-center">
 							<div class="gallery-filter mb-60">
 			                    <button data-filter="*" class="is-checked">All</button>
-			                    <button data-filter=".Seminar">Seminars</button>
+			                    <button data-filter=".Event">Event</button>
 			                    <button data-filter=".Training">Trainings</button>
 			                    <button data-filter=".Report">Reports</button>
 			                </div>

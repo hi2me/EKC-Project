@@ -2,6 +2,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC News {% endblock %}
+
 
 {% block news %} active-menu {% endblock %}
 
@@ -26,13 +28,15 @@
 
 
 							<!-- SEARCH FIELD --> 
-							<div id="search-field" class="sidebar-div mb-50">								
+							<div id="search-field" class="sidebar-div mb-50">	
+								<form method="get" action="{% url 'news_search' %}" >						
 								<div class="input-group mb-3">
-								  	<input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-field">
+								  	<input type="text" class="form-control" name="search" id="search" placeholder="{% if search %} {{term}} {% else %} Search {% endif %}" aria-label="Search" aria-describedby="search-field">
 								 	<div class="input-group-append">
 								    	<button class="btn" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
 								 	</div>
 								</div>
+							    </form>
 							</div>
 
 							<!-- BLOG CATEGORIES --> 
@@ -43,7 +47,7 @@
 
 								<ul class="blog-category-list clearfix">
 									{% for cat in category %}
-									<li><a href="#"><i class="fas fa-angle-double-right blue-color"></i> {{cat.name}}</a> <span>({{c}})</span></li>
+									<li><a href="{% url 'news_by_category' id=cat.id %}"><i class="fas fa-angle-double-right blue-color"></i> {{cat.name}}</a> <span>({{cat.news_set.all.count}})</span></li>
 									
 									{% endfor %}
 								</ul>
@@ -52,6 +56,12 @@
 
 						</aside>	<!-- END SIDEBAR -->
 				 		<!-- BLOG POSTS HOLDER -->
+
+						<!-- {% if not news %}
+						<h5 class="h5-sm steelblue-color float-center" >No News Posted yet </h5>
+						{% endif %} -->
+
+
 				 		<div class="col-lg-9">
 				 			<div class="posts-holder ">
 
@@ -65,7 +75,11 @@
 									
 											<!-- BLOG POST IMAGE -->
 											<div class="blog-post-img">
+												{% if news.image %}
 												<img class="img-fluid " style="height: 225px; width: 100%;" src="{{news.image.url}}" alt="blog-post-image" />	
+												{% else %}
+												<img class="img-fluid " style="height: 225px; width: 100%;" src="{% static 'front/images/logo/loggo.jpg' %}" alt="blog-post-image" />	
+												{% endif %}
 											</div>
 
 											<!-- BLOG POST TEXT -->
@@ -75,7 +89,7 @@
 												<h5 class="h5-xl steelblue-color"><a href="{% url 'news_detail' id=news.id %}">{{news.title|truncatechars:100}}</a></h5>
 
 												<!-- Post Data -->
-												<span>{{news.created_date}} by <span>{{news.created_by}}</span></span>
+												<span>{{news.created_date}}</span>
 
 												<!-- Post Text |truncatechars:150-->
 												<p>{{news.desc|truncatechars:200|safe}}
@@ -134,8 +148,32 @@
 
 
 
+					</div>
 				 		
-				 	</div>	<!-- End row -->	
+					
+						
+					<h5 class="h5-sm steelblue-color text-center pt-5">Subscribe for latest news</h5>
+
+					<form  action="" method="POST" >
+                    <div class="row">
+
+							{% csrf_token %}
+
+						 <div  class=" col-lg-9  pt-3">
+							<input type="text" name="email" class="form-control email " style=" padding: 25px; " placeholder="Your Email*" required> 
+							
+						</div>
+						
+						<div  class=" col-lg-3  pt-3">
+							<button type="submit" class="btn btn-blue-border blue-hover " style=" padding: 15px; ">Subscribe</button>
+						</div>
+					
+
+
+				 	</div>	<!-- End row -->
+				</form>	
+
+
 				 </div>	 <!-- End container -->
 			</div>	<!-- END BLOG PAGE CONTENT -->
 

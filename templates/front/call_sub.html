@@ -4,15 +4,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC Application Submission {% endblock %}
+
 {% block css %}
 <link rel="stylesheet" type="text/css" id="mce-u0" href="{% static 'tinymce/skins/ui/oxide/skin.min.css' %}">
 {% endblock %}
 
 {% block publication %} active-menu {% endblock %}
 
-{% block link_name %} Call {% endblock %}
 
-{% block page_name %} Call Submission   {% endblock %}
+{% block links_name %} <li class="breadcrumb-item"><a href="{% url 'call_application' %}">List of Applications</a></li> {% endblock %}
+
+{% block page_name %}  Submission   {% endblock %}
 
 {% block content %}
 

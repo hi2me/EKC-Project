@@ -4,6 +4,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC Report {% endblock %}
+
 
 {% block publication %} active-menu {% endblock %}
 
@@ -39,7 +41,9 @@
 
                                        <!-- Title -->
                                        
-                                       <h5 class="h6-sm steelblue-color">{{rep.sub_title}}</h5><br>
+                                       <h5 class="h6-sm steelblue-color">{{rep.title}}</h5><br>
+                                       <p class="h6-sm steelblue-color">Term :  {{rep.sub_title}}</p>
+                                       
                                        <p class="steelblue-color "><i class="fa fa-user mr-2"></i>Prepared by : {{rep.prep_by}} </p>
                                        <p class="h6-sm steelblue-color"><i class="fa fa-calendar mr-2"></i>ON :  {{rep.prep_date}}</p>
                                        <p class="pt-3 text-white"><a href="{{rep.rep_document.url}}" download name=" Report Document " class="btn btn-sm btn-blue blue-hover "> <i class="fas fa-angle-double-down"></i> Full Report </a> 

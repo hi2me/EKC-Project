@@ -7,25 +7,28 @@ from .models import *
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News 
-        fields = ('title', 'image', 'desc', 'category')
+        fields = ('title', 'image', 'desc', 'category', 'created_date')
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Title'}),
             'desc':  TinyMCE(attrs={'class':'field-control', 'placeholder':'Write your content here ...', 'required':'false'}),
             'image':forms.FileInput(attrs={'class':'form-control'}),
+            'created_date': forms.DateTimeInput(attrs={'type':'datetime-local','class':'form-control' }),
             'category': forms.Select(attrs={'type':'dropdown', 'class':'custom-select ', })
+
         }
 
 
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event 
-        fields = ('title', 'image', 'desc', 'category', 'date', 'place')
+        fields = ('title', 'image', 'desc', 'category', 'date','end_date', 'place')
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Title'}),
             'desc': TinyMCE(attrs={'class':'field-control', 'placeholder':'Write your content here ...', 'required':'false'}),
             'image':forms.FileInput(attrs={'class':'form-control'}),
             'category': forms.Select(attrs={'type':'dropdown', 'class':'custom-select ', }),
-            'date': forms.DateInput(attrs={'type':'datetime-local','class':'form-control' }),
+            'date': forms.DateTimeInput(attrs={'type':'datetime-local','class':'form-control' }),
+            'end_date': forms.DateTimeInput(attrs={'type':'datetime-local','class':'form-control' }),
             'place':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Place'}),
 
         }
@@ -101,7 +104,7 @@ class ResearchForm(forms.ModelForm):
            
     class Meta:
         model = PublicationAndResearch      
-        fields = ('title', 'name', 'email', 'desc', 'document', 'image', 'approved'  )
+        fields = ('title', 'name', 'email', 'desc', 'document','link', 'image', 'approved'  )
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
             'name':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),
@@ -109,6 +112,8 @@ class ResearchForm(forms.ModelForm):
             'desc':  TinyMCE(attrs={'class':'field-control', 'placeholder':'Write something about the research ...', 'required':'false'}),
             'image':forms.FileInput(attrs={'class':'form-control'}),            
             'document':forms.FileInput(attrs={'class':'form-control'}),
+            'link':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Link'}),
+            
             'approved':forms.CheckboxInput(attrs={'class':'switchery','type':'checkbox', }),
             }
         
@@ -124,5 +129,21 @@ class ReportForm(forms.ModelForm):
             'prep_by':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),           
             'rep_document':forms.FileInput(attrs={'class':'form-control'}),
             'approved':forms.CheckboxInput(attrs={'class':'switchery','type':'checkbox', }),
+            }
+        
+
+class TeamForm(forms.ModelForm):
+           
+    class Meta:
+        model = Team      
+        fields = ('name', 'image', 'role',  'wing', 'phone', 'email', 'is_active' )
+        widgets = {
+            'name':forms.TextInput(attrs={'class':'form-control', 'placeholder':' Name'}),       
+            'image':forms.FileInput(attrs={'class':'form-control'}),
+            'role':forms.TextInput(attrs={'class':'form-control', 'placeholder':' role'}),
+            'wing': forms.Select(attrs={'type':'dropdown', 'class':'custom-select ', }),
+            'phone':forms.TextInput(attrs={'class':'form-control', 'placeholder':' phone'}),  
+            'email':forms.EmailInput(attrs={'class':'form-control', 'placeholder':' email'}),   
+            'is_active':forms.CheckboxInput(attrs={'class':'switchery','type':'checkbox', }),
             }
         

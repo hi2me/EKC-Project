@@ -33,16 +33,17 @@ def activate(request, uidb64, token, id):
         
         user = MyUser.objects.get(id = id)
         user.is_active = True
+        user.status = 'Email_Verified'
         user.save()
         
-        messages.success(request, 'Your email is successfully verified. You can login using your email and password. ')
+        messages.success(request, 'Your email is successfully confirmed. Please wait until your account is verified by our staff. ')
         return redirect ('accounts:login')
 
 
 
 def activateEmail(request, user, to_email):
-    mail_subject = 'Activate Your EKC Account.'
-    message = render_to_string('mail.html', {
+    mail_subject = 'Confirm Your EKC Email.'
+    message = render_to_string('accounts/mail.html', {
         'user': user.full_name,
         'domain': get_current_site(request).domain,
         'uid':urlsafe_base64_encode(force_bytes(user.id)),#encode self.user id
@@ -55,9 +56,11 @@ def activateEmail(request, user, to_email):
     email = EmailMultiAlternatives(mail_subject, message, 'compacct01@gmail.com', to=[to_email],)
     email.attach_alternative(message, 'text/html')
     if email.send():
+        user.status='Email_Confirmation'
+        user.save()
         messages.success(request, f'dear {user}, please go to ur mail {to_email} and click z link to confirm your account')
     else:
-        messages.error(request, f'dear {user}, we cant send mail to {to_email} ')
+        messages.warning(request, f'dear {user}, we cant send mail to {to_email} ')
 
 
 
@@ -67,7 +70,7 @@ class ConfirmEmail(View):
         email = form.email
         user = MyUser.objects.get(email = email)
         user.is_active = True
-        user.save
+        user.save()
         messages.success(request, 'Your email is successfully verified')
         return redirect ('home')
 
@@ -75,25 +78,44 @@ class Register(View):
     def get (self, request):
 
         form = StaffUserCreationForm
-        print (self.request.user.is_authenticated)
         return render (request, 'accounts/reg.html', {'form':form})
     
     def post(self, request): 
         
         form = StaffUserCreationForm(self.request.POST, self.request.FILES )
-        print("@@@@@@@@@@@@@@@@@@,1")
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.status = "Pending"
+            user.save()
+            activateEmail(request, user, form.cleaned_data.get('email'))
+            return redirect ('home')
+        else:
+            messages.warning (request, "please recheck your inputs ")
+            return render ( request, 'accounts/reg.html', {'form':form, 'submitted': True})
+
+
+class UpdateProfile(View):
+    def get (self, request, id):
+        
+        me= MyUser.objects.get(id=request.user.id)
+        form = StaffUserCreationForm(instance=me)
+        return render (request, 'staff/detail_staff.html', {'form':form , 'me':me, 'edit':True, 'profile':True})
+    
+    def post(self, request, id): 
+        
+        me= MyUser.objects.get(id=id)
+        form = StaffUserCreationForm(instance=me, data=self.request.POST, files=self.request.FILES )
+       
         if form.is_valid():
             print("@@@@@@@@@@@@@@@@@@,5")
             user = form.save(commit=False)
             user.save()
-            print("@@@@@@@@@@@@@@@@@@,2")
-            activateEmail(request, user, form.cleaned_data.get('email'))
-            print("@@@@@@@@@@@@@@@@@@,3")
-            return redirect ('home')
+            return redirect ('staff:index')
         else:
-            messages.error (request, "canto work ")
-            print("@@@@@@@@@@@@@@@@@@,4")
-            return render ( request, 'accounts/reg.html', {'form':form, 'submitted': True})
+            messages.warning (request, "please recheck your inputs ")
+            return render ( request, 'staff/detail_staff.html', {'form':form, 'profile':True})
+
+
 
 
 class Login(View):
@@ -112,7 +134,7 @@ class Login(View):
         
         if user is not None:
             login(request, user)        
-            messages.success(request, f'welcome back to EKC')
+            messages.success(request, f'welcome back to EKCC')
             return redirect("/")
     
         else:
@@ -127,8 +149,8 @@ class Login(View):
 class Logout(View):
     def get(self, request):
         logout(self.request)
-        messages.success(request, 'you have successfully loggedout.')
-        return render ( request, 'accounts/login.html', {'loggedout': True})
+        messages.success(request, 'you have successfully logged out.')
+        return redirect ( 'accounts:login')
     
 
 

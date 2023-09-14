@@ -1,10 +1,17 @@
 
+
 {% extends 'staff/base.html' %}
 {% load static %}
 
 {% block breadcrumb %}
-<li class="breadcrumb-item"><a href="{% url 'staff:list_gallery' %}"> List Gallery</a></li> 
-<li class="breadcrumb-item"><a href=""> Add Gallery</a></li> {% endblock %}
+{% if profile %}
+
+<li class="breadcrumb-item"><a href=""> My Profile </a></li> 
+{% else %}
+<li class="breadcrumb-item"><a href="{% url 'staff:list_staff' %}"> List Registered Staff</a></li> 
+<li class="breadcrumb-item"><a href=""> Staff Detail</a></li> 
+{% endif %}
+{% endblock %}
 
 {% block content %}
 
@@ -20,43 +27,62 @@
                     <form action="" method="POST" class="form row " enctype="multipart/form-data">
                        {% csrf_token %}
                        <!-- News Form Input -->
-                       <div  class=" contact-form col-md-12 pb-2">
-                           <p style="font-weight: 700;">1. Add a title</p>
-                           {{form.title}}
-                           {{form.error.title}}
+                       <div  class=" contact-form col-lg-7 col-md-12 pb-2">
+                           <p style="font-weight: 700;">1. Name</p>
+                   
+                           {{form.full_name}}
                            <!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
                        </div>
 
+                       <div  class=" contact-form col-md-12 col-lg-5 pb-2">
+                           <p style="font-weight: 700;">2. Choose Profile Image</p>
+                           {{form.profile}}
+
+
+                                {% if me.profile %}
+                                
+                                    <div  class="contact-form col-md-12 col-lg-6  pt-2 input-patient">
+                                        <a href="{{me.profile.url}}" download name=" image"> <img style="height: 100px;" src="{{me.profile.url}}" ></a>
+                                        <p style="font-weight: 700;">( current image)</p>
+                                    </div>
+
+                                {% endif %}
+
+                           <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+                       </div>	
+                       
                        
                        <div  class=" contact-form col-md-12 col-lg-6 pb-2">
-                        <p style="font-weight: 700;">2.Select Category </p>
-                        {{form.category}}
-                        {{form.error.category}}
+                        <p style="font-weight: 700;">3.Email</p>
+                        <div class="form-control"> {{me.email}} </div>
                         <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
-                    </div>	
+                        </div> 
+
+                        
+                       <div  class=" contact-form col-md-12 col-lg-6 pb-2">
+                        <p style="font-weight: 700;">4.Phone</p>
+                        {{form.phone}}
+                        <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+                        </div> 
+
 
                        <div  class=" contact-form col-md-12 col-lg-6 pb-2">
-                           <p style="font-weight: 700;">3. Choose an image</p>
-                           {{form.image}}
-                           {{form.error.image}}
-                           <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
-                       </div>			
+                        <p style="font-weight: 700;">5.Status </p>
+                        
+                        <div class="form-control custom-select"> {{me.status}} </div>
+                        <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+                        </div>	
+		
                     
                        
                        <div  class=" contact-form col-md-12 col-lg-6 pb-2">
-                        <p style="font-weight: 700;">4. Choose Related images</p>
-                        {{form2.image}}
-                        {{form.error.image}}
+                        <p style="font-weight: 700;">6. Registered date </p>
+                        
+                        <div class="form-control"> {{me.created_date}}</div>
                         <!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
                     </div>	
+                    
 
-                       {% if edit %}
-                       
-                            <div  class="contact-form col-md-12 col-lg-6  pb-2 input-patient">
-                                <a href="{{gallery.image.url}}" download name="gallery image"> <img style="height: 110px;" src="{{gallery.image.url}}" ></a>
-                                <p style="font-weight: 700;">( current image)</p>
-                            </div>
-                       {% endif %}
                 
                                                    
                        <!-- News Form Button -->

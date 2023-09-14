@@ -1,0 +1,129 @@
+
+
+
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" id="mce-u0" href="{% static 'tinymce/skins/ui/oxide/skin.min.css' %}">
+{% endblock %}
+
+{% block breadcrumb %} <li class="breadcrumb-item"><a href="">Submission Detail </a> {% endblock %}
+
+{% block content %}
+
+
+			<!-- POST NEWS-1
+			============================================= -->
+			<section  class="wide-60 contacts-section division">				
+				<div class="container">
+						
+					<div class="row">	
+
+						<!-- News FORM -->	
+				 		<div class="col-md-12 col-lg-12">
+				 			<div class="form-holder mb-40">
+				 				<form action="" method="POST" class="row " enctype="multipart/form-data">
+                                    {% csrf_token %}
+					                <!-- News Form Input -->
+					                <div  class="contact-form col-md-8 pb-2">
+                                        <p style="font-weight: 700;">1. Title </p>
+                                        {{sub.title}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+					                <!-- News Form Input -->
+					                <div  class="contact-form col-md-4 pb-2">
+                                        <p style="font-weight: 700;">2. Image </p>
+                                        {% if sub.image %}
+                                        <img src="{{sub.image.url}}">
+                                        {% endif %}
+					                </div>
+
+
+					                <!-- Form Select -->
+										<div  class="contact-form col-md-12 col-lg-4  pb-2 input-patient">
+											<p style="font-weight: 700;">3. Applicant's Name</p>
+											{{sub.name}}
+										</div>
+										
+										<div  class="contact-form col-md-12 col-lg-4 pb-2">
+											<p style="font-weight: 700;">4. Applicants's Email</p>
+											{{sub.email}}
+											<!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+										</div>	
+                                        
+										<div  class="contact-form col-md-12 col-lg-4 pb-2">
+											<p style="font-weight: 700;">5. Applicants's Number</p>
+											{{sub.phone}}
+											<!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+										</div>	
+				                          
+
+										<div  class="contact-form col-md-12 col-lg-4  pb-2 input-patient">
+											<p style="font-weight: 700;">6. CV </p>
+											
+                                            <a href="{{sub.cv.url}}" download class="btn ml-2 "  style="background-color: #294e6f; color: #fff;">
+                                                Download
+                                            </a>
+										</div>
+
+                                        {% if sub.concept_note %}
+										<div  class="contact-form col-md-12 col-lg-4  pb-2 input-patient">
+											<p style="font-weight: 700;">7. Concept Note</p>
+											
+                                            <a href="{{sub.concept_note.url}}" download class="btn ml-2 "  style="background-color: #294e6f; color: #fff;">
+                                                Download
+                                            </a>
+										</div>
+                                        {% endif %}
+
+                                        {% if sub.supplementary_docs %}
+										<div  class="contact-form col-md-12 col-lg-4  pb-2 input-patient">
+											<p style="font-weight: 700;">8. Supplementary Document </p>
+											
+                                            <a href="{{sub.supplementary_docs.url}}" download class="btn ml-2 "  style="background-color: #294e6f; color: #fff;">
+                                                 Download
+                                            </a>
+										</div>
+                                        {% endif %}
+
+
+										<div  class="contact-form col-md-12 col-lg-4 pb-2">
+											<p style="font-weight: 700;">9. Submitted Date</p>
+											{{sub.submitted_date}}
+											<!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+										</div>	
+					                        
+					                <div  class="contact-form col-lg-12  pb-2">
+                                        <p style="font-weight: 700;">10. Description </p>
+                                        {{sub.desc}}
+					                	<!-- <textarea class="form-control message" name="message" rows="6" placeholder="Your Message ..." required></textarea> -->
+					                </div> 
+					                                            
+					            
+					                               
+				                                              
+				                </form> 
+
+				 			</div>	
+				 		</div> 	<!-- END News FORM -->	
+
+
+				 	</div>	<!-- End row -->			  
+ 
+
+				</div>	   <!-- End container -->		
+			</section>	<!-- END POST NEWS-1 -->
+
+
+{% endblock %}
+
+
+{% block js %} 
+<script>
+    document.getElementById('id_desc').removeAttribute('required');
+</script>
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'tiny_mce/tiny_mce.js' %}"></script>
+<script src="{% static 'django_tinymce/init_tinymce.js' %}"></script>
+{% endblock %}

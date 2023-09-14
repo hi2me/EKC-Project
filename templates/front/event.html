@@ -2,6 +2,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC Events  {% endblock %}
+
 
 {% block event %} active-menu {% endblock %}
 
@@ -25,35 +27,53 @@
         
                                 <!-- PRICING TABLE #1 -->
                                 {% for event in event %}
-                                <div class="col-lg-5 ml-3 mr-3" style="height: fit-content;
+                                <div class="col-lg-5 ml-3 mr-3 mb-5 " style="height: fit-content;
                                 border: 0.4px solid #294e6f;
                                 border-radius: 10px;"
                                 >
-                                    <div class="pricing-table icon-xl">	
+                                    <div class="pricing-table icon-xl text-center">	
                                         <!-- Title -->
                                         <h5 class="h5-lg">{{forloop.counter}}. {{event.title}}</h5>	
                                         
                                         <!-- Icon -->
                                         {% if event.image %}
-                                        <img src="{{event.image.url}}" style="width: 100%;"    >
+                                        <img src="{{event.image.url}}" style="width: 100%; height: 200px;"    >
                                         {% else %} 
-                                        <span class="flaticon-072-hospital-5 blue-color"></span>
+                                        <span class="flaticon-072-hospital-5  blue-color"></span>
                                         {% endif %}
                     
                                                                                                     
                                         <!-- Pricing Plan Features  -->
                                         <div class="features pt-5 " >
                                             <div class="row">
-                                                <p class="pl-0 pr-0 col-md-7 col-sm-12 steelblue-color"><span ><i class="fa fa-calendar mr-1"></i>Date:-</span>{{event.date}}</p>
-                                                <p class="pl-0 pr-0  col-md-5 col-sm-12 steelblue-color"> <span><i class="fa fa-user mr-2"></i>Host:-</span>  {{event.created_by}}</p><br>
+                                                <p class="pl-0 pr-0 col-md-12 col-sm-12 steelblue-color"><span ><i class="fa fa-calendar mr-1"></i>Date:-</span>{{event.date}} {% if event.end_date %} - {{event.end_date}} {% endif %}</p>
+                                                <p class="pl-0 pr-0  col-md-12 col-sm-12 steelblue-color"> <span><i class="fa fa-user mr-2"></i>Host:-</span>  {{event.created_by}}</p><br>
+                                                <p class="pl-0 pr-0  col-md-12 col-sm-12 steelblue-color"> <span><i class="fa fa-map mr-2"></i>Location:-</span> {{event.place}}</p><br>
+                                              
                                             </div>
-                                            <div class="row">
-                                                <p class="pl-0 col-12 steelblue-color float-left"> <span ><i class="fa fa-map mr-1"></i>Location:-</span> {{event.place}}</p>
                                             
-                                            </div>
+                                            {% if event.desc %}
+
+											<div id="accordion" role="tablist">
+                
+												<div id="id{{event.id}}" class="collapse " role="tabpanel" aria-labelledby="idtwo{{event.id}}" data-parent="#accordion">
+													<div class="card-body">
+								
+													   <!-- Text -->	
+													   <p class="p-sm">  {{event.desc|safe}} </p>
+								
+													</div>
+												</div>
+							
+												<a  data-toggle="collapse" role="tab" id="idtwo{{event.id}}" href="#id{{event.id}}" aria-expanded="true" aria-controls="id{{event.id}}" 
+												class=" collapsed btn btn-sm btn-blue-border blue-hover mt-10 mb-15">Read More </a>
+											
+											</div>
+
+											{% endif %}
+
                                                 
-                                                
-                                            <p class="steelblue-color float-left">  {{event.desc|truncatechars:150|safe}} </p>
+                                            <!-- <p class="steelblue-color float-left pt-3">  {{event.desc|truncatechars:150|safe}} </p> -->
                                                             
                                         </div>
         

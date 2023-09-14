@@ -1,12 +1,46 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
+from django.contrib.auth.mixins import AccessMixin
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+
 
 from .models import *
 from .forms import *
+from accounts.forms import StaffUserCreationForm
 
 
-class Staff(View):
+
+
+class LoginRequiredMixin1(AccessMixin):
+    """Verify that the current user is authenticated."""
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.warning(self.request, 'Please log in First')
+            return self.handle_no_permission()
+        if not request.user.status == "Active":
+            messages.warning(self.request, 'Your account is not verified by staff yet.')
+            return redirect ('home')
+        return super().dispatch(request, *args, **kwargs)
+    
+
+
+
+class StaffView( View):
+    
+    def get_user(self, request):
+        user = request.user
+        if user.is_authenticated:
+            return True
+        else:
+            messages.warning(self.request, "Please log in first.")
+            return render (request, 'account/login.html')
+    
+
+    
+
+class Staff(LoginRequiredMixin1, View):
     def get( self, request):
         research = PublicationAndResearch.objects.all().count()
         call = CallOfApplication.objects.all().count()
@@ -15,6 +49,7 @@ class Staff(View):
         users = MyUser.objects.all().count()
         call = CallOfApplication.objects.all()
         feedback = Feedback.objects.all()
+       
 
 
         # sub= CallOfSubmission.objects.all()
@@ -41,37 +76,35 @@ class Staff(View):
 
         context = {'research':research,'call':call,'event':event,'submission':submission,'users':users,'feedback':feedback}
         return render (request, 'staff/index.html', context )
-    
 
-class AddNews(View):
+
+class AddNews(LoginRequiredMixin1, View):
     def get( self, request):
         form = NewsForm
-
         context = {'form': form}
-        print("get is working")
         return render (request, 'staff/add_news.html', context )
     
     def post ( self, request):
-        print("post is  working")
         form = NewsForm(request.POST, request.FILES )
         if form.is_valid():
             news = form.save(commit=False)
             news.created_by = self.request.user
+            if news.created_date == None:
+                news.created_date = timezone.now()
             news.save()
-
-            context = {'form': form, 'submitted':True}
             messages.success(self.request, "You have successfully added a news.")
             return redirect( 'staff:list_news')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'submitted':True}
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_news.html', context )
 
-class ListNews(View):
+class ListNews(LoginRequiredMixin1, View):
     def get(self, request):
         news=News.objects.all()
         return render (request, 'staff/list_news.html', {'news':news})
 
-class EditNews(View):
+class EditNews(LoginRequiredMixin1, View):
     def get( self, request, id):
         news = News.objects.get(id=id)
         form = NewsForm(instance=news)
@@ -85,15 +118,16 @@ class EditNews(View):
         if form.is_valid():
             news.save()
 
-            context = {'form': form, 'edit':True, }
             messages.success(self.request, "You have successfully updated a news.")
             return redirect( 'staff:list_news')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'edit':True, }
+            
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_news.html', context )
         
 
-class DeleteNews (View):
+class DeleteNews (LoginRequiredMixin1, View):
     def get (self, request, id):
         news = News.objects.get(id=id)
         news.delete()
@@ -103,7 +137,7 @@ class DeleteNews (View):
 
 
 
-class AddGalley(View):
+class AddGalley(LoginRequiredMixin1, View):
     def get( self, request):
         form = GalleryForm
         form2=Galley_ImageForm
@@ -126,19 +160,20 @@ class AddGalley(View):
                 img.save() 
 
 
-            context = {'form': form, 'form2':form2, 'submitted':True}
             messages.success(self.request, "You have successfully added an image to the gallery.")
             return redirect( 'staff:list_gallery')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'form2':form2, 'submitted':True}
+            
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_gallery.html', context )
 
-class ListGallery(View):
+class ListGallery(LoginRequiredMixin1, View):
     def get(self, request):
         gallery=Gallery.objects.all()
         return render (request, 'staff/list_gallery.html', {'gallery':gallery}) 
 
-class EditGallery(View):
+class EditGallery(LoginRequiredMixin1, View):
     def get( self, request, id):
         gallery = Gallery.objects.get(id=id)
         form = GalleryForm(instance=gallery)
@@ -154,15 +189,15 @@ class EditGallery(View):
         if form.is_valid():
             gallery.save()
 
-            context = {'form': form,'form2':form2, 'edit':True, }
             messages.success(self.request, "You have successfully updated a gallery Image.")
             return redirect( 'staff:list_gallery')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form,'form2':form2, 'edit':True, }
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_gallery.html', context )
 
 
-class DeleteGallery (View):
+class DeleteGallery (LoginRequiredMixin1, View):
     def get (self, request, id):
         gallery = Gallery.objects.get(id=id)
         gallery.delete()
@@ -172,7 +207,7 @@ class DeleteGallery (View):
 
 
 
-class AddEvent(View):
+class AddEvent(LoginRequiredMixin1, View):
     def get( self, request):
         form = EventForm
 
@@ -186,19 +221,19 @@ class AddEvent(View):
             event.created_by = self.request.user
             event.save()
 
-            context = {'form': form, 'submitted':True}
             messages.success(self.request, "You have successfully added a new event.")
-            return redirect( 'event', type='up_coming')
+            return redirect( 'staff:list_event')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'submitted':True}
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_event.html', context )
         
-class ListEvent(View):
+class ListEvent(LoginRequiredMixin1, View):
     def get(self, request):
         event=Event.objects.all()
         return render (request, 'staff/list_event.html', {'event':event}) 
 
-class EditEvent(View):
+class EditEvent(LoginRequiredMixin1, View):
     def get( self, request, id):
         event = Event.objects.get(id=id)
         form = EventForm(instance=event)
@@ -208,19 +243,18 @@ class EditEvent(View):
     
     def post ( self, request, id):
         event = Event.objects.get(id=id)
-        form = EventForm(instance=event, data=self.request.POST, files=self.request.FILES, date=self.request.DATE )
+        form = EventForm(instance=event, data=self.request.POST, files=self.request.FILES )
         if form.is_valid():
             event.save()
-
-            context = {'form': form, 'edit':True, }
             messages.success(self.request, "You have successfully updated an event.")
             return redirect( 'staff:list_event')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'edit':True, }
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_event.html', context )
 
 
-class DeleteEvent (View):
+class DeleteEvent (LoginRequiredMixin1, View):
     def get (self, request, id):
         event = Event.objects.get(id=id)
         event.delete()
@@ -230,13 +264,13 @@ class DeleteEvent (View):
 
 
 
-class ListResearch(View):
+class ListResearch(LoginRequiredMixin1, View):
     def get(self, request):
         research=PublicationAndResearch.objects.all()
         return render (request, 'staff/list_research.html', {'research':research}) 
     
     
-class AddResearch(View):
+class AddResearch(LoginRequiredMixin1, View):
     def get( self, request):
         form = ResearchForm
 
@@ -249,15 +283,15 @@ class AddResearch(View):
             research = form.save(commit=False)
             research.save()
 
-            context = {'form': form, 'submitted':True}
             messages.success(self.request, "You have successfully added a new research.")
             return redirect( 'staff:list_research')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'submitted':True}
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_research.html', context )
 
 
-class EditResearch(View):
+class EditResearch(LoginRequiredMixin1, View):
     def get( self, request, id):
         research = PublicationAndResearch.objects.get(id=id)
         form = ResearchForm(instance=research)
@@ -271,15 +305,15 @@ class EditResearch(View):
         if form.is_valid():
             research.save()
 
-            context = {'form': form, 'edit':True, }
             messages.success(self.request, "You have successfully updated a research.")
             return redirect( 'staff:list_research')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'edit':True, }
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_research.html', context )
 
 
-class DeleteResearch (View):
+class DeleteResearch (LoginRequiredMixin1, View):
     def get (self, request, id):
         research = PublicationAndResearch.objects.get(id=id)
         research.delete()
@@ -289,13 +323,13 @@ class DeleteResearch (View):
 
 
 
-class ListCallAppln(View):
+class ListCallAppln(LoginRequiredMixin1, View):
     def get(self, request):
         call=CallOfApplication.objects.all()
         return render (request, 'staff/list_application.html', {'call':call}) 
     
     
-class AddCallAppln(View):
+class AddCallAppln(LoginRequiredMixin1, View):
     def get( self, request):
         form = CallApplicationForm
 
@@ -308,15 +342,15 @@ class AddCallAppln(View):
             call = form.save(commit=False)
             call.save()
 
-            context = {'form': form, 'submitted':True}
             messages.success(self.request, "You have successfully added a new call of application.")
             return redirect( 'staff:list_call_app')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'submitted':True}
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_call_app.html', context )
         
 
-class EditCallAppln(View):
+class EditCallAppln(LoginRequiredMixin1, View):
     def get( self, request, id):
         call = CallOfApplication.objects.get(id=id)
         form = CallApplicationForm(instance=call)
@@ -329,16 +363,15 @@ class EditCallAppln(View):
         form = CallApplicationForm(instance=call, data=self.request.POST, files=self.request.FILES, )
         if form.is_valid():
             call.save()
-
-            context = {'form': form, 'edit':True, }
             messages.success(self.request, "You have successfully updated the application.")
             return redirect( 'staff:list_call_app')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'edit':True, }
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_call_app.html', context )
 
 
-class DeleteCallAppln (View):
+class DeleteCallAppln (LoginRequiredMixin1, View):
     def get (self, request, id):
         call = CallOfApplication.objects.get(id=id)
         call.delete()
@@ -347,13 +380,25 @@ class DeleteCallAppln (View):
 
 
 
-class ListReport(View):
+class ListCallSubmn(LoginRequiredMixin1, View):
+    def get(self, request, id):
+        call = CallOfApplication.objects.get(id=id)
+        sub=CallOfSubmission.objects.filter(title=call)
+        return render (request, 'staff/list_submission.html', {'call':call, 'sub':sub}) 
+
+class DetailCallSubmn(LoginRequiredMixin1, View):
+    def get(self, request, id):
+        sub = CallOfSubmission.objects.get(id=id)
+        return render (request, 'staff/detail_submission.html', { 'sub':sub}) 
+
+
+class ListReport(LoginRequiredMixin1, View):
     def get(self, request):
         report=Report.objects.all()
         return render (request, 'staff/list_report.html', {'report':report}) 
     
    
-class AddReport(View):
+class AddReport(LoginRequiredMixin1, View):
     def get( self, request):
         form = ReportForm
 
@@ -365,16 +410,15 @@ class AddReport(View):
         if form.is_valid():
             report = form.save(commit=False)
             report.save()
-
-            context = {'form': form, 'submitted':True}
             messages.success(self.request, "You have successfully added a new Report.")
             return redirect( 'staff:list_report')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'submitted':True}
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_report.html', context )
         
 
-class EditReport(View):
+class EditReport(LoginRequiredMixin1, View):
     def get( self, request, id):
         report = Report.objects.get(id=id)
         form = ReportForm(instance=report)
@@ -387,16 +431,16 @@ class EditReport(View):
         form = ReportForm(instance=report, data=self.request.POST, files=self.request.FILES, )
         if form.is_valid():
             report.save()
-
-            context = {'form': form, 'edit':True, }
             messages.success(self.request, "You have successfully updated the report.")
             return redirect( 'staff:list_report')
         else:
-            messages.error(self.request, "Please check your inputs again.")
+            context = {'form': form, 'edit':True, }
+
+            messages.warning(self.request, "Please check your inputs again.")
             return render (request, 'staff/add_report.html', context ) 
         
 
-class DeleteReport (View):
+class DeleteReport (LoginRequiredMixin1, View):
     def get (self, request, id):
         report = Report.objects.get(id=id)
         report.delete()
@@ -407,12 +451,12 @@ class DeleteReport (View):
 
 
     
-class ListFeedback(View):
+class ListFeedback(LoginRequiredMixin1, View):
     def get(self, request):
         feedback=Feedback.objects.all()
         return render (request, 'staff/list_feedback.html', {'feedback':feedback}) 
     
-class DetailFeedback(View):
+class DetailFeedback(LoginRequiredMixin1, View):
     def get (self, request, id):
         feedback = Feedback.objects.get(id=id)
         return render (request, 'staff/detail_feedback.html', {'feedback':feedback}) 
@@ -427,4 +471,141 @@ class DetailFeedback(View):
 
         feedback.save()
         return redirect( 'staff:list_feedback')
+    
+
+
+    
+class ListTeam(LoginRequiredMixin1, View):
+    def get(self, request):
+        team=Team.objects.all()
+        return render (request, 'staff/list_team.html', {'team':team}) 
+
+   
+class AddTeam(LoginRequiredMixin1, View):
+    def get( self, request):
+        form = TeamForm
+
+        context = {'form': form}
+        return render (request, 'staff/add_team.html', context )
+    
+    def post ( self, request):
+        form = TeamForm(request.POST, request.FILES )
+        if form.is_valid():
+            team = form.save(commit=False)
+            team.save()
+
+            messages.success(self.request, "You have successfully added a new member.")
+            return redirect( 'staff:list_team')
+        else:
+            context = {'form': form, 'submitted':True}
+            messages.warning(self.request, "Please check your inputs again.")
+            return render (request, 'staff/add_team.html', context )
+        
+
+class EditTeam(LoginRequiredMixin1, View):
+    def get( self, request, id):
+        team = Team.objects.get(id=id)
+        form = TeamForm(instance=team)
+
+        context = {'form': form, 'team':team, 'edit':True}
+        return render (request, 'staff/add_team.html', context )
+    
+    def post ( self, request, id):
+        team = Team.objects.get(id=id)
+        form = TeamForm(instance=team, data=self.request.POST, files=self.request.FILES, )
+        if form.is_valid():
+            team.save()
+
+            messages.success(self.request, "You have successfully updated a member's info.")
+            return redirect( 'staff:list_team')
+        else:
+            context = {'form': form, 'edit':True, }
+            messages.warning(self.request, "Please check your inputs again.")
+            return render (request, 'staff/add_team.html', context ) 
+        
+
+
+
+class ActivateTeam (LoginRequiredMixin1, View):
+    def get (self, request, id):
+        team = Team.objects.get(id=id)
+        if team.is_active == False:
+            team.is_active = True
+            messages.success(request, "You have successfully activated a member")
+        else:
+            team.is_active = False
+            messages.success(request, "You have successfully suspended a member")
+        team.save()
+        return redirect ( 'staff:list_team')
+
+
+
+class DeleteTeam (LoginRequiredMixin1, View):
+    def get (self, request, id):
+        team = Team.objects.get(id=id)
+        team.delete()
+        messages.success(request, "You have successfully deleted a member")
+        return redirect ( 'staff:list_team')
+
+
+
+
+    
+    
+class ListStaff(LoginRequiredMixin1, View):
+    def get(self, request):
+        staff=MyUser.objects.all()
+        return render (request, 'staff/list_team.html', {'staff':staff}) 
+    
+
+
+
+class DetailStaff(LoginRequiredMixin1, View):
+    def get (self, request, id):
+        
+        me= MyUser.objects.get(id=id)
+        form = StaffUserCreationForm(instance=me)
+        return render (request, 'staff/detail_staff.html', {'form':form , 'me':me, 'edit':True})
+    
+    def post(self, request, id): 
+        
+        me= MyUser.objects.get(id=id)
+        form = StaffUserCreationForm(instance=me, data=self.request.POST, files=self.request.FILES )
+       
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            messages.success (request, "You have successfully updated a profile. ")
+            return redirect ('staff:list_staff')
+        else:
+            messages.warning (request, "please recheck your inputs ")
+            return redirect ('staff:list_staff')
+        
+
+
+
+class ActivateStaff (LoginRequiredMixin1, View):
+    def get (self, request, id):
+        staff = MyUser.objects.get(id=id)
+        staff.status = "Active"
+        staff.save()
+        messages.success(request, "You have successfully activated a staff member")
+        return redirect ( 'staff:list_staff')
+
+
+
+
+class DeleteStaff (LoginRequiredMixin1, View):
+    def get (self, request, id):
+        staff = MyUser.objects.get(id=id)
+        staff.delete()
+        messages.success(request, "You have successfully deleted a staff member")
+        return redirect ( 'staff:list_staff')
+
+
+
+class ListSubscribers (LoginRequiredMixin1, View):
+    def get (self, request ):
+        subscriber = Visitors.objects.all()
+        return render (request, 'staff/list_team.html', {'subscriber':subscriber}) 
 

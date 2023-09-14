@@ -5,15 +5,32 @@
 	
 <head>
 
+
+	<!-- Google analytics tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-RB7KLY5SK8"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-RB7KLY5SK8');
+		</script>
+	<!-- end google analytics  -->
+
+
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta name="author" content="Jthemes"/>	
+		<meta name="author" content="Debol Engineering"/>	
 		<meta name="description" content="Else Kröner Center, The Medical Faculty at the Martin-Luther-University of Halle-Wittenberg, involved in Ethiopia Addis Ababa University, College of Health Science"/>
-		<meta name="keywords" content="EKC, AAU EKC, ">	
+		<meta name="keywords" content=" EKCC, EKCC Addis Ababa, EKCC Ethiopia, EKC, EKCC News, EKCC Publication, EKCC Report, Breast Cancer, Cervical Cancer, Cancer Treatment, Black Lion Hospital, Addis Ababa University,
+		Else Kröner Center for Cancer Care, Else Kröner Center, Martin-Luther-University, Halle-Wittenberg,  Debol, Debol Engineering ">	
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+		<meta name="google-translate-customization" content="2a346d14a229c668-7e7397a8cc152430-g725eaceb7864f0fd-12"></meta>
 				
   		<!-- SITE TITLE -->
-		<title>EKC Addis Ababa</title>
+		<title>{% block title %}{% endblock %}</title>
 							
 		<!-- FAVICON AND TOUCH ICONS  -->
 		<link rel="shortcut icon" href="{% static 'front/images/logo/logo-big.png' %}" type="image/x-icon">
@@ -32,11 +49,11 @@
 		<link href="{% static 'front/fonts/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
 
 		<link href="{% static 'front/css/magnific-popup.css' %}" rel="stylesheet">	
-<link href="{% static 'front/css/owl.carousel.min.css' %}" rel="stylesheet">
-<link href="{% static 'front/css/owl.theme.default.min.css' %}" rel="stylesheet">
-<link href="{% static 'front/css/animate.css' %}" rel="stylesheet">
-<link href="{% static 'front/css/jquery.datetimepicker.min.css' %}" rel="stylesheet">
-		
+		<link href="{% static 'front/css/owl.carousel.min.css' %}" rel="stylesheet">
+		<link href="{% static 'front/css/owl.theme.default.min.css' %}" rel="stylesheet">
+		<link href="{% static 'front/css/animate.css' %}" rel="stylesheet">
+		<link href="{% static 'front/css/jquery.datetimepicker.min.css' %}" rel="stylesheet">
+				
 
 
 		
@@ -55,8 +72,75 @@
 		<!-- RESPONSIVE CSS -->
 		<link href="{% static 'front/css/responsive.css' %}" rel="stylesheet"> 
 
-        
+
+		<!-- style google translate  -->
+		<style>
+
+
+			.goog-te-banner-frame.skiptranslate, .goog-te-gadget-simple img {
+				display: none !important;
+			}
+			.goog-tooltip {
+				display: none !important;
+			}
+			.goog-tooltip:hover {
+				display: none !important;
+			}
+			.goog-text-highlight {
+				background-color: transparent !important;
+				border: none !important;
+				box-shadow: none !important;
+			}
+			.VIpgJd-ZVi9od-ORHb-OEVmcd{
+				width: 0% !important;
+			}
+			.goog-te-gadget-simple{
+				background-color: transparent !important;
+				border: none !important;
+			}
+			.goog-te-gadget-simple, .VIpgJd-ZVi9od-xl07Ob-lTBxed > span {
+				color: #FFF !important;
+				font-size: medium;
+			}
+			body {
+				top: 0px !important;
+			}
+			.VIpgJd-ZVi9od-vH1Gmf-ibnC6b  {
+				color: #888 !important;
+				padding:  8px 15px !important;
+				text-align: left !important;
+				font-size: 15px !important;
+			}
+			.VIpgJd-ZVi9od-vH1Gmf-ibnC6b:hover {
+				color: #FFF !important;
+				background: #00a3c8 !important;
+				padding: 8px 15px 8px 23px !important;
+			}
+
+
+/* 
+			.translated-ltr{
+				margin-top: -40px;
+			}
+			.translated-ltr{
+				margin-top: -40px;
+			}
+			.goog-te-banner-frame{
+				display: none;
+				margin-top: -20px;
+			}
+			.goog-logo-link{
+				display: none !important;
+			}
+			.goog-te-gadget{
+				color: transparent !important;
+			} */
+
 	
+			
+		</style>
+		<!-- end google translate style  -->
+
 	</head>
 
 
@@ -91,7 +175,7 @@
 			    <div class="wsmobileheader clearfix">
 			    	<a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
 			    	<span class="smllogo"><img src="{% static 'front/images/logo/logo-big.png' %}" width="100" height="50" alt="mobile-logo"/></span>
-			    	<a href="tel:123456789" class="callusbtn"><i class="fas fa-phone"></i></a>
+			    	<a href="tel:0921757138" class="callusbtn"><i class="fas fa-phone"></i></a>
 			 	</div>
 
 			  	<!-- NAVIGATION MENU -->
@@ -104,7 +188,7 @@
 							<a href="#"><img src="{% static 'front/images/logo/logo-big.png' %}"  width="120" height="60" alt="header-logo"></a></div>
 
     					<!-- MAIN MENU -->
-      					<nav class="wsmenu clearfix">
+						<nav class="wsmenu clearfix">
         					<ul class="wsmenu-list">
 
 
@@ -113,7 +197,7 @@
                                     <a href="{% url 'home' %}" class="{% block home %} {% endblock %}" >Home </a>
 					          	</li>
 
-					        	<li aria-haspopup="true"> <a href="" class="{% block about %} {% endblock %}">About Us  <span class="wsarrow"></span> </a>
+					        	<li aria-haspopup="true"> <a href="{% url 'about_us' %}" class="{% block about %} {% endblock %}">About Us  <span class="wsarrow"></span> </a>
 									<ul class="sub-menu">
 										<li aria-haspopup="true"><a href="{% url 'about_us' %}"> About EKC </a></li>
 										<li aria-haspopup="true"><a href="{% url 'service' %}"> Service </a></li>
@@ -125,19 +209,19 @@
                                     <ul class="sub-menu">
                                        <li aria-haspopup="true"><a href="{% url 'publication' %}"> Research Outputs </a> </li>
                                        <li aria-haspopup="true"><a href="{% url 'report' %}"> Reports </a></li>
-                                       <li aria-haspopup="true"><a href="{% url 'call_application' %}"> Call Applications </a></li>
+                                       <li aria-haspopup="true"><a href="{% url 'call_application' %}"> Call of Applications </a></li>
                                     </ul>
 					          	</li>
 
 								
-                                <li aria-haspopup="true"><a href="" class="{% block news %} {% endblock %}">News & Gallery <span class="wsarrow"></span></a>
+                                <li aria-haspopup="true"><a href="{% url 'blog' type='news' %}" class="{% block news %} {% endblock %}">News & Gallery <span class="wsarrow"></span></a>
                                     <ul class="sub-menu">
                                        <li aria-haspopup="true"><a href="{% url 'blog' type='news' %}"> News </a> </li>
                                        <li aria-haspopup="true"><a href="{% url 'blog' type='gallery' %}"> Gallery </a></li>
                                     </ul>
                                 </li>	
                                
-                                <li aria-haspopup="true"><a href="" class="{% block event %} {% endblock %}"> Events <span class="wsarrow"></span> </a>
+                                <li aria-haspopup="true"><a href="{% url 'event' type='up_coming' %}" class="{% block event %} {% endblock %}"> Events <span class="wsarrow"></span> </a>
                                     <ul class="sub-menu">
                                         <li aria-haspopup="true"><a href="{% url 'event' type='up_coming' %}"> Up Coming Events </a></li>
                                         <li aria-haspopup="true"><a href="{% url 'event' type='past' %}"> Past Events </a></li>
@@ -176,18 +260,40 @@
 								{% endif %}
 
         					</ul>
+
+							<!-- google translate tag  -->
+							<div style="margin-top: 20px; ">
+								<div id="google_translate_element" ></div>
+								<script type="text/javascript">
+									function googleTranslateElementInit() {
+										new google.translate.TranslateElement(
+											{defaultLanguage: 'en',
+											pageLanguage: 'en',
+											includedLanguages: 'en,am,om,ti,so',
+											layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+											autoDisplay: true,
+											multilanguagePage: false,
+										},
+											'google_translate_element'
+										);
+									}
+								</script>
+								<script type="text/javascript" src= "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+								
+							</div>
+							<!-- end google translate tag  -->
+							
+						
+
+							
         				</nav>	<!-- END MAIN MENU -->
 
     				</div>
     			</div>	<!-- END NAVIGATION MENU -->
 
 
-			</header>	<!-- END HEADER -->
-
-
-		
-            {% if messages %}
-                <div class="col-md-6 msg-alert " >
+				{% if messages %}
+                <div class="col-md-6 msg-alert " style="position: absolute;">
                     {% for m in messages %}
                         <div class="alert alert-{{m.tags}} alert-bg  alert-block">
                             <p class=" h5-sm alert-title mt-0 mb-0 ">{{m}}</p> 
@@ -198,6 +304,12 @@
                     {% endfor %}
                 </div>
             {% endif %}
+				
+
+			</header>	<!-- END HEADER -->
+
+
+		
 
 
 			{% if not index %}
@@ -213,6 +325,7 @@
 								<nav aria-label="breadcrumb">
 								  	<ol class="breadcrumb">
 								    	<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+										{% block links_name %} {% endblock %}
 								    	<li class="breadcrumb-item active" aria-current="page">{% block page_name %} {% endblock %}</li>
 								    </ol>
 								</nav>
@@ -227,7 +340,7 @@
 				</div>	<!-- End container -->		
 			</div>	<!-- END BREADCRUMB -->	
 
-			{% endif %}
+			
 			<div class="container pl-4" style="position: relative; top: 50px;">
 				<div class="row">						
 					<div class="col">
@@ -235,6 +348,8 @@
 					</div>
 				</div>
 			</div>
+
+			{% endif %}
 			 
             {% block content %}
 
@@ -306,11 +421,17 @@
 								<h5 class="h5-xs">Useful Links</h5>
 
 								<!-- Working Hours -->
-								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <span>About EKC </span></p>
-								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <span>Upcoming Events</span></p>
-								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <span>Recent News</span></p>
-								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <span>Contact Us</span></p>									
-
+								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <a href="{% url 'about_us' %}"> <span>About EKCC </span></a></p>
+								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <a href="{% url 'event' type='up_coming' %}"> <span>Upcoming Events </span></a></p>
+								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <a href="{% url 'blog' type='news' %}"> <span> Latest News </span></a></p>
+								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <a href="{% url 'contact_us' %}"> <span>Contact Us </span></a></p>									
+								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <a target="_blank"
+									href="https://www.umh.de/einrichtungen/institute/medizinische-epidemiologie-biometrie-und-informatik/forschung/ag-global-health/aktuelles/update-else-kroener-center-for-cancer-care-in-ethiopia"> <span>Martin-Luther-University Website </span></a>
+								</p>									
+								<p class="p-sm"><i class="fas fa-angle-double-right"></i> <a target="_blank"
+									href="http://www.aau.edu.et/"> <span>Addis Ababa University (AAU) Website </span></a>
+								</p>									
+								
 							</div>
 						</div>
 
@@ -324,8 +445,9 @@
 					<!-- FOOTER COPYRIGHT -->
 					<div class="bottom-footer">
 						<div class="row">
-							<div class="col-md-6">
-								<p class="footer-copyright">&copy; 2023 <span>EKC</span>. All Rights Reserved</p>
+							<div class="col-12">
+								<p class="footer-copyright">&copy; 2023 <a href=""> <span>EKC</span>. </a> All Rights Reserved  
+									<a class="footer-copyright float-right" href="https://debolx.com"> Powered by <span>Debol Engineering </span>. </a>  </p>
 							</div>
 						</div>
 					</div>

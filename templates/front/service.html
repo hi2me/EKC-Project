@@ -4,6 +4,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC Services {% endblock %}
 
 {% block about %} active-menu {% endblock %}
 
@@ -42,7 +43,7 @@
                                            <!-- Text -->
                                            <div class="sbox-7-txt">
                                                <!-- Title -->
-                                               <h5 class="h5-sm steelblue-color">Establish Facilities</h5>
+                                               <h5 class="h5-sm steelblue-color">One Stop Clinic   </h5>
                                            </div>
 								    	</a>
 								  	</li>
@@ -52,27 +53,42 @@
 									    <a class="nav-link" id="tab12-list" data-toggle="pill" href="#tab-12" role="tab" aria-controls="tab-12" aria-selected="false">
 									       
                                            <!-- Icon -->
+											<span class="flaticon-073-laptop-2 blue-color"></span>
+                                               <!-- Text -->
+                                           <div class="sbox-7-txt">
+                                            <!-- Title -->
+                                            <h5 class="h5-sm steelblue-color">Oncology services and Training </h5>
+                                        </div>
+									    </a>
+									</li>
+
+									
+								  	<!-- TAB-8 LINK -->
+									  <li class="nav-item icon-xs sbox-7 icon-xs wow fadeInUp mb-3" data-wow-delay="0.6s">
+									    <a class="nav-link" id="tab17-list" data-toggle="pill" href="#tab-17" role="tab" aria-controls="tab-17" aria-selected="false">
+									       
+                                           <!-- Icon -->
 											<span class="flaticon-031-scanner blue-color"></span>
                                                <!-- Text -->
                                            <div class="sbox-7-txt">
                                             <!-- Title -->
-                                            <h5 class="h5-sm steelblue-color">Screening and Early Detection</h5>
+                                            <h5 class="h5-sm steelblue-color"> Peripheral early detection and screening  </h5>
                                         </div>
 									    </a>
 									</li>
 
 									<!-- TAB-3 LINK -->
 									<li class="nav-item icon-xs sbox-7 icon-xs wow fadeInUp mb-3" data-wow-delay="0.8s">
-									    <a class="nav-link" id="tab13-list" data-toggle="pill" href="#tab-13" role="tab" aria-controls="tab-13" aria-selected="false">
+									    <a class="nav-link" id="tab13-list" data-toggle="pill" href="#tab-14" role="tab" aria-controls="tab-14" aria-selected="false">
 									       
 				 							<!-- Icon -->
-											<span class="flaticon-039-emergency-call-1 blue-color"></span>
+											<span class="flaticon-142-ambulance blue-color"></span>
 
 											<!-- Text -->
 											<div class="sbox-7-txt">
 				
 												<!-- Title -->
-												<h5 class="h5-sm steelblue-color">Consultancy</h5>
+												<h5 class="h5-sm steelblue-color">Peripheral Fast Track and Referral Pathways </h5>
 													
 
 											</div>
@@ -81,41 +97,7 @@
 
 									<!-- TAB-4 LINK -->
 									<li class="nav-item icon-xs sbox-7 icon-xs wow fadeInUp mb-3" data-wow-delay="0.9s">
-									    <a class="nav-link" id="tab14-list" data-toggle="pill" href="#tab-14" role="tab" aria-controls="tab-14" aria-selected="false">
-									    <!-- Icon -->
-											<span class="flaticon-071-clipboard-2 blue-color"></span>
-
-											<!-- Text -->
-											<div class="sbox-7-txt">
-				
-												<!-- Title -->
-												<h5 class="h5-sm steelblue-color">Conduct Reasearch</h5>
-												
-
-											</div>
-									    </a>
-									</li>
-									
-									<!-- TAB-4 LINK -->
-									<li class="nav-item icon-xs sbox-7 icon-xs wow fadeInUp mb-3" data-wow-delay="0.95s">
-									    <a class="nav-link" id="tab15-list" data-toggle="pill" href="#tab-15" role="tab" aria-controls="tab-15" aria-selected="false">
-									    <!-- Icon -->
-											<span class="flaticon-073-laptop-2 blue-color"></span>
-
-											<!-- Text -->
-											<div class="sbox-7-txt">
-				
-												<!-- Title -->
-												<h5 class="h5-sm steelblue-color">Interdisciplinary Trainings</h5>
-												
-
-											</div>
-									    </a>
-									</li>
-									
-									<!-- TAB-4 LINK -->
-									<li class="nav-item icon-xs sbox-7 icon-xs wow fadeInUp mb-3" data-wow-delay="0.99s">
-									    <a class="nav-link" id="tab16-list" data-toggle="pill" href="#tab-16" role="tab" aria-controls="tab-16" aria-selected="false">
+									    <a class="nav-link" id="tab15-list" data-toggle="pill" href="#tab-15" role="tab" aria-controls="tab-14" aria-selected="false">
 									    <!-- Icon -->
 											<span class="flaticon-015-blood-donation-1 blue-color"></span>
 
@@ -123,13 +105,13 @@
 											<div class="sbox-7-txt">
 				
 												<!-- Title -->
-												<h5 class="h5-sm steelblue-color">Policy Support</h5>
+												<h5 class="h5-sm steelblue-color">Survivorship and long-term care</h5>
 												
 
 											</div>
 									    </a>
 									</li>
-
+									
 									
 								</ul>
 
@@ -145,22 +127,18 @@
 								<!-- TAB-1 CONTENT -->
 								<div class="tab-pane fade show active" id="tab-11" role="tabpanel" aria-labelledby="tab11-list">									
 									<!-- Title -->
-									<h3 class="h3-md steelblue-color">Establish Facilities</h3>
+									<h3 class="h3-md steelblue-color">One Stop Clinic</h3>
 
 									<!-- Text -->
-									<p> EKC works on establishing facilities of nearby health posts and health centers for easy access to screening and treatment.
+									<p> Our One Stop Clinic is a dedicated facility that provides comprehensive care for breast
+										 and cervical cancer screening, diagnosis and treatment. Through longstanding collaboration between AAU and MLU, the center offers a range 
+										of services to patients in need providing a centralized hub for diagnosis, treatment, and support.
 									</p>
 
 									<!-- Image -->
 									<div class="tab-img">
-										<img class="img-fluid" style="height: 300px; width: 80%;" src="{% static 'front/images/report/Picture4.jpg' %}" alt="tab-image" />
+										<img class="img-fluid" style="height: 300px; width: 80%;" src="{% static 'front/images/report/Picture3.jpg' %}" alt="tab-image" />
 									</div>
-
-									<!-- Text -->
-									<p>An enim nullam tempor sapien gravida donec enim ipsum blandit
-									   porta justo integer odio velna vitae auctor integer congue magna at pretium 
-									   purus pretium 
-									</p>
 
 								</div>	<!-- END TAB-1 CONTENT -->
 
@@ -169,70 +147,66 @@
 								<div class="tab-pane fade" id="tab-12" role="tabpanel" aria-labelledby="tab12-list">
 
 									<!-- Title -->
-									<h3 class="h3-md steelblue-color">Screening and Early Detection</h3>
+									<h3 class="h3-md steelblue-color"> Oncology Service and Training  </h3>
 
 									<!-- Text -->
-									<p>EKC provides effective screening and early detection of carnival and cancer symptoms 
-										at each centers with additional post screening and follow-up care.
+									<p>Our Oncology services focus on providing comprehensive oncology services and training for healthcare
+										 professionals to effectively evaluate and manage breast and cervical cancer. We equip gynecologists,
+										  surgeons, general practitioners, nurses, and midwives from regional hospitals with the necessary 
+										  skills and knowledge. 
+									</p>
+
+									<!-- Image -->
+									<div class="tab-img">
+										<img class="img-fluid" src="{% static 'front/images/report/Picture16.jpg' %}" alt="tab-image" />
+									</div>
+
+								</div>	<!-- END TAB-2 CONTENT -->
+
+								
+								<!-- TAB-2 CONTENT -->
+								<div class="tab-pane fade" id="tab-17" role="tabpanel" aria-labelledby="tab17-list">
+
+									<!-- Title -->
+									<h3 class="h3-md steelblue-color"> Peripheral Early Detection and Screening </h3>
+
+									<!-- Text -->
+									<p>Our peripheral early detection and screening program aim to improve the detection rates of breast and cervical cancer in 
+										peripheral sites. We intensify early detection and screening services in eight peripheral hospitals, ensuring 
+										the continuous quality assurance of cervical cancer screening programs. Additionally, we conduct prevention 
+										activities for marginalized and vulnerable women, address facility-level challenges, and work on awareness 
+										creation and opportunistic screening. By extending screening services to peripheral areas, we reach a broader 
+										population and detect cancer at earlier stages.
 									</p>
 
 									<!-- Image -->
 									<div class="tab-img">
 										<img class="img-fluid" src="{% static 'front/images/report/Picture14.png' %}" alt="tab-image" />
 									</div>
+									
 
-									<!-- Text -->
-									<p>An enim nullam tempor sapien gravida donec enim ipsum blandit
-									   porta justo integer odio velna vitae auctor integer congue magna at pretium 
-									   purus pretium ligul
-									</p>
 								</div>	<!-- END TAB-2 CONTENT -->
-
-
-								<!-- TAB-3 CONTENT -->
-								<div class="tab-pane fade" id="tab-13" role="tabpanel" aria-labelledby="tab13-list">
-
-									<!-- Title -->
-									<h3 class="h3-md steelblue-color">Consultancy </h3>
-
-									<!-- Text -->
-									<p>EKC provides contineous demand creation programs for women with mentorship and supportive supervisions for care providers. We also participate in high-level consultation with regional representatives. 
-									</p>
-
-									<!-- Image -->
-									<div class="tab-img">
-										<img class="img-fluid" style="height: 600px; width:100%" src="{% static 'front/images/report/Picture7.png' %}" alt="tab-image" />
-									</div>
-
-									<!-- Text -->
-									<p>An enim nullam tempor sapien gravida donec enim ipsum blandit
-									   porta justo integer odio velna vitae auctor integer congue magna at pretium 
-									   purus pretium lig
-									</p>
-
-								</div>	<!-- END TAB-3 CONTENT -->
 
 
 								<!-- TAB-4 CONTENT -->
 								<div class="tab-pane fade" id="tab-14" role="tabpanel" aria-labelledby="tab14-list">
 
 									<!-- Title -->
-									<h3 class="h3-md steelblue-color">Conduct Reasearch</h3>
+									<h3 class="h3-md steelblue-color">Our Peripheral Fast Track and Referral Pathways</h3>
 
 									<!-- Text -->
-									<p>EKC support researches to conduct researches on Cancer in addition to its oun research programs and write manuscript workshops for MPH students. 
+									<p> Our Peripheral Fast Track & Referral Pathways initiative focuses on implementing an efficient referral 
+										system for breast and cervical cancer patients in peripheral sites. We establish fast-track referral and 
+										linkage mechanisms in multiple primary health centers and hospitals. By streamlining the referral process
+										 and ensuring timely access to specialized care, we improve patient outcomes and reduce delays in diagnosis 
+										 and treatment.
 									</p>
 
 									<!-- Image -->
 									<div class="tab-img">
-										<img class="img-fluid" style="height: 400px; width: 100%;" src="{% static 'front/images/report/Picture21.jpg' %}" alt="tab-image" />
+										<img class="img-fluid" style="height: 400px; width: 100%;" src="{% static 'front/images/report/Picture4.jpg' %}" alt="tab-image" />
 									</div>
 
-									<!-- Text -->
-									<p>An enim nullam tempor sapien gravida donec enim ipsum blandit
-									   porta justo integer odio velna vitae auctor integer congue magna at pretium 
-									   purus pretium l
-									</p>
 								</div>	<!-- END TAB-4 CONTENT -->
 								
 
@@ -240,20 +214,20 @@
 								<div class="tab-pane fade" id="tab-15" role="tabpanel" aria-labelledby="tab15-list">
 
 									<!-- Title -->
-									<h3 class="h3-md steelblue-color">Interdisciplinary Trainings</h3>
+									<h3 class="h3-md steelblue-color">Survivorship and Long-term Care </h3>
 
 									<!-- Text -->
-									<p>EKC provides Basic cervical cancer screening training HOs, nurses, and midwives; LEEP treatment training for gynaecologist and nurses in collaboration to MOH;
-										chemotherapy training for nurses; surgical technical skill training for surgeons and other capacity development trainings at each active peripheral centers.
+									<p> Our Survivorship & long-term care program aims to provide comprehensive support to cancer patients beyond 
+										initial diagnosis and treatment. We conduct qualitative assessments to understand the needs of cancer patients
+										in rural Ethiopia and design psycho-social support strategies at various levels of healthcare and the community. 
+										Through training programs, educational materials, and engagement with local stakeholders, we ensure long-term 
+										holistic care and create a support network for patients. By addressing the physical, emotional, and social 
+										aspects of survivorship, we improve the quality of life for cancer survivors.
+
 									</p>
 
 									<!-- Image -->
 
-									<!-- Text -->
-									<p>An enim nullam tempor sapien gravida donec enim ipsum blandit
-									   porta justo integer odio velna vitae auctor integer congue magna at pretium 
-									   purus pretium ligula
-									</p>
 
 									<!-- Options List -->
 									<div class="row">
@@ -261,7 +235,7 @@
 										<div class="col-xl-6">
 
 											<div class="tab-img">
-												<img class="img-fluid" style="height: 200px;" src="{% static 'front/images/report/Picture13.png' %}" alt="tab-image" />
+												<img class="img-fluid" style="height: 200px;" src="{% static 'front/images/report/Picture6.jpg' %}" alt="tab-image" />
 											</div>
 
 										</div>
@@ -269,7 +243,7 @@
 										<div class="col-xl-6">
 											
 											<div class="tab-img">
-												<img class="img-fluid" style="height: 210px; width: 100%;" src="{% static 'front/images/report/Picture16.jpg' %}" alt="tab-image" />
+												<img class="img-fluid" style="height: 210px; width: 100%;" src="{% static 'front/images/report/Picture10.png' %}" alt="tab-image" />
 											</div>
 
 											<!-- Option #4 -->
@@ -281,29 +255,6 @@
 								</div>	<!-- END TAB-5 CONTENT -->
 
 								
-
-								<!-- TAB-6 CONTENT -->
-								<div class="tab-pane fade" id="tab-16" role="tabpanel" aria-labelledby="tab16-list">
-
-									<!-- Title -->
-									<h3 class="h3-md steelblue-color">Policy Support</h3>
-
-									<!-- Text -->
-									<p>EKC conducts evidence based guidelines and manual on breast cancer and carniveral health to improve the policy environment in the MoH.
-
-									<!-- Image -->
-									<div class="tab-img">
-										<img class="img-fluid" style="height:400px ; width: 100%;" src="{% static 'front/images/report/pic.jpg' %}" alt="tab-image" />
-									</div>
-
-									<!-- Text -->
-									<p>An enim nullam tempor sapien gravida donec enim ipsum blandit
-									   porta justo integer odio velna vitae auctor integer congue magna at pretium 
-									   purus pretium ligula rut
-									</p>
-
-								</div>	<!-- END TAB-4 CONTENT -->
-
 
 							</div>	<!-- END TABS CONTENT -->
 

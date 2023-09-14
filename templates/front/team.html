@@ -2,6 +2,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} EKCC Team Members{% endblock %}
 
 {% block about %} active-menu {% endblock %}
 
@@ -23,432 +24,175 @@
 				
 
 
-					<h5 class="h-md steelblue-color ">External Supporters </h5>
+					<h5 class="h-md steelblue-color ">Martin-Luther-University Halle-Wittenberg, Halle </h5>
 								
 					<div class="row">
 
-						<!-- DOCTOR #4 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-																					
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid"  style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/prof.jpg' %}" alt="doctor-foto">	
-								</div>	
+
+						{% for team in team %}
+							{% if team.wing == 'Martin-Luther-University Halle-Wittenberg, Halle' %}
+								<div class="col-md-6 col-lg-4">
+									<div class="doctor-2">	
+										<!-- Doctor Photo -->
+										<div class="hover-overlay"> 
+											<img class="img-fluid" style="height: 300px; width: 100%;" src="{{team.image.url}}" alt="doctor-foto">	
+										</div>								
+															
+										<!-- Doctor Meta -->		
+										<div class="doctor-meta">
+
+											<h5 class="h5-xs blue-color"> {{team.name}} </h5>
+											<span>{{team.role}}</span>
+
+											<!-- Button -->
+											<!-- Button -->
+
+											{% if team.email %}
+
+											<div id="accordion" role="tablist">
+                
+												<div id="id{{team.id}}" class="collapse " role="tabpanel" aria-labelledby="idtwo{{team.id}}" data-parent="#accordion">
+													<div class="card-body">
 								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
+													   <!-- Text -->	
+													   <p class="p-sm"> {{team.email}}</p>
+								
+													</div>
+												</div>
+							
+												<a  data-toggle="collapse" role="tab" id="idtwo{{team.id}}" href="#id{{team.id}}" aria-expanded="true" aria-controls="id{{team.id}}" 
+												class=" collapsed btn btn-sm btn-blue blue-hover mt-10">Address</a>
+											
+											</div>
 
-									<h5 class="h5-xs blue-color">Prof. Eva J. Kantelhardt</h5>
-									<span>Position </span>
+											{% endif %}
+											<!-- <a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a> -->
 
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
+											<!-- Button -->
 
+										</div>	
+
+									</div>					
 								</div>	
+							{% endif %}
+						{% endfor %}
+						<!-- END DOCTOR #2 -->
 
-							</div>			
-						</div>	<!-- END DOCTOR #4 -->
-
-
-						<!-- DOCTOR #1 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid" style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/adamu.jpg' %}" alt="doctor-foto">	
-								</div>								
-														
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color"> Dr. Adamu Addisse </h5>
-									<span>Chair Person, IRB</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>	
-
-							<!-- Doctor Photo -->
-							<div class="hover-overlay"> 
-								<img class="img-fluid" style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/adamu.jpg' %}" alt="doctor-foto">	
-							</div>								
-													
-							<!-- Doctor Meta -->		
-							<div class="doctor-meta">
-
-								<h5 class="h5-xs blue-color"> Dr. Adamu Addisse </h5>
-								<span>Chair Person, IRB</span>
-
-								<!-- Button -->
-								<a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>	
-
-							</div>					
-						</div>	<!-- END DOCTOR #2 -->
 						
 					</div>
 
-					<h5 class="h-md steelblue-color ">AAu CPH Staff </h5>
+					<h5 class="h-md steelblue-color ">Addis Ababa University | Collage of Health Science | School of Public Health  </h5>
 								
 					
 					<div class="row">
-						<!-- DOCTOR #3 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-																						
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/sofoniyas.jpg' %}" alt="doctor-foto">	
+				
+						
+						
+						{% for team in team %}
+							{% if team.wing == 'AAU' %}
+								<div class="col-md-6 col-lg-4">
+									<div class="doctor-2">	
+										<!-- Doctor Photo -->
+										<div class="hover-overlay"> 
+											<img class="img-fluid" style="height: 300px; width: 100%;" src="{{team.image.url}}" alt="doctor-foto">	
+										</div>								
+															
+										<!-- Doctor Meta -->		
+										<div class="doctor-meta">
+
+											<h5 class="h5-xs blue-color">{{team.name}} </h5>
+											<span>{{team.role}}</span>
+
+											<!-- Button -->
+											<!-- Button -->
+
+											{% if team.email %}
+
+											<div id="accordion" role="tablist">
+                
+												<div id="id{{team.id}}" class="collapse " role="tabpanel" aria-labelledby="idtwo{{team.id}}" data-parent="#accordion">
+													<div class="card-body">
+								
+													   <!-- Text -->	
+													   <p class="p-sm"> {{team.email}}</p>
+								
+													</div>
+												</div>
+							
+												<a  data-toggle="collapse" role="tab" id="idtwo{{team.id}}" href="#id{{team.id}}" aria-expanded="true" aria-controls="id{{team.id}}" 
+												class=" collapsed btn btn-sm btn-blue blue-hover mt-10">Address</a>
+											
+											</div>
+
+											{% endif %}
+											<!-- <a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a> -->
+
+											<!-- Button -->
+
+										</div>	
+
+									</div>					
 								</div>	
-								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Dr. Sefonias Getachew </h5>
-									<span>Assistant Professor</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>	
-
-								</div>	
-
-							</div>			
-						</div>	<!-- END DOCTOR #3 -->
-								
-
-						<!-- DOCTOR #5 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-								
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid"  style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/team1.jpg' %}" alt="doctor-foto">	
-								</div>		
-								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Ms. Abc </h5>
-									<span>Position</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>
-
-							</div>			
-						</div>	<!-- END DOCTOR #5 -->
-
-
-						<!-- DOCTOR #6 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/team2.jpg' %}" alt="doctor-foto">	
-								</div>									
-																			
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Ms. Xyz</h5>
-									<span>Position</span>	
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>
-									
-							</div>	
-
-						</div>								
-					</div>	<!-- END DOCTOR #1 -->
-					
-					
-					<!-- DOCTOR #2 -->
-					<div class="col-md-6 col-lg-4">
-						<div class="doctor-2">	
-																					
-							<!-- Doctor Photo -->
-							<div class="hover-overlay"> 
-								<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/muluken.png' %}" alt="doctor-foto">	
-							</div>	
-
-							<!-- Doctor Meta -->		
-							<div class="doctor-meta">
-
-								<h5 class="h5-xs blue-color"> Dr. Muluken Gizaw</h5>
-								<span>Assistant Professor </span>
-
-								<!-- Button -->
-								<a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a>
-
-							</div>	
-
-						</div>					
-					</div>	<!-- END DOCTOR #2 -->
-					
-					
-					<!-- DOCTOR #3 -->
-					<div class="col-md-6 col-lg-4">
-						<div class="doctor-2">	
-																					
-							<!-- Doctor Photo -->
-							<div class="hover-overlay"> 
-								<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/sofoniyas.jpg' %}" alt="doctor-foto">	
-							</div>	
-							
-							<!-- Doctor Meta -->		
-							<div class="doctor-meta">
-
-								<h5 class="h5-xs blue-color">Dr. Sefonias Getachew </h5>
-								<span>Assistant Professor</span>
-
-								<!-- Button -->
-								<a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a>	
-
-							</div>	
-
-						</div>			
-					</div>	<!-- END DOCTOR #3 -->
-										
-					
-					<!-- DOCTOR #4 -->
-					<div class="col-md-6 col-lg-4">
-						<div class="doctor-2">	
-																				
-							<!-- Doctor Photo -->
-							<div class="hover-overlay"> 
-								<img class="img-fluid"  style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/prof.jpg' %}" alt="doctor-foto">	
-							</div>	
-							
-							<!-- Doctor Meta -->		
-							<div class="doctor-meta">
-
-								<h5 class="h5-xs blue-color">Prof. Eva J. Kantelhardt</h5>
-								<span>Position </span>
-
-								<!-- Button -->
-								<a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a>
-
-							</div>	
-
-						</div>			
-					</div>	<!-- END DOCTOR #4 -->
-
-
-					<!-- DOCTOR #5 -->
-					<div class="col-md-6 col-lg-4">
-						<div class="doctor-2">	
-							
-							<!-- Doctor Photo -->
-							<div class="hover-overlay"> 
-								<img class="img-fluid"  style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/team1.jpg' %}" alt="doctor-foto">	
-							</div>		
-							
-							<!-- Doctor Meta -->		
-							<div class="doctor-meta">
-
-								<h5 class="h5-xs blue-color">Ms. Abc </h5>
-								<span>Position</span>
-
-								<!-- Button -->
-								<a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a>
-
-							</div>
-
-						</div>			
-					</div>	<!-- END DOCTOR #5 -->
-
-
-					<!-- DOCTOR #6 -->
-					<div class="col-md-6 col-lg-4">
-						<div class="doctor-2">	
-
-							<!-- Doctor Photo -->
-							<div class="hover-overlay"> 
-								<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/team2.jpg' %}" alt="doctor-foto">	
-							</div>									
-																		
-							<!-- Doctor Meta -->		
-							<div class="doctor-meta">
-
-								<h5 class="h5-xs blue-color">Ms. Xyz</h5>
-								<span>Position</span>	
-
-								<!-- Button -->
-								<a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a>
-
-							</div>
-								
-						</div>	
-					</div>	<!-- END DOCTOR #6 -->
+							{% endif %}
+						{% endfor %}
 
 					</div>
 
 					
-					<h5 class="h-md steelblue-color ">Gynecologists</h5>
+					<h5 class="h-md steelblue-color ">Churchill Health Center </h5>
 								
 
 					<div class="row">
-						<!-- DOCTOR #3 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-																						
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/user.png' %}" alt="doctor-foto">	
+						
+						{% for team in team %}
+							{% if team.wing == 'Health-Center' %}
+								<div class="col-md-6 col-lg-4">
+									<div class="doctor-2">	
+										<!-- Doctor Photo -->
+										<div class="hover-overlay"> 
+											<img class="img-fluid" style="height: 300px; width: 100%;" src="{{team.image.url}}" alt="doctor-foto">	
+										</div>								
+															
+										<!-- Doctor Meta -->		
+										<div class="doctor-meta">
+
+											<h5 class="h5-xs blue-color"> {{team.name}} </h5>
+											<span>{{team.role}}</span>
+
+											{% if team.email %}
+
+											<div id="accordion" role="tablist">
+                
+												<div id="id{{team.id}}" class="collapse " role="tabpanel" aria-labelledby="idtwo{{team.id}}" data-parent="#accordion">
+													<div class="card-body">
+								
+													   <!-- Text -->	
+													   <p class="p-sm"> {{team.email}}</p>
+								
+													</div>
+												</div>
+							
+												<a  data-toggle="collapse" role="tab" id="idtwo{{team.id}}" href="#id{{team.id}}" aria-expanded="true" aria-controls="id{{team.id}}" 
+												class=" collapsed btn btn-sm btn-blue blue-hover mt-10">Address</a>
+											
+											</div>
+
+											{% endif %}
+											<!-- Button -->
+											<!-- <a class="btn btn-sm btn-blue blue-hover mt-15" href="" title="">View More Info</a> -->
+
+											<!-- Button -->
+
+										</div>	
+
+									</div>					
 								</div>	
-								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Dr. Sefonias Getachew </h5>
-									<span>Assistant Professor</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>	
-
-								</div>	
-
-							</div>			
-						</div>	<!-- END DOCTOR #3 -->
-								
-
-						<!-- DOCTOR #5 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-								
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid"  style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/user.png' %}" alt="doctor-foto">	
-								</div>		
-								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Ms. Abc </h5>
-									<span>Position</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>
-
-							</div>			
-						</div>	<!-- END DOCTOR #5 -->
-
-
-						<!-- DOCTOR #6 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/user.png' %}" alt="doctor-foto">	
-								</div>									
-																			
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Ms. Xyz</h5>
-									<span>Position</span>	
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>
-									
-							</div>	
-						</div>	<!-- END DOCTOR #6 -->
+							{% endif %}
+						{% endfor %}
 
 					</div>
 
 					
-					<h5 class="h-md steelblue-color ">Branch Center Members</h5>
-								
-
-					<div class="row">
-						<!-- DOCTOR #3 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-																						
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/user.png' %}" alt="doctor-foto">	
-								</div>	
-								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Dr. Sefonias Getachew </h5>
-									<span>Assistant Professor</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>	
-
-								</div>	
-
-							</div>			
-						</div>	<!-- END DOCTOR #3 -->
-								
-
-						<!-- DOCTOR #5 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-								
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid"  style="height: 300px; width: 100%;" src="{% static  'front/images/ekc/user.png' %}" alt="doctor-foto">	
-								</div>		
-								
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Ms. Abc </h5>
-									<span>Position</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>
-
-							</div>			
-						</div>	<!-- END DOCTOR #5 -->
-
-
-						<!-- DOCTOR #6 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">	
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay"> 
-									<img class="img-fluid" style="height: 300px; width: 100%;"  src="{% static  'front/images/ekc/user.png' %}" alt="doctor-foto">	
-								</div>									
-																			
-								<!-- Doctor Meta -->		
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Ms. Xyz</h5>
-									<span>Position</span>	
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>
-									
-							</div>	
-						</div>	<!-- END DOCTOR #6 -->
-
-					</div>
 
 				</div>	    <!-- End row -->
 			</div>	   <!-- End container -->

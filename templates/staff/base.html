@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<title>{% block main_title %} EKC AAU {% endblock %}</title>
+<title>{% block main_title %} EKCC AAU {% endblock %}</title>
 
 <head>
   {% include 'staff/head.html' %}
@@ -64,9 +64,6 @@
                   <span class="menu-title" >List all Calls </span></a>
                 </li>
                 
-                <li class=" nav-item"><a href="" class="menu-item">
-                  <span class="menu-title" >List all Submissions </span></a>
-                </li>
 
                 <li class=" nav-item"><a href="{% url 'call_application' %}" target="blank"  class="menu-item">
                   <span class="menu-title"  > Call Applications on Site </span></a>
@@ -156,11 +153,15 @@
               <span class="menu-title" ><i class="fa fa-users"></i>Users</span>
             </a>
             <ul class="menu-content">
-              <li class=" nav-item"><a href=" " class="menu-item"><span class="menu-title" >Staff Members</span></a>
+              <li class=" nav-item"><a href=" {% url 'staff:list_team' %} " class="menu-item"><span class="menu-title" >Team Members</span></a>
               </li>
               
-                <li class=" nav-item"><a href="" class="menu-item"><span class="menu-title" >Visitors</span></a>
-                </li>
+              <li class=" nav-item"><a href=" {% url 'staff:list_staff' %}  " class="menu-item"><span class="menu-title" >Staff Members</span></a>
+              </li>
+              
+              <li class=" nav-item"><a href=" {% url 'staff:list_subscriber' %}  " class="menu-item"><span class="menu-title" >News Subscribers</span></a>
+              </li>
+              
             </ul>
           </li>
          
