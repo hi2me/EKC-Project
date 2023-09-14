@@ -107,12 +107,14 @@ class UpdateProfile(View):
         form = StaffUserCreationForm(instance=me, data=self.request.POST, files=self.request.FILES )
        
         if form.is_valid():
+            print("@@@@@@@@@@@@@@@@@@,5")
             user = form.save(commit=False)
             user.save()
             return redirect ('staff:index')
         else:
             messages.warning (request, "please recheck your inputs ")
             return render ( request, 'staff/detail_staff.html', {'form':form, 'profile':True})
+
 
 
 
